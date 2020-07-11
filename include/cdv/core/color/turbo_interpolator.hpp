@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cdv/core/color/interpolator.hpp"
+#include <cdv/core/color/interpolator.hpp>
 
 namespace cdv::interpolator
 {

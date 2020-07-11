@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cdv/core/rgba_color.hpp"
+#include <cdv/core/rgba_color.hpp>
 
-#include "cdv/stdx/numbers.hpp"
+#include <cdv/stdx/numbers.hpp>
 
 #include <cmath>
 

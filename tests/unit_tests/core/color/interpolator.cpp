@@ -1,4 +1,4 @@
-#include "cdv/core/color/interpolator.hpp"
+#include <cdv/core/color/interpolator.hpp>
 
 #include <doctest/doctest.h>
 

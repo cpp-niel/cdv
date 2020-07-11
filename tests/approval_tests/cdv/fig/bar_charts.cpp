@@ -1,20 +1,20 @@
-#include "framework/approval_tests.hpp"
+#include <framework/approval_tests.hpp>
 
-#include "cdv/core/color/categorical_schemes.hpp"
-#include "cdv/core/color/diverging_interpolators.hpp"
-#include "cdv/core/color/generated_schemes.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/axis.hpp"
-#include "cdv/elem/range_stack.hpp"
-#include "cdv/elem/rectangle.hpp"
-#include "cdv/elem/swatch_legend.hpp"
-#include "cdv/elem/text.hpp"
-#include "cdv/fig/frame.hpp"
-#include "cdv/fig/render_svg.hpp"
-#include "cdv/scl/band_scale.hpp"
-#include "cdv/scl/linear_scale.hpp"
-#include "cdv/scl/log_scale.hpp"
-#include "cdv/scl/ordinal_scale.hpp"
+#include <cdv/core/color/categorical_schemes.hpp>
+#include <cdv/core/color/diverging_interpolators.hpp>
+#include <cdv/core/color/generated_schemes.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/axis.hpp>
+#include <cdv/elem/range_stack.hpp>
+#include <cdv/elem/rectangle.hpp>
+#include <cdv/elem/swatch_legend.hpp>
+#include <cdv/elem/text.hpp>
+#include <cdv/fig/frame.hpp>
+#include <cdv/fig/render_svg.hpp>
+#include <cdv/scl/band_scale.hpp>
+#include <cdv/scl/linear_scale.hpp>
+#include <cdv/scl/log_scale.hpp>
+#include <cdv/scl/ordinal_scale.hpp>
 
 #include <range/v3/view/cartesian_product.hpp>
 #include <range/v3/view/join.hpp>

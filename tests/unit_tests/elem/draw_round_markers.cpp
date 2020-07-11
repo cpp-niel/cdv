@@ -1,7 +1,7 @@
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/detail/draw_markers.hpp"
-#include "cdv/elem/line_properties.hpp"
-#include "cdv/fig/render_surface.hpp"
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/detail/draw_markers.hpp>
+#include <cdv/elem/line_properties.hpp>
+#include <cdv/fig/render_surface.hpp>
 
 #include <doctest/doctest.h>
 #include <range/v3/algorithm/equal.hpp>

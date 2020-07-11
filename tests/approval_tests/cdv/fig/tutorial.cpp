@@ -1,21 +1,21 @@
-#include "framework/approval_tests.hpp"
+#include <framework/approval_tests.hpp>
 
-#include "cdv/core/color/categorical_schemes.hpp"
-#include "cdv/core/color/perceptually_uniform_interpolators.hpp"
-#include "cdv/core/rgba_color.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/axis.hpp"
-#include "cdv/elem/line.hpp"
-#include "cdv/elem/rectangle.hpp"
+#include <cdv/core/color/categorical_schemes.hpp>
+#include <cdv/core/color/perceptually_uniform_interpolators.hpp>
+#include <cdv/core/rgba_color.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/axis.hpp>
+#include <cdv/elem/line.hpp>
+#include <cdv/elem/rectangle.hpp>
 // mdinject-begin: tutorial-hello-world-include
-#include "cdv/elem/text.hpp"
-#include "cdv/fig/frame.hpp"
-#include "cdv/fig/render_svg.hpp"
+#include <cdv/elem/text.hpp>
+#include <cdv/fig/frame.hpp>
+#include <cdv/fig/render_svg.hpp>
 // mdinject-end
-#include "cdv/scl/band_scale.hpp"
-#include "cdv/scl/linear_scale.hpp"
-#include "cdv/scl/ordinal_scale.hpp"
-#include "cdv/scl/sequential_scale.hpp"
+#include <cdv/scl/band_scale.hpp>
+#include <cdv/scl/linear_scale.hpp>
+#include <cdv/scl/ordinal_scale.hpp>
+#include <cdv/scl/sequential_scale.hpp>
 
 #include <range/v3/view/iota.hpp>
 #include <range/v3/view/transform.hpp>

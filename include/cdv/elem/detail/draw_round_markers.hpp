@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cdv/core/vec2.hpp"
+#include <cdv/core/vec2.hpp>
 
 #include <range/v3/view/transform.hpp>
 #include <range/v3/view/zip.hpp>

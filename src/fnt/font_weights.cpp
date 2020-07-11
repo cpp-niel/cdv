@@ -1,4 +1,4 @@
-#include "cdv/fnt/font_properties.hpp"
+#include <cdv/fnt/font_properties.hpp>
 
 namespace cdv::fnt
 {

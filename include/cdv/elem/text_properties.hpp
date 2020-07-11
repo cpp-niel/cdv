@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cdv/core/rgba_color.hpp"
-#include "cdv/core/units.hpp"
-#include "cdv/fnt/font_properties.hpp"
+#include <cdv/core/rgba_color.hpp>
+#include <cdv/core/units.hpp>
+#include <cdv/fnt/font_properties.hpp>
 
 namespace cdv::elem
 {

@@ -1,5 +1,5 @@
-#include "cdv/scl/log_scale.hpp"
-#include "test/util.hpp"
+#include <cdv/scl/log_scale.hpp>
+#include <test/util.hpp>
 
 #include <doctest/doctest.h>
 #include <range/v3/algorithm/equal.hpp>

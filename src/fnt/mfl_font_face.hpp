@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cdv/fnt/freetype.hpp"
+#include <cdv/fnt/freetype.hpp>
 
 #include <mfl/abstract_font_face.hpp>
 #include <mfl/font_family.hpp>

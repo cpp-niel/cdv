@@ -1,18 +1,18 @@
-#include "framework/approval_tests.hpp"
+#include <framework/approval_tests.hpp>
 
-#include "cdv/core/rgba_color.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/axis.hpp"
-#include "cdv/elem/line.hpp"
-#include "cdv/elem/rectangle.hpp"
-#include "cdv/elem/text.hpp"
-#include "cdv/fig/frame.hpp"
-#include "cdv/fig/render_svg.hpp"
-#include "cdv/scl/band_scale.hpp"
-#include "cdv/scl/linear_scale.hpp"
-#include "cdv/scl/ordinal_scale.hpp"
-#include "cdv/scl/point_scale.hpp"
-#include "cdv/scl/time_scale.hpp"
+#include <cdv/core/rgba_color.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/axis.hpp>
+#include <cdv/elem/line.hpp>
+#include <cdv/elem/rectangle.hpp>
+#include <cdv/elem/text.hpp>
+#include <cdv/fig/frame.hpp>
+#include <cdv/fig/render_svg.hpp>
+#include <cdv/scl/band_scale.hpp>
+#include <cdv/scl/linear_scale.hpp>
+#include <cdv/scl/ordinal_scale.hpp>
+#include <cdv/scl/point_scale.hpp>
+#include <cdv/scl/time_scale.hpp>
 
 #include <array>
 

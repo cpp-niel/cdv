@@ -1,6 +1,6 @@
 #pragma once
 
-#include "framework/ApprovalTests.v.10.0.1.hpp"
+#include <framework/ApprovalTests.v.10.0.1.hpp>
 #include <doctest/doctest.h>
 
 namespace cdv::test

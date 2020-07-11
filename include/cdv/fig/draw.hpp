@@ -1,7 +1,7 @@
 #pragma once
 
-#include "cdv/core/vec2.hpp"
-#include "cdv/stdx/concepts.hpp"
+#include <cdv/core/vec2.hpp>
+#include <cdv/stdx/concepts.hpp>
 
 #include <tuple>
 

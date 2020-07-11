@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cdv/core/vec2.hpp"
+#include <cdv/core/vec2.hpp>
 
-#include "cdv/core/units.hpp"
+#include <cdv/core/units.hpp>
 
 #include <iosfwd>
 #include <string>

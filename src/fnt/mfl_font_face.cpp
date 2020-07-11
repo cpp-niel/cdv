@@ -1,6 +1,6 @@
-#include "fnt/mfl_font_face.hpp"
+#include <fnt/mfl_font_face.hpp>
 
-#include "fnt/freetype_error.hpp"
+#include <fnt/freetype_error.hpp>
 
 #include <harfbuzz/hb-ft.h>
 #include <harfbuzz/hb-ot.h>

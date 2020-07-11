@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cdv/core/rgba_color.hpp"
+#include <cdv/core/rgba_color.hpp>
 
 namespace cdv::elem
 {

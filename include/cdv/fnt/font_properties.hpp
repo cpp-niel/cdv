@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cdv/fnt/font_weights.hpp"
+#include <cdv/fnt/font_weights.hpp>
 
 #include <fmt/format.h>
 

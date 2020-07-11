@@ -1,12 +1,12 @@
-#include "framework/approval_tests.hpp"
+#include <framework/approval_tests.hpp>
 
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/axis.hpp"
-#include "cdv/fig/render_svg.hpp"
-#include "cdv/scl/band_scale.hpp"
-#include "cdv/scl/linear_scale.hpp"
-#include "cdv/scl/log_scale.hpp"
-#include "cdv/scl/time_scale.hpp"
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/axis.hpp>
+#include <cdv/fig/render_svg.hpp>
+#include <cdv/scl/band_scale.hpp>
+#include <cdv/scl/linear_scale.hpp>
+#include <cdv/scl/log_scale.hpp>
+#include <cdv/scl/time_scale.hpp>
 
 #include <array>
 

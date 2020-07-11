@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cdv/stdx/concepts.hpp"
+#include <cdv/stdx/concepts.hpp>
 
 #include <fmt/format.h>
 
@@ -127,14 +127,14 @@ namespace cdv
     namespace css4
     {
 #define CDV_DEFINE_COLOR(name, value) constexpr auto name = rgba_color(value);
-#include "cdv/core/color/css4.hpp"
+#include <cdv/core/color/css4.hpp>
 #undef CDV_DEFINE_COLOR
     }
 
     namespace tab
     {
 #define CDV_DEFINE_COLOR(name, value) constexpr auto name = rgba_color(value);
-#include "cdv/core/color/tableau.hpp"
+#include <cdv/core/color/tableau.hpp>
 #undef CDV_DEFINE_COLOR
     }
 }

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cdv/core/units.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/fig/frame_dimensions.hpp"
+#include <cdv/core/units.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/fig/frame_dimensions.hpp>
 
 namespace cdv::fig
 {

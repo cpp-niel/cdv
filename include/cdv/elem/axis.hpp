@@ -1,9 +1,9 @@
 #pragma once
 
-#include "cdv/core/rgba_color.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/line_properties.hpp"
-#include "cdv/elem/text_properties.hpp"
+#include <cdv/core/rgba_color.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/line_properties.hpp>
+#include <cdv/elem/text_properties.hpp>
 
 #include <range/v3/view/transform.hpp>
 #include <range/v3/view/zip.hpp>

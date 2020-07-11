@@ -1,4 +1,4 @@
-#include "cdv/scl/point_scale.hpp"
+#include <cdv/scl/point_scale.hpp>
 
 #include <cdv/core/rgba_color.hpp>
 #include <cdv/core/units.hpp>

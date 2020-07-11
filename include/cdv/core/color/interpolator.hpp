@@ -1,7 +1,7 @@
 #pragma once
 
-#include "cdv/core/rgba_color.hpp"
-#include "cdv/stdx/concepts.hpp"
+#include <cdv/core/rgba_color.hpp>
+#include <cdv/stdx/concepts.hpp>
 
 #include <range/v3/back.hpp>
 #include <range/v3/front.hpp>

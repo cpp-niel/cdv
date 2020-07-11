@@ -1,16 +1,16 @@
-#include "framework/approval_tests.hpp"
+#include <framework/approval_tests.hpp>
 
-#include "cdv/core/color/perceptually_uniform_interpolators.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/axis.hpp"
-#include "cdv/elem/color_legend.hpp"
-#include "cdv/elem/line.hpp"
-#include "cdv/elem/scatter.hpp"
-#include "cdv/elem/symbol.hpp"
-#include "cdv/fig/frame.hpp"
-#include "cdv/fig/render_svg.hpp"
-#include "cdv/scl/linear_scale.hpp"
-#include "cdv/scl/sequential_scale.hpp"
+#include <cdv/core/color/perceptually_uniform_interpolators.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/axis.hpp>
+#include <cdv/elem/color_legend.hpp>
+#include <cdv/elem/line.hpp>
+#include <cdv/elem/scatter.hpp>
+#include <cdv/elem/symbol.hpp>
+#include <cdv/fig/frame.hpp>
+#include <cdv/fig/render_svg.hpp>
+#include <cdv/scl/linear_scale.hpp>
+#include <cdv/scl/sequential_scale.hpp>
 
 #include <range/v3/view/all.hpp>
 #include <range/v3/view/generate_n.hpp>

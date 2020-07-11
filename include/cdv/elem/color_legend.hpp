@@ -1,15 +1,15 @@
 #pragma once
 
-#include "cdv/core/rgba_color.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/detail/legend.hpp"
-#include "cdv/elem/line_properties.hpp"
-#include "cdv/elem/text_properties.hpp"
-#include "cdv/fnt/font_properties.hpp"
-#include "cdv/scl/band_scale.hpp"
-#include "cdv/scl/linear_scale.hpp"
-#include "cdv/scl/ordinal_scale.hpp"
-#include "cdv/scl/sequential_scale.hpp"
+#include <cdv/core/rgba_color.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/detail/legend.hpp>
+#include <cdv/elem/line_properties.hpp>
+#include <cdv/elem/text_properties.hpp>
+#include <cdv/fnt/font_properties.hpp>
+#include <cdv/scl/band_scale.hpp>
+#include <cdv/scl/linear_scale.hpp>
+#include <cdv/scl/ordinal_scale.hpp>
+#include <cdv/scl/sequential_scale.hpp>
 
 #include <range/v3/view/linear_distribute.hpp>
 #include <range/v3/view/transform.hpp>

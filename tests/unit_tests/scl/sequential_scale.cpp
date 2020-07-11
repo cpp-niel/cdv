@@ -1,4 +1,4 @@
-#include "cdv/scl/sequential_scale.hpp"
+#include <cdv/scl/sequential_scale.hpp>
 
 #include <doctest/doctest.h>
 

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "cdv/core/units.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/fnt/font_properties.hpp"
-#include "cdv/fnt/freetype.hpp"
+#include <cdv/core/units.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/fnt/font_properties.hpp>
+#include <cdv/fnt/freetype.hpp>
 
 #include <harfbuzz/hb.h>
 #include <mfl/layout.hpp>

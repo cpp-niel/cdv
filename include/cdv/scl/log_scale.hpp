@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cdv/scl/linear_scale.hpp"
-#include "cdv/stdx/concepts.hpp"
-#include "cdv/stdx/numbers.hpp"
+#include <cdv/scl/linear_scale.hpp>
+#include <cdv/stdx/concepts.hpp>
+#include <cdv/stdx/numbers.hpp>
 
 #include <range/v3/algorithm/reverse.hpp>
 #include <range/v3/algorithm/transform.hpp>

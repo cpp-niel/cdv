@@ -1,5 +1,5 @@
-#include "cdv/scl/time_scale.hpp"
-#include "cdv/core/date.hpp"
+#include <cdv/scl/time_scale.hpp>
+#include <cdv/core/date.hpp>
 
 #include <doctest/doctest.h>
 #include <fmt/chrono.h>

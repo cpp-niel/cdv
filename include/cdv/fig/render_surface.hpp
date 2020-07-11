@@ -1,9 +1,9 @@
 #pragma once
 
-#include "cdv/core/rgba_color.hpp"
-#include "cdv/elem/line_properties.hpp"
-#include "cdv/fnt/text_shaper.hpp"
-#include "cdv/stdx/numbers.hpp"
+#include <cdv/core/rgba_color.hpp>
+#include <cdv/elem/line_properties.hpp>
+#include <cdv/fnt/text_shaper.hpp>
+#include <cdv/stdx/numbers.hpp>
 
 #include <range/v3/algorithm/count.hpp>
 #include <range/v3/algorithm/transform.hpp>

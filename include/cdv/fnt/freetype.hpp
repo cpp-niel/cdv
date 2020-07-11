@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cdv/core/units.hpp"
+#include <cdv/core/units.hpp>
 
 #include <ft2build.h>
 #include FT_FREETYPE_H

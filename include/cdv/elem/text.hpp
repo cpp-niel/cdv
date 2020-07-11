@@ -1,7 +1,7 @@
 #pragma once
 
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/text_properties.hpp"
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/text_properties.hpp>
 
 #include <utility>
 #include <range/v3/view/zip_with.hpp>

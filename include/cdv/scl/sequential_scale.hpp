@@ -1,7 +1,7 @@
 #pragma once
 
-#include "cdv/scl/ticks.hpp"
-#include "cdv/stdx/concepts.hpp"
+#include <cdv/scl/ticks.hpp>
+#include <cdv/stdx/concepts.hpp>
 
 #include <array>
 

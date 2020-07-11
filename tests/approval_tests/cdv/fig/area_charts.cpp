@@ -1,15 +1,15 @@
-#include "framework/approval_tests.hpp"
+#include <framework/approval_tests.hpp>
 
-#include "cdv/core/color/categorical_schemes.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/area.hpp"
-#include "cdv/elem/axis.hpp"
-#include "cdv/elem/color_legend.hpp"
-#include "cdv/elem/text.hpp"
-#include "cdv/fig/frame.hpp"
-#include "cdv/fig/render_svg.hpp"
-#include "cdv/scl/linear_scale.hpp"
-#include "cdv/scl/ordinal_scale.hpp"
+#include <cdv/core/color/categorical_schemes.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/area.hpp>
+#include <cdv/elem/axis.hpp>
+#include <cdv/elem/color_legend.hpp>
+#include <cdv/elem/text.hpp>
+#include <cdv/fig/frame.hpp>
+#include <cdv/fig/render_svg.hpp>
+#include <cdv/scl/linear_scale.hpp>
+#include <cdv/scl/ordinal_scale.hpp>
 
 #include <range/v3/view/linear_distribute.hpp>
 #include <range/v3/view/map.hpp>

@@ -1,9 +1,9 @@
-#include "framework/approval_tests.hpp"
+#include <framework/approval_tests.hpp>
 
-#include "cdv/core/color/categorical_schemes.hpp"
-#include "cdv/core/date_io.hpp"
-#include "cdv/elem/swatch_legend.hpp"
-#include "cdv/fig/render_svg.hpp"
+#include <cdv/core/color/categorical_schemes.hpp>
+#include <cdv/core/date_io.hpp>
+#include <cdv/elem/swatch_legend.hpp>
+#include <cdv/fig/render_svg.hpp>
 
 #include <array>
 

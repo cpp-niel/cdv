@@ -1,7 +1,7 @@
-#include "cdv/fnt/text_shaper.hpp"
+#include <cdv/fnt/text_shaper.hpp>
 
-#include "fnt/freetype_error.hpp"
-#include "fnt/mfl_font_face.hpp"
+#include <fnt/freetype_error.hpp>
+#include <fnt/mfl_font_face.hpp>
 
 #include <fontconfig/fontconfig.h>
 #include <harfbuzz/hb-ft.h>

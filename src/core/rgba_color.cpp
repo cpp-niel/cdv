@@ -1,4 +1,4 @@
-#include "cdv/core/rgba_color.hpp"
+#include <cdv/core/rgba_color.hpp>
 
 #include <iostream>
 
@@ -19,7 +19,7 @@ namespace cdv::detail
     {
 #define CDV_DEFINE_COLOR(name, value) \
     if (detail::ascii_to_lower(s) == #name) return value;
-#include "cdv/core/color/css4.hpp"
+#include <cdv/core/color/css4.hpp>
 #undef CDV_DEFINE_COLOR
         return std::nullopt;
     }
@@ -28,7 +28,7 @@ namespace cdv::detail
     {
 #define CDV_DEFINE_COLOR(name, value) \
     if (detail::ascii_to_lower(s) == "tab:" #name) return value;
-#include "cdv/core/color/tableau.hpp"
+#include <cdv/core/color/tableau.hpp>
 #undef CDV_DEFINE_COLOR
         return std::nullopt;
     }

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "cdv/core/rgba_color.hpp"
-#include "cdv/core/units.hpp"
-#include "cdv/core/vec2.hpp"
-#include "cdv/elem/detail/legend.hpp"
-#include "cdv/elem/text_properties.hpp"
-#include "cdv/scl/ordinal_scale.hpp"
+#include <cdv/core/rgba_color.hpp>
+#include <cdv/core/units.hpp>
+#include <cdv/core/vec2.hpp>
+#include <cdv/elem/detail/legend.hpp>
+#include <cdv/elem/text_properties.hpp>
+#include <cdv/scl/ordinal_scale.hpp>
 
 #include <range/v3/view/cycle.hpp>
 #include <range/v3/view/enumerate.hpp>

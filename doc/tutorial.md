@@ -49,9 +49,9 @@ to include a few headers (this will hopefully be replaced by module imports in t
 not-too-distant future).
 
 ```c++
-#include "cdv/elem/text.hpp"
-#include "cdv/fig/frame.hpp"
-#include "cdv/fig/render_svg.hpp"
+#include <cdv/elem/text.hpp>
+#include <cdv/fig/frame.hpp>
+#include <cdv/fig/render_svg.hpp>
 ```
 <sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L11-L13' title='Go to snippet source file'>source</a></sup>
 

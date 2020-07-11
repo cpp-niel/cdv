@@ -1,4 +1,4 @@
-#include "cdv/scl/linear_scale.hpp"
+#include <cdv/scl/linear_scale.hpp>
 
 #include <doctest/doctest.h>
 #include <range/v3/algorithm/equal.hpp>

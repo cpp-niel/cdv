@@ -21,5 +21,5 @@ set_property(TARGET approval_tests PROPERTY CXX_STANDARD 20)
 target_compile_definitions(approval_tests PRIVATE TEST_DATA_DIR="${PROJECT_SOURCE_DIR}/../data")
 
 target_include_directories(approval_tests PUBLIC ./ ./../../include ./../../src)
-target_link_libraries(approval_tests PUBLIC cdv doctest::doctest)
+target_link_libraries(approval_tests PUBLIC cdv project_warnings project_options doctest::doctest)
 

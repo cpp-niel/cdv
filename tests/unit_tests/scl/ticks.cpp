@@ -2,22 +2,15 @@
 #include <test/util.hpp>
 
 #include <doctest/doctest.h>
-#include <range/v3/algorithm/equal.hpp>
-#include <range/v3/view/drop.hpp>
+#include <fmt/format.h>
+#include <fmt/ranges.h>
 
 namespace doctest
 {
     template <typename T>
     struct StringMaker<std::vector<T>>
     {
-        static String convert(const std::vector<T>& v)
-        {
-            auto result = String("std::vector{") + toString(v[0]);
-            for (auto x : v | ranges::views::drop(1))
-                result += String(", ") + toString(x);
-
-            return result + "}";
-        }
+        static String convert(const std::vector<T>& v) { return fmt::format("{}", v).c_str(); }
     };
 }
 
@@ -57,12 +50,12 @@ namespace cdv::scl
 
         TEST_CASE("plausible ticks as in d3 tests")
         {
-            CHECK(test::almost_equal(linear_ticks(0.0, 1.0, 10), std::vector{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
-                               1e-6));
-            CHECK(test::almost_equal(linear_ticks(0.0, 1.0, 9), std::vector{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
-                               1e-6));
-            CHECK(test::almost_equal(linear_ticks(0.0, 1.0, 8), std::vector{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
-                               1e-6));
+            CHECK(test::almost_equal(linear_ticks(0.0, 1.0, 10),
+                                     std::vector{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}, 1e-6));
+            CHECK(test::almost_equal(linear_ticks(0.0, 1.0, 9),
+                                     std::vector{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}, 1e-6));
+            CHECK(test::almost_equal(linear_ticks(0.0, 1.0, 8),
+                                     std::vector{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}, 1e-6));
             CHECK_EQ(linear_ticks(0.0f, 1.0f, 7), std::vector{0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f});
             CHECK_EQ(linear_ticks(0.0f, 1.0f, 6), std::vector{0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f});
             CHECK_EQ(linear_ticks(0.0f, 1.0f, 5), std::vector{0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f});
@@ -80,10 +73,14 @@ namespace cdv::scl
             CHECK_EQ(linear_ticks(0.0, 10.0, 3), std::vector{0.0, 5.0, 10.0});
             CHECK_EQ(linear_ticks(0.0, 10.0, 2), std::vector{0.0, 5.0, 10.0});
             CHECK_EQ(linear_ticks(0.0, 10.0, 1), std::vector{0.0, 10.0});
-            CHECK_EQ(linear_ticks(-10.0, 10.0, 10), std::vector{-10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0});
-            CHECK_EQ(linear_ticks(-10.0, 10.0, 9), std::vector{-10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0});
-            CHECK_EQ(linear_ticks(-10.0, 10.0, 8), std::vector{-10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0});
-            CHECK_EQ(linear_ticks(-10.0, 10.0, 7), std::vector{-10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0});
+            CHECK_EQ(linear_ticks(-10.0, 10.0, 10),
+                     std::vector{-10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0});
+            CHECK_EQ(linear_ticks(-10.0, 10.0, 9),
+                     std::vector{-10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0});
+            CHECK_EQ(linear_ticks(-10.0, 10.0, 8),
+                     std::vector{-10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0});
+            CHECK_EQ(linear_ticks(-10.0, 10.0, 7),
+                     std::vector{-10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0});
             CHECK_EQ(linear_ticks(-10.0, 10.0, 6), std::vector{-10.0, -5.0, 0.0, 5.0, 10.0});
             CHECK_EQ(linear_ticks(-10.0, 10.0, 5), std::vector{-10.0, -5.0, 0.0, 5.0, 10.0});
             CHECK_EQ(linear_ticks(-10.0, 10.0, 4), std::vector{-10.0, -5.0, 0.0, 5.0, 10.0});

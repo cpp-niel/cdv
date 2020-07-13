@@ -71,5 +71,11 @@ namespace cdv::scl
             CHECK_EQ(s(13), 180.0);
             CHECK_EQ(s(17), 200.0);
         }
+
+        TEST_CASE("exception when scale applied to invalid key")
+        {
+            const auto s = point_scale(std::vector({3}), 100.0, 200.0);
+            CHECK_THROWS([[maybe_unused]] auto x = s(1));
+        }
     }
 }

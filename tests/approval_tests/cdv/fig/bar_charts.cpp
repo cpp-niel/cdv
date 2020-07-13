@@ -219,7 +219,7 @@ namespace cdv
             const auto y = scl::band_scale(keys, frame.y0(), frame.y1(), {.inner_padding = 0.2, .outer_padding = 0.2});
             const auto col = scl::ordinal_scale(category_names, scheme::from_interpolator<7>(interpolator::spectral));
 
-            const auto y_axis = elem::left_axis(y, frame.x0(), {.is_spine_visible = false});
+            const auto y_axis = elem::left_axis(y, frame.x0(), {.spine = {.width = 0_pt}});
 
             const auto bars = rv::cartesian_product(category_names, rv::enumerate(keys))
                               | rv::transform([&](const auto categories_and_keys) {

@@ -68,6 +68,20 @@ namespace cdv::fig
         };
     }
 
+    template <typename Surface>
+    void draw_rectangle(Surface& surface, const pixel_pos min, const pixel_pos max)
+    {
+        surface.draw_path({min, {max.x, min.y}, max, {min.x, max.y}, min});
+        surface.stroke();
+    }
+
+    template <typename Surface>
+    void fill_rectangle(Surface& surface, const pixel_pos min, const pixel_pos max)
+    {
+        surface.draw_path({min, {max.x, min.y}, max, {min.x, max.y}, min});
+        surface.fill();
+    }
+
     template <typename BackEnd>
     class render_surface
     {
@@ -82,8 +96,7 @@ namespace cdv::fig
 
         void set_color(const rgba_color color) { set_color(color.as_uint32()); }
 
-        template <typename PixelPosRange>
-        void draw_path(const PixelPosRange& positions)
+        void draw_path(const stdx::range_of<pixel_pos> auto& positions)
         {
             if (ranges::empty(positions)) return;
 
@@ -99,18 +112,6 @@ namespace cdv::fig
             const auto c = color.as_uint32();
             const auto o = std::uint32_t(std::lround(opacity * 255.0));
             set_color((c & 0xffffff00) | o);
-        }
-
-        void draw_rectangle(const pixel_pos min, const pixel_pos max)
-        {
-            draw_path({min, {max.x, min.y}, max, {min.x, max.y}, min});
-            stroke();
-        }
-
-        void fill_rectangle(const pixel_pos min, const pixel_pos max)
-        {
-            draw_path({min, {max.x, min.y}, max, {min.x, max.y}, min});
-            fill();
         }
 
         void gradient_fill_rectangle(const pixel_pos min, const pixel_pos max,
@@ -214,7 +215,7 @@ namespace cdv::fig
             for (const auto& run : shaped.runs())
             {
                 for (const auto& l : run.lines)
-                    fill_rectangle(l.min, l.max);
+                    fill_rectangle(*this, l.min, l.max);
 
                 fnt::freetype::set_size(run.freetype_face, run.font_size, dpi_);
                 back_end_.set_font(run.freetype_face, mfl::points_to_pixels(run.font_size, dpi_));

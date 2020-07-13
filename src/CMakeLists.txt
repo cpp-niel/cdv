@@ -20,7 +20,6 @@ add_library(cdv
         )
 
 set_property(TARGET cdv PROPERTY CXX_STANDARD 20)
-target_link_libraries(cdv PUBLIC range-v3::range-v3 fmt::fmt)
 
 target_compile_definitions(cdv PRIVATE CDV_DATA_DIR="${PROJECT_SOURCE_DIR}/data")
 
@@ -29,11 +28,17 @@ target_include_directories(cdv PRIVATE ./ ${CAIRO_INCLUDE_DIR})
 
 target_link_libraries(cdv PUBLIC
         range-v3
+        fmt::fmt
+        ${CMAKE_THREAD_LIBS_INIT}
+        )
+
+target_link_libraries(cdv PRIVATE
+        project_warnings
+        project_options
         unofficial::cairo::cairo
         unofficial::fontconfig::fontconfig
         Freetype::Freetype
         harfbuzz::harfbuzz
         fmt::fmt
         mfl::mfl
-        ${CMAKE_THREAD_LIBS_INIT}
         )

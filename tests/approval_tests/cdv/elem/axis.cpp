@@ -44,9 +44,9 @@ namespace cdv::elem
         {
             const auto x_axis =
                 bottom_axis(scl::band_scale(std::vector{"A", "B", "C"}, 100_px, 500_px), 150_px,
-                            {.tick_label = {.color = css4::firebrick,
-                                            .font = {.family = "times", .weight = fnt::font_weights::bold},
-                                            .font_size = 24_pt}});
+                            {.tick_labels = {.color = css4::firebrick,
+                                             .font = {.family = "times", .weight = fnt::font_weights::bold},
+                                             .font_size = 24_pt}});
             test::approve_svg(fig::render_to_svg_string({}, x_axis));
         }
 

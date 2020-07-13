@@ -21,14 +21,13 @@ namespace cdv::elem
     template <typename Codomain>
     struct axis_properties
     {
-        bool is_spine_visible = true;
-        line_properties spine_style;
+        line_properties spine;
         size_t num_ticks_hint = 10;
         Codomain tick_length{6.0};
-        line_properties tick_style;
+        line_properties ticks;
         Codomain grid_length{0.0};
-        line_properties grid_style = {.color = css4::gray, .width = points{1}, .style = ":"};
-        text_properties tick_label;
+        line_properties grid = {.color = css4::gray, .width = points{1}, .style = ":"};
+        text_properties tick_labels;
         pixel_pos tick_label_offset{};
     };
 
@@ -109,10 +108,12 @@ namespace cdv::elem
                                       : [](const pixels x, const pixels y) { return pixel_pos(y, x); };
 
         const auto y = ax.position;
-        if (ax.properties.is_spine_visible)
+        if (ax.properties.spine.width > points{0})
         {
+            surface.set_line_properties(ax.properties.spine);
             surface.draw_path(
                 std::array{xy(ax.scale.codomain().front(), y), xy(ax.scale.codomain().back(), y)});
+            surface.stroke();
         }
 
         const auto ticks = ax.scale.ticks(ax.properties.num_ticks_hint);
@@ -122,7 +123,7 @@ namespace cdv::elem
         const auto tick_offset = sign * ax.properties.tick_length;
         if (ax.properties.tick_length > 0_px)
         {
-            surface.set_line_properties(ax.properties.tick_style);
+            surface.set_line_properties(ax.properties.ticks);
             for (const auto loc : locations)
             {
                 surface.draw_path(std::array{xy(loc, y), xy(loc, y - tick_offset)});
@@ -132,7 +133,7 @@ namespace cdv::elem
 
         if (ax.properties.grid_length > 0_px)
         {
-            surface.set_line_properties(ax.properties.grid_style);
+            surface.set_line_properties(ax.properties.grid);
             const auto grid_offset = -sign * ax.properties.grid_length;
             for (const auto loc : locations)
             {
@@ -141,9 +142,9 @@ namespace cdv::elem
             surface.stroke();
         }
 
-        surface.set_font_size(ax.properties.tick_label.font_size);
-        surface.set_color(ax.properties.tick_label.color);
-        surface.set_font(ax.properties.tick_label.font);
+        surface.set_font_size(ax.properties.tick_labels.font_size);
+        surface.set_color(ax.properties.tick_labels.color);
+        surface.set_font(ax.properties.tick_labels.font);
         const auto labels = ticks | ranges::views::transform(ax.scale.tick_formatter(ax.properties.num_ticks_hint));
         detail::draw_tick_labels(surface, labels, y, locations, xy, tick_offset, ax.properties.tick_label_offset);
     }

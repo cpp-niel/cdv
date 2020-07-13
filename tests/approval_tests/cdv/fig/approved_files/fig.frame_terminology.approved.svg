@@ -53,7 +53,8 @@
 </g>
 </defs>
 <g id="surface0">
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 70 30 L 610 30 M 70 30 L 70 24 M 340 30 L 340 24 M 610 30 L 610 24 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 70 30 L 610 30 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 70 30 L 70 24 M 340 30 L 340 24 M 610 30 L 610 24 " transform="matrix(1,0,0,-1,0,480)"/>
 <path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(50.196078%,50.196078%,50.196078%);stroke-opacity:1;stroke-dasharray:1,1.65;stroke-miterlimit:10;" d="M 70 30 L 70 240 M 340 30 L 340 240 M 610 30 L 610 240 " transform="matrix(1,0,0,-1,0,480)"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
   <use xlink:href="#glyph0-1" x="63.179688" y="470"/>
@@ -73,7 +74,8 @@
   <use xlink:href="#glyph0-1" x="603.179688" y="470"/>
   <use xlink:href="#glyph0-9" x="609.757812" y="470"/>
 </g>
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 70 30 L 70 450 M 70 30 L 64 30 M 70 240 L 64 240 M 70 450 L 64 450 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 70 30 L 70 450 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 70 30 L 64 30 M 70 240 L 64 240 M 70 450 L 64 450 " transform="matrix(1,0,0,-1,0,480)"/>
 <path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(50.196078%,50.196078%,50.196078%);stroke-opacity:1;stroke-dasharray:1,1.65;stroke-miterlimit:10;" d="M 70 30 L 340 30 M 70 240 L 340 240 M 70 450 L 340 450 " transform="matrix(1,0,0,-1,0,480)"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
   <use xlink:href="#glyph0-10" x="44.359375" y="454"/>

@@ -114,5 +114,17 @@ namespace cdv
             CHECK(rgba_color("tab:Orange") == tab::orange);
             CHECK(rgba_color("tab:green") != tab::orange);
         }
+
+        TEST_CASE("with alpha creates copies with modified alpha")
+        {
+            CHECK_EQ(css4::black.with_alpha(0.5), rgba_color(0.0, 0.0, 0.0, 0.5));
+            CHECK_EQ(css4::black.with_alpha(1.0), rgba_color(0.0, 0.0, 0.0, 1.0));
+            CHECK_EQ(css4::black.with_alpha(0.0), rgba_color(0.0, 0.0, 0.0, 0.0));
+        }
+
+        TEST_CASE("with alpha creates copies with modified alpha")
+        {
+            CHECK_THROWS([[maybe_unused]] auto x = css4::black.with_alpha(1.5));
+        }
     }
 }

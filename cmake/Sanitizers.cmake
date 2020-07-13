@@ -1,12 +1,16 @@
 function(enable_sanitizers project_name)
 
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
-                                             ".*Clang")
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
     option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" FALSE)
 
     if(ENABLE_COVERAGE)
-      target_compile_options(${project_name} INTERFACE --coverage -O0 -g)
-      target_link_libraries(${project_name} INTERFACE --coverage)
+      if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+        target_compile_options(${project_name} INTERFACE -fprofile-instr-generate -fcoverage-mapping -O0 -g)
+        target_link_libraries(${project_name} INTERFACE -fprofile-instr-generate -fcoverage-mapping)
+      else()
+        target_compile_options(${project_name} INTERFACE --coverage -O0 -g)
+        target_link_libraries(${project_name} INTERFACE --coverage)
+      endif()
     endif()
 
     set(SANITIZERS "")

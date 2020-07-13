@@ -57,7 +57,8 @@ namespace cdv
                                                                  .label_properties = {.font_size = 12_pt},
                                                                  .columns = {200_px}};
 
-            const auto svg = fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, linear, quadratic, cubic, legend);
+            const auto svg =
+                fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, linear, quadratic, cubic, legend);
             // mdinject-end
 
             test::approve_svg(svg);
@@ -87,9 +88,9 @@ namespace cdv
 
             const auto x_axis = elem::bottom_axis(
                 x, frame.y0(),
-                {.is_spine_visible = false, .num_ticks_hint = 4, .tick_style = {.color = css4::gray, .width = 1_pt}});
+                {.spine = {.width = 0_pt}, .num_ticks_hint = 4, .ticks = {.color = css4::gray, .width = 1_pt}});
             const auto y_axis = elem::left_axis(y, frame.x0(),
-                                                {.is_spine_visible = false,
+                                                {.spine = {.width = 0_pt},
                                                  .tick_length = 0_px,
                                                  .grid_length = frame.inner_width(),
                                                  .tick_label_offset = {10_px, 10_px}});
@@ -210,8 +211,7 @@ namespace cdv
 
             using function_t = double (*)(double);
             const auto functions = std::array<function_t, 4>{
-                [](const auto t) { return sin(2.0 * stdx::numbers::pi * t); },
-                [](const auto t) { return exp(-t); },
+                [](const auto t) { return sin(2.0 * stdx::numbers::pi * t); }, [](const auto t) { return exp(-t); },
                 [](const auto t) { return cos(2.0 * stdx::numbers::pi * t); },
                 [](const auto t) { return pow(2.0, t) * 0.25; }};
 
@@ -257,13 +257,14 @@ namespace cdv
 
             auto color = scl::ordinal_scale(std::array{0, 1}, scheme::dark2);
 
-            const auto y0_axis = elem::left_axis(y0, frame.x0(), {.tick_label = {.color = color(0)}});
-            const auto y1_axis = elem::right_axis(y1, frame.x1(), {.tick_label = {.color = color(1)}});
+            const auto y0_axis = elem::left_axis(y0, frame.x0(), {.tick_labels = {.color = color(0)}});
+            const auto y1_axis = elem::right_axis(y1, frame.x1(), {.tick_labels = {.color = color(1)}});
 
             const auto xs = rv::linear_distribute(x.domain().front(), x.domain().back(), 400);
             const auto y0s = xs | rv::transform([](const auto t) { return exp(t); });
             const auto y1s = xs | rv::transform([](const auto t) { return sin(2.0 * stdx::numbers::pi * t); });
-            const auto curve0 = elem::line(xs | rv::transform(x), y0s | rv::transform(y0), {.color = color(0), .width = 2.5_pt});
+            const auto curve0 =
+                elem::line(xs | rv::transform(x), y0s | rv::transform(y0), {.color = color(0), .width = 2.5_pt});
             const auto curve1 = elem::line(xs | rv::transform(x), y1s | rv::transform(y1), {.color = color(1)});
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), x_axis, y0_axis, y1_axis, curve0, curve1));

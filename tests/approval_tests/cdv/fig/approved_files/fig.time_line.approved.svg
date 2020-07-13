@@ -128,7 +128,8 @@
 </g>
 </defs>
 <g id="surface0">
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 60 50 L 560 50 M 60 50 L 60 44 M 130.421875 50 L 130.421875 44 M 203.191406 50 L 203.191406 44 M 275.960938 50 L 275.960938 44 M 344.039062 50 L 344.039062 44 M 416.808594 50 L 416.808594 44 M 487.230469 50 L 487.230469 44 M 560 50 L 560 44 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 60 50 L 560 50 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 60 50 L 60 44 M 130.421875 50 L 130.421875 44 M 203.191406 50 L 203.191406 44 M 275.960938 50 L 275.960938 44 M 344.039062 50 L 344.039062 44 M 416.808594 50 L 416.808594 44 M 487.230469 50 L 487.230469 44 M 560 50 L 560 44 " transform="matrix(1,0,0,-1,0,480)"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
   <use xlink:href="#glyph0-1" x="31.109375" y="450"/>
   <use xlink:href="#glyph0-2" x="39.421875" y="450"/>

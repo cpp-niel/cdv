@@ -104,5 +104,16 @@ namespace cdv::scl
             CHECK(ranges::front(snapped.domain()) == 1e-4);
             CHECK(ranges::back(snapped.domain()) == 1e-3);
         }
+
+        TEST_CASE("with pixel interpolator")
+        {
+            using namespace units_literals;
+            const auto s = linear_scale(std::vector{0.0, 1.0}, std::vector{1_px, 2_px});
+            CHECK(s(-1.0) == 0_px);
+            CHECK(s(0.0) == 1_px);
+            CHECK(s(0.5) == 1.5_px);
+            CHECK(s(1.0) == 2_px);
+            CHECK(s(2.0) == 3_px);
+        }
     }
 }

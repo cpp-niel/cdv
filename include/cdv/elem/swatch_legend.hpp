@@ -38,7 +38,7 @@ namespace cdv::elem
             using namespace std::string_literals;
 
             surface.set_color(l.scale(value));
-            surface.fill_rectangle(pos, {pos.x + l.block_width, pos.y + l.block_height});
+            fill_rectangle(surface, pos, {pos.x + l.block_width, pos.y + l.block_height});
 
             surface.set_font_size(l.label_properties.font_size);
             surface.set_color(l.label_properties.color);

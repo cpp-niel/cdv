@@ -1,5 +1,5 @@
-#include <cdv/scl/time_scale.hpp>
 #include <cdv/core/date.hpp>
+#include <cdv/scl/time_scale.hpp>
 
 #include <doctest/doctest.h>
 #include <fmt/chrono.h>
@@ -260,6 +260,16 @@ namespace cdv::scl
             CHECK_EQ(s.domain()[1], d(2020_y / date::December / 01));
         }
 
+        TEST_CASE("snapped to 1 year grid descending")
+        {
+            const auto d = [](const auto x) { return date::sys_days(x) + 0s; };
+            const auto d0 = d(2029_y / date::November / 01);
+            const auto d1 = d(2020_y / date::November / 01);
+            const auto s = scl::time_scale(d0, d1, 0.0, 1.0).snapped_to_grid(8);
+            CHECK_EQ(s.domain()[0], d(2030_y / date::January / 01));
+            CHECK_EQ(s.domain()[1], d(2020_y / date::January / 01));
+        }
+
         TEST_CASE("snapped to 1 year grid")
         {
             const auto d = [](const auto x) { return date::sys_days(x) + 0s; };
@@ -278,6 +288,16 @@ namespace cdv::scl
             const auto s = scl::time_scale(d0, d1, 0.0, 1.0).snapped_to_grid(8);
             CHECK_EQ(s.domain()[0], d(2020_y / date::January / 01));
             CHECK_EQ(s.domain()[1], d(2022_y / date::January / 01));
+        }
+
+        TEST_CASE("snapped to 3 month grid descending")
+        {
+            const auto d = [](const auto x) { return date::sys_days(x) + 0s; };
+            const auto d0 = d(2021_y / date::November / 01);
+            const auto d1 = d(2020_y / date::February / 01);
+            const auto s = scl::time_scale(d0, d1, 0.0, 1.0).snapped_to_grid(8);
+            CHECK_EQ(s.domain()[0], d(2022_y / date::January / 01));
+            CHECK_EQ(s.domain()[1], d(2020_y / date::January / 01));
         }
 
         TEST_CASE("snapped to 2 day grid descending")

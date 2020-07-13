@@ -5,6 +5,7 @@
 #include <cdv/elem/detail/legend.hpp>
 #include <cdv/elem/line_properties.hpp>
 #include <cdv/elem/text_properties.hpp>
+#include <cdv/fig/render_surface.hpp>
 #include <cdv/fnt/font_properties.hpp>
 #include <cdv/scl/band_scale.hpp>
 #include <cdv/scl/linear_scale.hpp>
@@ -48,7 +49,7 @@ namespace cdv::elem
                 const auto mid_x = bands(d);
                 const auto min_x = mid_x - (bands.band_width() * 0.5);
                 const auto max_x = min_x + bands.band_width();
-                surface.fill_rectangle({min_x, l.pos.y + l.height - l.block_height}, {max_x, l.pos.y + l.height});
+                fig::fill_rectangle(surface, {min_x, l.pos.y + l.height - l.block_height}, {max_x, l.pos.y + l.height});
 
                 surface.set_font_size(l.tick_label_properties.font_size);
                 surface.set_color(l.tick_label_properties.color);
@@ -77,8 +78,8 @@ namespace cdv::elem
             for (const auto t : ticks)
             {
                 const auto px = x(t);
-                surface.move_to({px, l.pos.y + l.height});
-                surface.line_to({px, l.pos.y + l.height - l.block_height - l.tick_length});
+                const auto py = l.pos.y + l.height;
+                surface.draw_path({{px, py}, {px, py - l.block_height - l.tick_length}});
             }
 
             surface.stroke();

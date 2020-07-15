@@ -20,6 +20,10 @@ add_executable (unit_tests
         elem/swatch_legend.cpp
         elem/symbol.cpp
         elem/text.cpp
+        fnt/font_properties.cpp
+        fnt/font_weights.cpp
+        fnt/freetype.cpp
+        fnt/text_shaper.cpp
         main.cpp
         scl/band_scale.cpp
         scl/linear_scale.cpp
@@ -33,6 +37,6 @@ add_executable (unit_tests
 
 set_property(TARGET unit_tests PROPERTY CXX_STANDARD 20)
 
-target_include_directories(unit_tests PUBLIC ./ ./../../include)
+target_include_directories(unit_tests PUBLIC ./../../include ./../../src ./)
 
 target_link_libraries(unit_tests PRIVATE cdv project_warnings project_options doctest::doctest)

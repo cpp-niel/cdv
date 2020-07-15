@@ -19,13 +19,16 @@ namespace cdv::fnt
 
         int32_t font_units_to_dist(const int u) { return u * font_unit_factor; }
 
-        std::vector<mfl::size_variant> get_size_variants(hb_font_t* font, const size_t glyph_index, const hb_direction_t dir)
+        std::vector<mfl::size_variant> get_size_variants(FT_Face face, const size_t glyph_index, const hb_direction_t dir)
         {
+            std::unique_ptr<hb_font_t, decltype(&hb_font_destroy)> hb_font(hb_ft_font_create(face, nullptr),
+                                                                           hb_font_destroy);
+
             const auto max_number_of_variants = 20;
             auto variants = std::array<hb_ot_math_glyph_variant_t, max_number_of_variants>{};
             uint32_t num_variants = max_number_of_variants;
             const auto glyph_codepoint = static_cast<hb_codepoint_t>(glyph_index);
-            hb_ot_math_get_glyph_variants(font, glyph_codepoint, dir, 0, &num_variants, variants.data());
+            hb_ot_math_get_glyph_variants(hb_font.get(), glyph_codepoint, dir, 0, &num_variants, variants.data());
 
             if (num_variants == 0)
             {
@@ -35,7 +38,7 @@ namespace cdv::fnt
 
             const auto to_size_variant = [&](const hb_ot_math_glyph_variant_t& v) {
                 hb_glyph_extents_t extents;
-                hb_font_get_glyph_extents_for_origin(font, v.glyph, HB_DIRECTION_LTR, &extents);
+                hb_font_get_glyph_extents_for_origin(hb_font.get(), v.glyph, HB_DIRECTION_LTR, &extents);
                 const auto size = (dir == HB_DIRECTION_LTR) ? extents.width : extents.height;
                 return mfl::size_variant{.glyph_index = v.glyph, .size = font_units_to_dist(std::abs(size))};
             };
@@ -165,18 +168,12 @@ namespace cdv::fnt
 
     std::vector<mfl::size_variant> mfl_font_face::horizontal_size_variants(const mfl::code_point char_code) const
     {
-        std::unique_ptr<hb_font_t, decltype(&hb_font_destroy)> hb_font(hb_ft_font_create(ft_face_, nullptr),
-                                                                       hb_font_destroy);
-        const auto glyph_index = glyph_index_from_code_point(char_code, false);
-        return get_size_variants(hb_font.get(), glyph_index, HB_DIRECTION_LTR);
+        return get_size_variants(ft_face_, glyph_index_from_code_point(char_code, false), HB_DIRECTION_LTR);
     }
 
     std::vector<mfl::size_variant> mfl_font_face::vertical_size_variants(const mfl::code_point char_code) const
     {
-        std::unique_ptr<hb_font_t, decltype(&hb_font_destroy)> hb_font(hb_ft_font_create(ft_face_, nullptr),
-                                                                       hb_font_destroy);
-        const auto glyph_index = glyph_index_from_code_point(char_code, false);
-        return get_size_variants(hb_font.get(), glyph_index, HB_DIRECTION_BTT);
+        return get_size_variants(ft_face_, glyph_index_from_code_point(char_code, false), HB_DIRECTION_BTT);
     }
 
     void mfl_font_face::set_size(const mfl::points size)

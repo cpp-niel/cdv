@@ -93,4 +93,5 @@ namespace cdv
     }
 
     using pixel_pos = vec2<pixels>;
+    inline pixel_pos make_pos(const pixels x, const pixels y) { return pixel_pos{x, y}; }
 }

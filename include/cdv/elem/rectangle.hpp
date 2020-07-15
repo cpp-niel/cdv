@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cdv/elem/detail/draw_rectangle.hpp>
 #include <cdv/elem/fill_properties.hpp>
 #include <cdv/core/vec2.hpp>
 
@@ -17,12 +18,12 @@ namespace cdv::elem
     {
         using namespace units_literals;
         surface.set_color(r.fill.color);
-        fill_rectangle(surface, r.min, r.max);
+        detail::fill_rectangle(surface, r.min, r.max);
 
         if (r.fill.outline.width > 0_pt)
         {
             surface.set_line_properties(r.fill.outline);
-            draw_rectangle(surface, r.min, r.max);
+            detail::draw_rectangle(surface, r.min, r.max);
         }
     }
 }

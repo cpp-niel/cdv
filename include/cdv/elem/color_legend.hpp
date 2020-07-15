@@ -2,10 +2,10 @@
 
 #include <cdv/core/rgba_color.hpp>
 #include <cdv/core/vec2.hpp>
+#include <cdv/elem/detail/draw_rectangle.hpp>
 #include <cdv/elem/detail/legend.hpp>
 #include <cdv/elem/line_properties.hpp>
 #include <cdv/elem/text_properties.hpp>
-#include <cdv/fig/render_surface.hpp>
 #include <cdv/fnt/font_properties.hpp>
 #include <cdv/scl/band_scale.hpp>
 #include <cdv/scl/linear_scale.hpp>
@@ -49,7 +49,7 @@ namespace cdv::elem
                 const auto mid_x = bands(d);
                 const auto min_x = mid_x - (bands.band_width() * 0.5);
                 const auto max_x = min_x + bands.band_width();
-                fig::fill_rectangle(surface, {min_x, l.pos.y + l.height - l.block_height}, {max_x, l.pos.y + l.height});
+                detail::fill_rectangle(surface, {min_x, l.pos.y + l.height - l.block_height}, {max_x, l.pos.y + l.height});
 
                 surface.set_font_size(l.tick_label_properties.font_size);
                 surface.set_color(l.tick_label_properties.color);

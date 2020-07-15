@@ -68,19 +68,6 @@ namespace cdv::fig
         };
     }
 
-    template <typename Surface>
-    void draw_rectangle(Surface& surface, const pixel_pos min, const pixel_pos max)
-    {
-        surface.draw_path({min, {max.x, min.y}, max, {min.x, max.y}, min});
-        surface.stroke();
-    }
-
-    template <typename Surface>
-    void fill_rectangle(Surface& surface, const pixel_pos min, const pixel_pos max)
-    {
-        surface.draw_path({min, {max.x, min.y}, max, {min.x, max.y}, min});
-        surface.fill();
-    }
 
     template <typename BackEnd>
     class render_surface
@@ -215,7 +202,10 @@ namespace cdv::fig
             for (const auto& run : shaped.runs())
             {
                 for (const auto& l : run.lines)
-                    fill_rectangle(*this, l.min, l.max);
+                {
+                    draw_path({l.min, {l.max.x, l.min.y}, l.max, {l.min.x, l.max.y}, l.min});
+                    fill();
+                }
 
                 fnt::freetype::set_size(run.freetype_face, run.font_size, dpi_);
                 back_end_.set_font(run.freetype_face, mfl::points_to_pixels(run.font_size, dpi_));

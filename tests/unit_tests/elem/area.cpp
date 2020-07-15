@@ -1,41 +1,19 @@
+#include <test/mock_surface.hpp>
+
 #include <cdv/elem/area.hpp>
 
 #include <doctest/doctest.h>
 
 namespace cdv::elem
 {
-    namespace
-    {
-        using namespace units_literals;
-
-        class mock_surface
-        {
-        public:
-            void set_color(const rgba_color) { set_color_counter_++; }
-            void draw_path(const stdx::range_of<pixel_pos> auto&) { draw_path_counter_++; }
-            void stroke() { stroke_counter_++; }
-            void fill() { fill_counter_++; }
-            void set_line_properties(const elem::line_properties&) {}
-
-            [[nodiscard]] size_t set_color_counter() const { return set_color_counter_; }
-            [[nodiscard]] size_t draw_path_counter() const { return draw_path_counter_; }
-            [[nodiscard]] size_t stroke_counter() const { return stroke_counter_; }
-            [[nodiscard]] size_t fill_counter() const { return fill_counter_; }
-
-        private:
-            size_t set_color_counter_ = 0;
-            size_t draw_path_counter_ = 0;
-            size_t stroke_counter_ = 0;
-            size_t fill_counter_ = 0;
-        };
-    }
+    using namespace units_literals;
 
     TEST_SUITE("area")
     {
         TEST_CASE("draw empty area does not throw")
         {
             const auto a = area(std::vector<pixels>{}, std::vector<pixels>{}, {});
-            auto result = mock_surface();
+            auto result = test::mock_surface();
             CHECK_NOTHROW(draw(a, result, {}));
         }
 
@@ -72,7 +50,7 @@ namespace cdv::elem
         TEST_CASE("default area fills but does not draw outline")
         {
             const auto a = fill_between(std::array{1_px, 2_px, 3_px}, std::array{4_px, 5_px, 6_px}, 0_px);
-            auto result = mock_surface();
+            auto result = test::mock_surface();
             draw(a, result, {});
             CHECK_EQ(result.fill_counter(), 1);
             CHECK_EQ(result.stroke_counter(), 0);
@@ -82,7 +60,7 @@ namespace cdv::elem
         {
             const auto a = fill_between(std::array{1_px, 2_px, 3_px}, std::array{4_px, 5_px, 6_px}, 0_px,
                                         {.outline = {.width = 2_pt}});
-            auto result = mock_surface();
+            auto result = test::mock_surface();
             draw(a, result, {});
             CHECK_EQ(result.fill_counter(), 1);
             CHECK_EQ(result.stroke_counter(), 1);

@@ -13,7 +13,13 @@ add_executable (unit_tests
         elem/draw_line_markers.cpp
         elem/draw_polygonal_markers.cpp
         elem/draw_round_markers.cpp
+        elem/line.cpp
         elem/range_stack.cpp
+        elem/rectangle.cpp
+        elem/scatter.cpp
+        elem/swatch_legend.cpp
+        elem/symbol.cpp
+        elem/text.cpp
         main.cpp
         scl/band_scale.cpp
         scl/linear_scale.cpp

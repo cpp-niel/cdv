@@ -31,7 +31,6 @@ namespace cdv::elem
         using namespace units_literals;
         namespace rv = ::ranges::views;
         surface.set_color(a.properties.color);
-        const auto make_pos = [](const auto x, const auto y) { return pixel_pos{x, y}; };
         surface.draw_path(rv::zip_with(make_pos, a.xs, a.ys) | rv::reverse);
         surface.fill();
 

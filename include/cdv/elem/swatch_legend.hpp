@@ -3,6 +3,7 @@
 #include <cdv/core/rgba_color.hpp>
 #include <cdv/core/units.hpp>
 #include <cdv/core/vec2.hpp>
+#include <cdv/elem/detail/draw_rectangle.hpp>
 #include <cdv/elem/detail/legend.hpp>
 #include <cdv/elem/text_properties.hpp>
 #include <cdv/scl/ordinal_scale.hpp>
@@ -38,7 +39,7 @@ namespace cdv::elem
             using namespace std::string_literals;
 
             surface.set_color(l.scale(value));
-            fill_rectangle(surface, pos, {pos.x + l.block_width, pos.y + l.block_height});
+            detail::fill_rectangle(surface, pos, {pos.x + l.block_width, pos.y + l.block_height});
 
             surface.set_font_size(l.label_properties.font_size);
             surface.set_color(l.label_properties.color);

@@ -9,9 +9,7 @@ namespace cdv::elem::detail
     {
         if (!l.title.empty())
         {
-            surface.set_font_size(l.title_properties.font_size);
-            surface.set_color(l.title_properties.color);
-            surface.set_font(l.title_properties.font);
+            surface.set_text_properties(l.title_properties);
             surface.draw_text(l.title, pos + l.title_offset, {0.0, 0.0}, 0.0);
         }
     }

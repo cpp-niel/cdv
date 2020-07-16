@@ -3,6 +3,7 @@
 #include <cdv/core/rgba_color.hpp>
 #include <cdv/core/vec2.hpp>
 #include <cdv/elem/line_properties.hpp>
+#include <cdv/elem/text_properties.hpp>
 #include <cdv/fnt/font_properties.hpp>
 #include <cdv/stdx/concepts.hpp>
 
@@ -23,8 +24,7 @@ namespace cdv::test
         void stroke() { stroke_counter_++; }
         void fill() { fill_counter_++; }
         void set_line_properties(const elem::line_properties&) {}
-        void set_font(const fnt::font_properties&) {}
-        void set_font_size(const points) {}
+        void set_text_properties(const elem::text_properties&) {}
 
         void gradient_fill_rectangle(const pixel_pos, const pixel_pos,
                                      const stdx::range_of<std::pair<rgba_color, double>> auto&)

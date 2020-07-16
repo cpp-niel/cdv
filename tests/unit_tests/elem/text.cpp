@@ -16,7 +16,6 @@ namespace cdv::elem
             auto result = test::mock_surface();
             draw(s, result, {});
             CHECK_EQ(result.draw_text_counter(), 1);
-            CHECK_EQ(result.set_color_counter(), 1);
         }
     }
 }

@@ -51,9 +51,7 @@ namespace cdv::elem
                 const auto max_x = min_x + bands.band_width();
                 detail::fill_rectangle(surface, {min_x, l.pos.y + l.height - l.block_height}, {max_x, l.pos.y + l.height});
 
-                surface.set_font_size(l.tick_label_properties.font_size);
-                surface.set_color(l.tick_label_properties.color);
-                surface.set_font(l.tick_label_properties.font);
+                surface.set_text_properties(l.tick_label_properties);
                 surface.draw_text(fmt::format("{}", d), {mid_x, l.pos.y}, {0.5, 0.0}, 0.0);
             }
         }
@@ -84,9 +82,7 @@ namespace cdv::elem
 
             surface.stroke();
 
-            surface.set_font_size(l.tick_label_properties.font_size);
-            surface.set_color(l.tick_label_properties.color);
-            surface.set_font(l.tick_label_properties.font);
+            surface.set_text_properties(l.tick_label_properties);
             const auto label_y = l.pos.y + l.height - l.block_height - (2.0 * l.tick_length);
             const auto format = l.scale.tick_formatter(l.num_ticks_hint);
             for (const auto t : ticks)

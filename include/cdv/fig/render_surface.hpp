@@ -2,6 +2,7 @@
 
 #include <cdv/core/rgba_color.hpp>
 #include <cdv/elem/line_properties.hpp>
+#include <cdv/elem/text_properties.hpp>
 #include <cdv/fnt/text_shaper.hpp>
 #include <cdv/stdx/numbers.hpp>
 
@@ -133,13 +134,12 @@ namespace cdv::fig
             back_end_.fill_background(r, g, b, a);
         }
 
-        void set_font(const fnt::font_properties& properties)
+        void set_text_properties(const elem::text_properties& props)
         {
-            text_shaper_.select_face(properties, font_size_);
-            set_font_size(font_size_);
+            set_color(props.color);
+            font_size_ = props.font_size;
+            text_shaper_.select_face(props.font, font_size_);
         }
-
-        void set_font_size(const points size) { font_size_ = size; }
 
         [[nodiscard]] auto push_transformation_in_scope(const pixel_pos translation,
                                                         const double rotation_angle_in_degrees,

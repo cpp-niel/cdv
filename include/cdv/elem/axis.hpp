@@ -142,9 +142,7 @@ namespace cdv::elem
             surface.stroke();
         }
 
-        surface.set_font_size(ax.properties.tick_labels.font_size);
-        surface.set_color(ax.properties.tick_labels.color);
-        surface.set_font(ax.properties.tick_labels.font);
+        surface.set_text_properties(ax.properties.tick_labels);
         const auto labels = ticks | ranges::views::transform(ax.scale.tick_formatter(ax.properties.num_ticks_hint));
         detail::draw_tick_labels(surface, labels, y, locations, xy, tick_offset, ax.properties.tick_label_offset);
     }

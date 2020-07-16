@@ -22,9 +22,7 @@ namespace cdv::elem
     template <typename Surface>
     void draw(const text& t, Surface& surface, const pixel_pos&)
     {
-        surface.set_color(t.properties.color);
-        surface.set_font(t.properties.font);
-        surface.set_font_size(t.properties.font_size);
+        surface.set_text_properties(t.properties);
         surface.draw_text(t.string, t.pos, {0.5, 0.5}, 0.0);
     }
 }

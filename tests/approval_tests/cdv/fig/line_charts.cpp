@@ -115,7 +115,7 @@ namespace cdv
 
             const auto xs = rv::linear_distribute(0.1, 10.0, 100) | rv::transform([](auto x) { return x * x; });
             const auto ys = xs | rv::transform([](const double x) { return std::exp(-x / 5.0); });
-            const auto line = elem::line(xs | rv::transform(x), ys | rv::transform(y), {.color = tab::blue});
+            const auto line = elem::line(xs | rv::transform(x), ys | rv::transform(y), {.color = cdv_blue});
             const auto text = elem::text(R"($f(x) = e^{\frac{-x}{5}}$)", {450_px, 350_px}, {.font_size = 24_pt});
 
             const auto svg = fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, line, text);

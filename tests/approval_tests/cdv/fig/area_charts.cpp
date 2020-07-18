@@ -5,18 +5,15 @@
 #include <cdv/elem/area.hpp>
 #include <cdv/elem/axis.hpp>
 #include <cdv/elem/color_legend.hpp>
-#include <cdv/elem/text.hpp>
+#include <cdv/elem/range_stack.hpp>
 #include <cdv/fig/frame.hpp>
 #include <cdv/fig/render_svg.hpp>
-#include <cdv/scl/linear_scale.hpp>
-#include <cdv/scl/ordinal_scale.hpp>
 
 #include <range/v3/view/linear_distribute.hpp>
 #include <range/v3/view/map.hpp>
 #include <range/v3/view/transform.hpp>
 
 #include <array>
-#include <cdv/elem/range_stack.hpp>
 
 namespace cdv
 {
@@ -72,7 +69,7 @@ namespace cdv
             constexpr auto bases = std::array{0.0, 0.2, 0.2, 0.3, 0.6, 0.1, 0.2, 0.3, 0.5};
             const auto area = elem::fill_between(
                 xs | rv::transform(x), ys | rv::transform(y), bases | rv::transform(y),
-                {.color = tab::blue.with_alpha(0.5), .outline = {.color = tab::blue, .width = 1_pt}});
+                {.color = cdv_blue.with_alpha(0.5), .outline = {.color = cdv_blue, .width = 1_pt}});
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), area, x_axis, y_axis));
         }

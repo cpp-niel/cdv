@@ -10,7 +10,7 @@ namespace cdv::elem
 {
     struct fill_properties
     {
-        rgba_color color = tab::blue;
+        rgba_color color = cdv_blue;
         line_properties outline = {.width = points{0}};
     };
 }

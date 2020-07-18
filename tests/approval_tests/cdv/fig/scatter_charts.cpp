@@ -129,8 +129,8 @@ namespace cdv
             const auto stems = rv::zip_with(
                 [&](const auto a, const auto b) {
                     const auto pos = pixel_pos{x(a), y(b)};
-                    return std::pair{elem::symbol{.position = pos, .properties = {.color = tab::blue}},
-                               elem::line(std::array{pos.x, pos.x}, std::array{y(0.0), pos.y}, {.color = tab::blue})};
+                    return std::pair{elem::symbol{.position = pos, .properties = {.color = cdv_blue}},
+                               elem::line(std::array{pos.x, pos.x}, std::array{y(0.0), pos.y}, {.color = cdv_blue})};
                 },
                 xs, ys);
 

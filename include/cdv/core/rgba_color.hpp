@@ -137,4 +137,6 @@ namespace cdv
 #include <cdv/core/color/tableau.hpp>
 #undef CDV_DEFINE_COLOR
     }
+
+    constexpr auto cdv_blue = rgba_color(0x1389daff);
 }

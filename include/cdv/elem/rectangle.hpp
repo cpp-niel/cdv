@@ -10,6 +10,7 @@ namespace cdv::elem
     {
         pixel_pos min;
         pixel_pos max;
+        pixels corner_radius;
         fill_properties fill;
     };
 
@@ -18,12 +19,12 @@ namespace cdv::elem
     {
         using namespace units_literals;
         surface.set_color(r.fill.color);
-        detail::fill_rectangle(surface, r.min, r.max);
+        detail::fill_rectangle(surface, r.min, r.max, r.corner_radius);
 
         if (r.fill.outline.width > 0_pt)
         {
             surface.set_line_properties(r.fill.outline);
-            detail::draw_rectangle(surface, r.min, r.max);
+            detail::draw_rectangle(surface, r.min, r.max, r.corner_radius);
         }
     }
 }

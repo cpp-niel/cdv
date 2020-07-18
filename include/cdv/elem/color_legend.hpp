@@ -49,7 +49,7 @@ namespace cdv::elem
                 const auto mid_x = bands(d);
                 const auto min_x = mid_x - (bands.band_width() * 0.5);
                 const auto max_x = min_x + bands.band_width();
-                detail::fill_rectangle(surface, {min_x, l.pos.y + l.height - l.block_height}, {max_x, l.pos.y + l.height});
+                detail::fill_rectangle(surface, {min_x, l.pos.y + l.height - l.block_height}, {max_x, l.pos.y + l.height}, {});
 
                 surface.set_text_properties(l.tick_label_properties);
                 surface.draw_text(fmt::format("{}", d), {mid_x, l.pos.y}, {0.5, 0.0}, 0.0);

@@ -117,10 +117,9 @@ namespace cdv::back_end
 
     void cairo::line_to(const pixel_pos pos) { cairo_line_to(cr_.get(), pos.x.value(), pos.y.value()); }
 
-    void cairo::circle(const pixel_pos center, const pixels radius)
+    void cairo::arc(const pixel_pos center, const pixels radius, const double angle0, const double angle1)
     {
-        cairo_arc(cr_.get(), center.x.value(), center.y.value(), radius.value(), 0.0, stdx::numbers::tau);
-        cairo_fill(cr_.get());
+        cairo_arc(cr_.get(), center.x.value(), center.y.value(), radius.value(), angle0, angle1);
     }
 
     void cairo::stroke() { cairo_stroke(cr_.get()); }

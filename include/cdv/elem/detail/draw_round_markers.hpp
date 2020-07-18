@@ -15,7 +15,8 @@ namespace cdv::elem::detail
     auto point_marker(Surface& surface)
     {
         return [&](const pixel_pos pos, const pixels size) {
-            surface.circle(pos, size * point_marker_size_factor);
+            surface.draw_circle(pos, size * point_marker_size_factor);
+            surface.fill();
         };
     }
 
@@ -24,7 +25,8 @@ namespace cdv::elem::detail
     {
         return [&](const pixel_pos pos, const pixels) {
             using namespace units_literals;
-            surface.circle(pos, 1_px);
+            surface.draw_circle(pos, 1_px);
+            surface.fill();
         };
     }
 
@@ -32,7 +34,8 @@ namespace cdv::elem::detail
     auto circle_marker(Surface& surface)
     {
         return [&](const pixel_pos pos, const pixels size) {
-          surface.circle(pos, size * 0.5);
+          surface.draw_circle(pos, size * 0.5);
+          surface.fill();
         };
     }
 }

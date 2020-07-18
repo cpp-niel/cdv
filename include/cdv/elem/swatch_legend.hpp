@@ -39,7 +39,7 @@ namespace cdv::elem
             using namespace std::string_literals;
 
             surface.set_color(l.scale(value));
-            detail::fill_rectangle(surface, pos, {pos.x + l.block_width, pos.y + l.block_height});
+            detail::fill_rectangle(surface, pos, {pos.x + l.block_width, pos.y + l.block_height}, {});
 
             surface.set_text_properties(l.label_properties);
             const auto specifier = l.label_format_specifier.empty() ? "{}"s : "{:"s + l.label_format_specifier + "}";

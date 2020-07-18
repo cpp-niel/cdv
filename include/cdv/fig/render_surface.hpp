@@ -174,7 +174,15 @@ namespace cdv::fig
 
         void line_to(const pixel_pos pos) { back_end_.line_to(pos); }
 
-        void circle(const pixel_pos center, const pixels radius) { back_end_.circle(center, radius); }
+        void draw_circle(const pixel_pos center, const pixels radius)
+        {
+            back_end_.arc(center, radius, 0.0, stdx::numbers::tau);
+        }
+
+        void draw_arc(const pixel_pos center, const pixels radius, const double angle0, const double angle1)
+        {
+            back_end_.arc(center, radius, angle0, angle1);
+        }
 
         void stroke() { back_end_.stroke(); }
 

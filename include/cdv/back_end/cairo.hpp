@@ -50,7 +50,7 @@ namespace cdv::back_end
         void move_to(const pixel_pos pos);
         void line_to(const pixel_pos pos);
 
-        void circle(const pixel_pos center, const pixels radius);
+        void arc(const pixel_pos center, const pixels radius, const double angle0, const double angle1);
 
         void stroke();
         void fill();

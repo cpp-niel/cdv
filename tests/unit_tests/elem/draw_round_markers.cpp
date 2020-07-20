@@ -41,7 +41,7 @@ namespace cdv::elem::detail
             {
                 circle_gatherer_.get().circles.emplace_back(center, radius);
             }
-            
+
             void fill() {}
 
             std::reference_wrapper<circle_gatherer> circle_gatherer_;

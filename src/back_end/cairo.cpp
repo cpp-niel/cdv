@@ -119,7 +119,10 @@ namespace cdv::back_end
 
     void cairo::arc(const pixel_pos center, const pixels radius, const radians angle0, const radians angle1)
     {
-        cairo_arc(cr_.get(), center.x.value(), center.y.value(), radius.value(), angle0.value(), angle1.value());
+        if (angle0 < angle1)
+            cairo_arc(cr_.get(), center.x.value(), center.y.value(), radius.value(), angle0.value(), angle1.value());
+        else
+            cairo_arc_negative(cr_.get(), center.x.value(), center.y.value(), radius.value(), angle0.value(), angle1.value());
     }
 
     void cairo::stroke() { cairo_stroke(cr_.get()); }

@@ -20,8 +20,9 @@ namespace cdv::test
         void set_color(const rgba_color) { set_color_counter_++; }
         void draw_path(const stdx::range_of<pixel_pos> auto&) { draw_path_counter_++; }
         void draw_path(const std::initializer_list<pixel_pos> positions) { draw_path(::ranges::views::all(positions)); }
-        void draw_circle(const pixel_pos, const pixels ) {draw_circle_counter_++;}
-        void draw_arc(const pixel_pos, const pixels, const radians, const radians) {}
+        void line_to(const pixel_pos) {}
+        void draw_circle(const pixel_pos, const pixels ) {draw_arc_counter_++;}
+        void draw_arc(const pixel_pos, const pixels, const radians, const radians) {draw_arc_counter_++;}
         void stroke() { stroke_counter_++; }
         void fill() { fill_counter_++; }
         void set_line_properties(const elem::line_properties&) {}
@@ -43,7 +44,7 @@ namespace cdv::test
 
         [[nodiscard]] size_t set_color_counter() const { return set_color_counter_; }
         [[nodiscard]] size_t draw_text_counter() const { return draw_text_counter_; }
-        [[nodiscard]] size_t draw_circle_counter() const { return draw_circle_counter_; }
+        [[nodiscard]] size_t draw_arc_counter() const { return draw_arc_counter_; }
         [[nodiscard]] size_t draw_path_counter() const { return draw_path_counter_; }
         [[nodiscard]] size_t stroke_counter() const { return stroke_counter_; }
         [[nodiscard]] size_t fill_counter() const { return fill_counter_; }
@@ -52,7 +53,7 @@ namespace cdv::test
     private:
         size_t set_color_counter_ = 0;
         size_t draw_text_counter_ = 0;
-        size_t draw_circle_counter_ = 0;
+        size_t draw_arc_counter_ = 0;
         size_t draw_path_counter_ = 0;
         size_t stroke_counter_ = 0;
         size_t fill_counter_ = 0;

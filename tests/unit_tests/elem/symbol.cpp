@@ -15,7 +15,7 @@ namespace cdv::elem
             const auto s = symbol{.position = {1_px, 2_px}};
             auto result = test::mock_surface();
             draw(s, result, {});
-            CHECK_EQ(result.draw_circle_counter(), 1);
+            CHECK_EQ(result.draw_arc_counter(), 1);
             CHECK_EQ(result.draw_path_counter(), 0);
         }
 
@@ -24,7 +24,7 @@ namespace cdv::elem
             const auto s = symbol{.position = {1_px, 2_px}, .properties = {.style = '+'}};
             auto result = test::mock_surface();
             draw(s, result, {});
-            CHECK_EQ(result.draw_circle_counter(), 0);
+            CHECK_EQ(result.draw_arc_counter(), 0);
             CHECK_EQ(result.draw_path_counter(), 2);  // Each of the two strokes of the + is a path
         }
     }

@@ -15,7 +15,7 @@ namespace cdv::elem
             const auto s = scatter(std::array{1_px, 2_px, 3_px}, std::array{4_px, 5_px, 6_px});
             auto result = test::mock_surface();
             draw(s, result, {});
-            CHECK_EQ(result.draw_circle_counter(), 3);
+            CHECK_EQ(result.draw_arc_counter(), 3);
             CHECK_EQ(result.draw_path_counter(), 0);
         }
 
@@ -24,7 +24,7 @@ namespace cdv::elem
             const auto s = scatter(std::array{1_px, 2_px, 3_px}, std::array{4_px, 5_px, 6_px}, {.style = 'x'});
             auto result = test::mock_surface();
             draw(s, result, {});
-            CHECK_EQ(result.draw_circle_counter(), 0);
+            CHECK_EQ(result.draw_arc_counter(), 0);
             CHECK_EQ(result.draw_path_counter(), 6);  // Each stroke of the x is a path => 3 xs means 6 paths
         }
 
@@ -34,7 +34,7 @@ namespace cdv::elem
                                    std::array{7_pt, 8_pt, 9_pt}, {.style = '*'});
             auto result = test::mock_surface();
             draw(s, result, {});
-            CHECK_EQ(result.draw_circle_counter(), 0);
+            CHECK_EQ(result.draw_arc_counter(), 0);
             CHECK_EQ(result.draw_path_counter(), 3);  // the outline of each star is a single path
         }
     }

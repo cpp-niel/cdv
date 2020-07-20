@@ -23,6 +23,6 @@ namespace cdv::elem
     void draw(const text& t, Surface& surface, const pixel_pos&)
     {
         surface.set_text_properties(t.properties);
-        surface.draw_text(t.string, t.pos, {0.5, 0.5}, 0.0);
+        surface.draw_text(t.string, t.pos, {0.5, 0.5}, {});
     }
 }

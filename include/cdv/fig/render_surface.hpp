@@ -55,11 +55,10 @@ namespace cdv::fig
         {
         public:
             scoped_transformation(BackEnd& back_end, const pixel_pos translation,
-                                  const double rotation_angle_in_degrees, const vec2<double> scaling)
+                                  const radians rotation_angle, const vec2<double> scaling)
                 : back_end_(back_end)
             {
-                back_end_.get().push_transformation(translation, stdx::numbers::pi * rotation_angle_in_degrees / 180.0,
-                                                    scaling);
+                back_end_.get().push_transformation(translation, rotation_angle, scaling);
             }
 
             ~scoped_transformation() { back_end_.get().pop_transformation(); }
@@ -142,14 +141,14 @@ namespace cdv::fig
         }
 
         [[nodiscard]] auto push_transformation_in_scope(const pixel_pos translation,
-                                                        const double rotation_angle_in_degrees,
+                                                        const radians rotation_angle,
                                                         const vec2<double> scaling)
         {
-            return detail::scoped_transformation<BackEnd>{back_end_, translation, rotation_angle_in_degrees, scaling};
+            return detail::scoped_transformation<BackEnd>{back_end_, translation, rotation_angle, scaling};
         }
 
         pixel_pos draw_text(const std::string& text, const pixel_pos pos, const vec2<double> position_factor,
-                            const double angle_in_degrees)
+                            const radians angle)
         {
             const auto shaped = text_shaper_.shape(text, font_size_, dpi_);
 
@@ -157,8 +156,8 @@ namespace cdv::fig
 
             const auto anchor_offset =
                 pixel_pos{-position_factor.x * shaped.extents().x, -position_factor.y * vertical_extent};
-            const auto xform0 = push_transformation_in_scope(pos, angle_in_degrees, {1.0, 1.0});
-            const auto xform1 = push_transformation_in_scope(anchor_offset, 0.0, {1.0, -1.0});
+            const auto xform0 = push_transformation_in_scope(pos, angle, {1.0, 1.0});
+            const auto xform1 = push_transformation_in_scope(anchor_offset, {}, {1.0, -1.0});
 
             draw_shaped_text(shaped);
 
@@ -176,10 +175,10 @@ namespace cdv::fig
 
         void draw_circle(const pixel_pos center, const pixels radius)
         {
-            back_end_.arc(center, radius, 0.0, stdx::numbers::tau);
+            back_end_.arc(center, radius, radians(0.0), radians(stdx::numbers::tau));
         }
 
-        void draw_arc(const pixel_pos center, const pixels radius, const double angle0, const double angle1)
+        void draw_arc(const pixel_pos center, const pixels radius, const radians angle0, const radians angle1)
         {
             back_end_.arc(center, radius, angle0, angle1);
         }

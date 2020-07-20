@@ -37,7 +37,12 @@ namespace cdv::elem::detail
             mock_back_end(circle_gatherer& cg) : circle_gatherer_(std::ref(cg)) {}
             [[nodiscard]] pixels to_pixels(const points p) const { return points_to_pixels(p, 72_dpi); }
 
-            void circle(const pixel_pos pos, const pixels radius) { circle_gatherer_.get().circles.emplace_back(pos, radius); }
+            void arc(const pixel_pos center, const pixels radius, const radians, const radians)
+            {
+                circle_gatherer_.get().circles.emplace_back(center, radius);
+            }
+            
+            void fill() {}
 
             std::reference_wrapper<circle_gatherer> circle_gatherer_;
         };

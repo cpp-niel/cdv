@@ -50,14 +50,15 @@ namespace cdv::back_end
         void move_to(const pixel_pos pos);
         void line_to(const pixel_pos pos);
 
-        void arc(const pixel_pos center, const pixels radius, const double angle0, const double angle1);
+        void arc(const pixel_pos center, const pixels radius, const radians angle0, const radians angle1);
 
         void stroke();
         void fill();
 
         using fill_pattern_t = std::unique_ptr<_cairo_pattern, void (*)(_cairo_pattern*)>;
         fill_pattern_t create_gradient(const pixels start, const pixels end);
-        void add_gradient_stop(fill_pattern_t& gradient, const double r, const double g, const double b, const double a, const double offset);
+        void add_gradient_stop(fill_pattern_t& gradient, const double r, const double g, const double b, const double a,
+                               const double offset);
         void set_fill_pattern(fill_pattern_t& pattern);
         void unset_fill_pattern();
 
@@ -68,8 +69,7 @@ namespace cdv::back_end
         void set_font(FT_FaceRec_* ft_face, const pixels size);
         void draw_glyphs(const std::vector<fnt::shaped_glyph>& glyphs) const;
 
-        void push_transformation(const pixel_pos translation, const double rotation_angle_in_radians,
-                                 const vec2<double> scale);
+        void push_transformation(const pixel_pos translation, const radians rotation_angle, const vec2<double> scale);
         void pop_transformation();
 
         void to_png(const std::string& file_name);

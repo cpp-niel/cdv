@@ -87,7 +87,7 @@ namespace cdv::elem
                 const auto pos = xy(loc, y - (tick_offset * 2.0)) + tick_label_offset;
                 const auto align = xy(0.5_px, (tick_offset < 0_px) ? 0_px : 1_px);
                 const auto [text_width, text_height] =
-                    surface.draw_text(tick_txt, pos, {align.x.value(), align.y.value()}, 0.0);
+                    surface.draw_text(tick_txt, pos, {align.x.value(), align.y.value()}, {});
                 const auto extents = xy(text_width, text_height);
                 if (extents.y > max_label_extent) max_label_extent = extents.y;
             }

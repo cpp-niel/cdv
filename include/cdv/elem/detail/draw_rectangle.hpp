@@ -8,11 +8,11 @@ namespace cdv::elem::detail
     template <typename Surface>
     void draw_rounded_rectangle(Surface& surface, const pixel_pos min, const pixel_pos max, const pixels radius)
     {
-        const auto quarter_circle = stdx::numbers::pi * 0.5;
-        surface.draw_arc ({max.x - radius, min.y + radius}, radius, -quarter_circle, 0.0);
-        surface.draw_arc (max - pixel_pos(radius, radius), radius, 0.0, quarter_circle);
-        surface.draw_arc ({min.x + radius, max.y - radius}, radius, quarter_circle, 2.0 * quarter_circle);
-        surface.draw_arc (min + pixel_pos(radius, radius), radius, 2.0 * quarter_circle, 3.0 * quarter_circle);
+        constexpr auto quarter_circle = radians(stdx::numbers::pi * 0.5);
+        surface.draw_arc({max.x - radius, min.y + radius}, radius, -quarter_circle, {});
+        surface.draw_arc(max - pixel_pos(radius, radius), radius, {}, quarter_circle);
+        surface.draw_arc({min.x + radius, max.y - radius}, radius, quarter_circle, 2.0 * quarter_circle);
+        surface.draw_arc(min + pixel_pos(radius, radius), radius, 2.0 * quarter_circle, 3.0 * quarter_circle);
         surface.fill();
     }
 

@@ -68,7 +68,7 @@ namespace cdv
             constexpr auto frame = fig::frame();
 
             const auto num_rows = 8;
-            const auto num_cols = 10;
+            const auto num_cols = 10    ;
 
             const auto xs = rv::iota(0, num_cols);
             const auto ys = rv::iota(0, num_rows);

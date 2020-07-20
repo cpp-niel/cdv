@@ -117,9 +117,9 @@ namespace cdv::back_end
 
     void cairo::line_to(const pixel_pos pos) { cairo_line_to(cr_.get(), pos.x.value(), pos.y.value()); }
 
-    void cairo::arc(const pixel_pos center, const pixels radius, const double angle0, const double angle1)
+    void cairo::arc(const pixel_pos center, const pixels radius, const radians angle0, const radians angle1)
     {
-        cairo_arc(cr_.get(), center.x.value(), center.y.value(), radius.value(), angle0, angle1);
+        cairo_arc(cr_.get(), center.x.value(), center.y.value(), radius.value(), angle0.value(), angle1.value());
     }
 
     void cairo::stroke() { cairo_stroke(cr_.get()); }
@@ -131,20 +131,15 @@ namespace cdv::back_end
         return {cairo_pattern_create_linear(start.value(), 0.0, end.value(), 0.0), cairo_pattern_destroy};
     }
 
-    void cairo::add_gradient_stop(fill_pattern_t& gradient, const double r, const double g, const double b, const double a, const double offset)
+    void cairo::add_gradient_stop(fill_pattern_t& gradient, const double r, const double g, const double b,
+                                  const double a, const double offset)
     {
         cairo_pattern_add_color_stop_rgba(gradient.get(), offset, r, g, b, a);
     }
 
-    void cairo::set_fill_pattern(fill_pattern_t& pattern)
-    {
-        cairo_set_source(cr_.get(), pattern.get());
-    }
+    void cairo::set_fill_pattern(fill_pattern_t& pattern) { cairo_set_source(cr_.get(), pattern.get()); }
 
-    void cairo::unset_fill_pattern()
-    {
-        cairo_set_source_rgb(cr_.get(), 0.0, 0.0, 0.0);
-    }
+    void cairo::unset_fill_pattern() { cairo_set_source_rgb(cr_.get(), 0.0, 0.0, 0.0); }
 
     void cairo::set_clip_rect(const pixel_pos origin, const pixel_pos extents)
     {
@@ -174,12 +169,11 @@ namespace cdv::back_end
         cairo_set_font_size(cr_.get(), size.value());
     }
 
-    void cairo::push_transformation(const pixel_pos translation, const double rotation_angle_in_radians,
-                                    const vec2<double> scale)
+    void cairo::push_transformation(const pixel_pos translation, const radians rotation_angle, const vec2<double> scale)
     {
         cairo_save(cr_.get());
         cairo_translate(cr_.get(), translation.x.value(), translation.y.value());
-        cairo_rotate(cr_.get(), rotation_angle_in_radians);
+        cairo_rotate(cr_.get(), rotation_angle.value());
         cairo_scale(cr_.get(), scale.x, scale.y);
     }
 

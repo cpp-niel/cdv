@@ -45,7 +45,7 @@ namespace cdv::elem
             const auto specifier = l.label_format_specifier.empty() ? "{}"s : "{:"s + l.label_format_specifier + "}";
             const auto [label_width, h] =
                 surface.draw_text(fmt::format(specifier, value),
-                                  pos + pixel_pos{l.block_width * 1.2, l.block_height * 0.15}, {0.0, 0.0}, 0.0);
+                                  pos + pixel_pos{l.block_width * 1.2, l.block_height * 0.15}, {0.0, 0.0}, {});
 
             return label_width + l.block_width * 2.2;
         }

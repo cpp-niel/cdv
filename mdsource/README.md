@@ -198,6 +198,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 
 * * *
 
+This library contains Lewis Baker's coroutine generator from the 
+[cppcoro](https://github.com/lewissbaker/cppcoro) library which is 
+licensed under the [MIT License](http://opensource.org/licenses/MIT) (see above).
+Copyright &copy; [Lewis Baker](https://lewissbaker.github.io)
+
+* * *
+
 Until the C++20 date facilities become widely available in the major standard library 
 implementations, this library contains Howard Hinnant's [date library](https://github.com/HowardHinnant/date)
 which is licensed under the [MIT License](http://opensource.org/licenses/MIT) (see above).

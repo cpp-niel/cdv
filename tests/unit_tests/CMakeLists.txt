@@ -33,7 +33,7 @@ add_executable (unit_tests
         scl/sequential_scale.cpp
         scl/ticks.cpp
         scl/time_scale.cpp
-        elem/arc.cpp)
+        elem/arc.cpp elem/pie_slices.cpp)
 
 set_property(TARGET unit_tests PROPERTY CXX_STANDARD 20)
 

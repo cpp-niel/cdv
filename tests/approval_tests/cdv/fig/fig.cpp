@@ -16,8 +16,8 @@
 
 #include <array>
 
-#include <cdv/core/date.hpp>
 #include <cdv/elem/symbol.hpp>
+#include <cdv/stdx/date.hpp>
 #include <range/v3/utility/concepts.hpp>
 #include <range/v3/view/cartesian_product.hpp>
 #include <range/v3/view/cycle.hpp>

@@ -186,4 +186,41 @@ namespace cdv
         test::approve_svg(fig::render_to_svg_string(frame.dimensions(), axis, rects, inner_padding_labels,
                                                     outer_padding_labels, step_label, band_width_label));
     }
+
+    TEST_CASE("text positioning")
+    {
+        const auto frame = fig::frame();
+        const auto right_anchored =
+            elem::text{.string = "right anchored ", .pos = frame.center(), .x_anchor = elem::horizontal_anchor::right};
+        const auto left_anchored =
+            elem::text{.string = " left anchored", .pos = frame.center(), .x_anchor = elem::horizontal_anchor::left};
+        const auto right_anchored_rotated = elem::text{.string = "right anchored & rotated ",
+                                                       .pos = frame.center(),
+                                                       .x_anchor = elem::horizontal_anchor::right,
+                                                       .rotation = 1_rad};
+        const auto left_anchored_rotated = elem::text{.string = " left anchored & rotated",
+                                                      .pos = frame.center(),
+                                                      .x_anchor = elem::horizontal_anchor::left,
+                                                      .rotation = 1_rad};
+
+        const auto top_center = pixel_pos{frame.x_center(), frame.y1()};
+        const auto top_anchored =
+            elem::text{.string = "top anchored", .pos = top_center, .y_anchor = elem::vertical_anchor::top};
+        const auto bottom_anchored =
+            elem::text{.string = "bottom anchored", .pos = top_center, .y_anchor = elem::vertical_anchor::bottom};
+
+        const auto middle_left = pixel_pos{frame.x0(), frame.y_center()};
+        const auto bottom_to_top = elem::text{.string = "bottom to top",
+                                              .pos = middle_left,
+                                              .y_anchor = elem::vertical_anchor::bottom,
+                                              .rotation = radians(stdx::numbers::pi * 0.5)};
+        const auto top_to_bottom = elem::text{.string = "top to bottom",
+                                              .pos = middle_left,
+                                              .y_anchor = elem::vertical_anchor::bottom,
+                                              .rotation = radians(stdx::numbers::pi * 1.5)};
+
+        test::approve_svg(fig::render_to_svg_string(frame.dimensions(), right_anchored, left_anchored,
+                                                    right_anchored_rotated, left_anchored_rotated, top_anchored,
+                                                    bottom_anchored, bottom_to_top, top_to_bottom));
+    }
 }

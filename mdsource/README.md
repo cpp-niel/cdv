@@ -1,4 +1,4 @@
-<img align="right" width=15% src="./tests/approval_tests/cdv/fig/approved_files/fig.cdv_log.approved.svg">
+<img align="right" width=15% src="./tests/approval_tests/cdv/fig/approved_files/fig.cdv_logo.approved.svg">
 
 # cdv
 

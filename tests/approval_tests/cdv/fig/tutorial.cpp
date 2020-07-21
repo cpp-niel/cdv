@@ -25,7 +25,8 @@ TEST_CASE("hello world")
 {
     // mdinject-begin: tutorial-hello-world
     constexpr auto frame = cdv::fig::frame();
-    const auto message = cdv::elem::text("Hello, world", frame.center(), {.font_size = cdv::points{36}});
+    const auto message = cdv::elem::text{.string = "Hello, world", .pos = frame.center(),
+                                         .properties = {.font_size = cdv::points{36}}};
     const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), message);
     // mdinject-end
 
@@ -37,7 +38,8 @@ TEST_CASE("hello world units")
     // mdinject-begin: tutorial-hello-world-units
     using namespace cdv::units_literals;
     constexpr auto frame = cdv::fig::frame();
-    const auto message = cdv::elem::text("Hello, units", {200_px, 300_px}, {.font_size = 36_pt});
+    const auto message = cdv::elem::text{.string = "Hello, units", .pos = {200_px, 300_px},
+                                         .properties = {.font_size = 36_pt}};
     const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), message);
     // mdinject-end
 
@@ -60,7 +62,8 @@ TEST_CASE("scales and axes")
     // mdinject-end
 
     // mdinject-begin: tutorial-scales-and-axes
-    const auto message = cdv::elem::text("Scales & Axes", {x(4.0), y(7.0)}, {.font_size = 36_pt});
+    const auto message = cdv::elem::text{.string = "Scales & Axes", .pos = {x(4.0), y(7.0)},
+                                         .properties = {.font_size = 36_pt}};
     const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), message, x_axis, y_axis);
     // mdinject-end
 
@@ -169,11 +172,11 @@ TEST_CASE("bar chart colors")
 
     // mdinject-begin: tutorial-bar-chart-create-colored-bars
     const auto bars = rv::zip(keys, data) | rv::transform([&](const auto& key_value_pair) {
-      const auto [key, value] = key_value_pair;
-      return cdv::elem::rectangle{.min = {x.min(key), y(0.0)},
-          .max = {x.max(key), y(value)},
-          .fill = {.color = color(key)}};
-    });
+                          const auto [key, value] = key_value_pair;
+                          return cdv::elem::rectangle{.min = {x.min(key), y(0.0)},
+                                                      .max = {x.max(key), y(value)},
+                                                      .fill = {.color = color(key)}};
+                      });
     // mdinject-end
 
     const auto svg = cdv::fig::render_to_svg_string({}, bars, x_axis, y_axis);

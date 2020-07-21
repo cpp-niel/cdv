@@ -51,10 +51,8 @@ namespace cdv::elem
     template <typename Scale, typename Codomain = typename Scale::codomain_t>
     auto right_axis(const Scale& scale, const Codomain& position, const axis_properties<Codomain>& properties = {})
     {
-        return axis<Scale>{.scale = scale,
-            .position = position,
-            .orientation = axis_orientation::right,
-            .properties = properties};
+        return axis<Scale>{
+            .scale = scale, .position = position, .orientation = axis_orientation::right, .properties = properties};
     }
 
     template <typename Scale, typename Codomain = typename Scale::codomain_t>
@@ -65,29 +63,31 @@ namespace cdv::elem
     }
 
     template <typename Scale, typename Codomain = typename Scale::codomain_t>
-    auto bottom_axis(const Scale& scale, const Codomain& position,
-                     const axis_properties<Codomain>& properties = {})
+    auto bottom_axis(const Scale& scale, const Codomain& position, const axis_properties<Codomain>& properties = {})
     {
-        return axis<Scale>{.scale = scale,
-            .position = position,
-            .orientation = axis_orientation::bottom,
-            .properties = properties};
+        return axis<Scale>{
+            .scale = scale, .position = position, .orientation = axis_orientation::bottom, .properties = properties};
     }
 
     namespace detail
     {
         template <typename Surface, typename Labels, typename Locations, typename Func>
         pixels draw_tick_labels(Surface& surface, const Labels& labels, const pixels y, const Locations& locations,
-                                const Func& xy, const pixels tick_offset, const pixel_pos tick_label_offset)
+                                const Func& xy, const pixels tick_offset, const pixel_pos tick_label_offset,
+                                const bool is_horizontal)
         {
             using namespace units_literals;
             auto max_label_extent = 0_px;
             for (const auto& [tick_txt, loc] : ranges::views::zip(labels, locations))
             {
                 const auto pos = xy(loc, y - (tick_offset * 2.0)) + tick_label_offset;
-                const auto align = xy(0.5_px, (tick_offset < 0_px) ? 0_px : 1_px);
-                const auto [text_width, text_height] =
-                    surface.draw_text(tick_txt, pos, {align.x.value(), align.y.value()}, {});
+                const auto x_anchor = is_horizontal
+                                          ? horizontal_anchor::center
+                                          : ((tick_offset < 0_px) ? horizontal_anchor::left : horizontal_anchor::right);
+                const auto y_anchor = !is_horizontal
+                                          ? vertical_anchor::middle
+                                          : ((tick_offset < 0_px) ? vertical_anchor::bottom : vertical_anchor::top);
+                const auto [text_width, text_height] = surface.draw_text(tick_txt, pos, x_anchor, y_anchor, 0_rad);
                 const auto extents = xy(text_width, text_height);
                 if (extents.y > max_label_extent) max_label_extent = extents.y;
             }
@@ -111,8 +111,7 @@ namespace cdv::elem
         if (ax.properties.spine.width > points{0})
         {
             surface.set_line_properties(ax.properties.spine);
-            surface.draw_path(
-                std::array{xy(ax.scale.codomain().front(), y), xy(ax.scale.codomain().back(), y)});
+            surface.draw_path(std::array{xy(ax.scale.codomain().front(), y), xy(ax.scale.codomain().back(), y)});
             surface.stroke();
         }
 
@@ -144,6 +143,7 @@ namespace cdv::elem
 
         surface.set_text_properties(ax.properties.tick_labels);
         const auto labels = ticks | ranges::views::transform(ax.scale.tick_formatter(ax.properties.num_ticks_hint));
-        detail::draw_tick_labels(surface, labels, y, locations, xy, tick_offset, ax.properties.tick_label_offset);
+        detail::draw_tick_labels(surface, labels, y, locations, xy, tick_offset, ax.properties.tick_label_offset,
+                                 is_horizontal);
     }
 }

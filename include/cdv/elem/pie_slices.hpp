@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cdv/core/units.hpp>
+#include <cdv/core/vec2.hpp>
 #include <cdv/stdx/concepts.hpp>
 #include <cdv/stdx/generator.hpp>
 #include <cdv/stdx/numbers.hpp>

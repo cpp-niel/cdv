@@ -52,7 +52,7 @@ namespace cdv::elem
                 detail::fill_rectangle(surface, {min_x, l.pos.y + l.height - l.block_height}, {max_x, l.pos.y + l.height}, {});
 
                 surface.set_text_properties(l.tick_label_properties);
-                surface.draw_text(fmt::format("{}", d), {mid_x, l.pos.y}, {0.5, 0.0}, {});
+                surface.draw_text(fmt::format("{}", d), {mid_x, l.pos.y}, horizontal_anchor::center, vertical_anchor::bottom, {});
             }
         }
 
@@ -87,7 +87,7 @@ namespace cdv::elem
             const auto format = l.scale.tick_formatter(l.num_ticks_hint);
             for (const auto t : ticks)
             {
-                surface.draw_text(format(t), {x(t), label_y}, {0.5, 1.0}, {});
+                surface.draw_text(format(t), {x(t), label_y}, horizontal_anchor::center, vertical_anchor::top, {});
             }
         }
     }

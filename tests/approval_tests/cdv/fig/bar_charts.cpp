@@ -231,8 +231,9 @@ namespace cdv
                                     return std::pair{elem::rectangle{.min = {x(base), y.min(key)},
                                                                      .max = {x(top), y.max(key)},
                                                                      .fill = {.color = col(category)}},
-                                                     elem::text(fmt::format("{}", top - base),
-                                                                {(x(base) + x(top)) * 0.5, y(key)}, {.color = c})};
+                                                     elem::text{.string = fmt::format("{}", top - base),
+                                                                .pos = {(x(base) + x(top)) * 0.5, y(key)},
+                                                                .properties = {.color = c}}};
                                 });
 
             const auto legend = elem::swatch_legend<const char*>{.scale = col, .pos = {frame.x0(), frame.y1()}};

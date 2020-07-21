@@ -54,8 +54,8 @@ namespace cdv::fig
         class scoped_transformation
         {
         public:
-            scoped_transformation(BackEnd& back_end, const pixel_pos translation,
-                                  const radians rotation_angle, const vec2<double> scaling)
+            scoped_transformation(BackEnd& back_end, const pixel_pos translation, const radians rotation_angle,
+                                  const vec2<double> scaling)
                 : back_end_(back_end)
             {
                 back_end_.get().push_transformation(translation, rotation_angle, scaling);
@@ -67,7 +67,6 @@ namespace cdv::fig
             std::reference_wrapper<BackEnd> back_end_;
         };
     }
-
 
     template <typename BackEnd>
     class render_surface
@@ -140,23 +139,23 @@ namespace cdv::fig
             text_shaper_.select_face(props.font, font_size_);
         }
 
-        [[nodiscard]] auto push_transformation_in_scope(const pixel_pos translation,
-                                                        const radians rotation_angle,
+        [[nodiscard]] auto push_transformation_in_scope(const pixel_pos translation, const radians rotation_angle,
                                                         const vec2<double> scaling)
         {
             return detail::scoped_transformation<BackEnd>{back_end_, translation, rotation_angle, scaling};
         }
 
-        pixel_pos draw_text(const std::string& text, const pixel_pos pos, const vec2<double> position_factor,
-                            const radians angle)
+        pixel_pos draw_text(const std::string& text, const pixel_pos pos, const elem::horizontal_anchor x_anchor,
+                            const elem::vertical_anchor y_anchor, const radians rotation)
         {
             const auto shaped = text_shaper_.shape(text, font_size_, dpi_);
 
             const auto vertical_extent = text_shaper_.shape("My", font_size_, dpi_).extents().y;
 
-            const auto anchor_offset =
-                pixel_pos{-position_factor.x * shaped.extents().x, -position_factor.y * vertical_extent};
-            const auto xform0 = push_transformation_in_scope(pos, angle, {1.0, 1.0});
+            const auto anchor_x = static_cast<double>(x_anchor) / static_cast<double>(elem::horizontal_anchor::right);
+            const auto anchor_y = static_cast<double>(y_anchor) / static_cast<double>(elem::vertical_anchor::top);
+            const auto anchor_offset = pixel_pos{-anchor_x * shaped.extents().x, -anchor_y * vertical_extent};
+            const auto xform0 = push_transformation_in_scope(pos, rotation, {1.0, 1.0});
             const auto xform1 = push_transformation_in_scope(anchor_offset, {}, {1.0, -1.0});
 
             draw_shaped_text(shaped);

@@ -21,8 +21,8 @@ namespace cdv::test
         void draw_path(const stdx::range_of<pixel_pos> auto&) { draw_path_counter_++; }
         void draw_path(const std::initializer_list<pixel_pos> positions) { draw_path(::ranges::views::all(positions)); }
         void line_to(const pixel_pos) {}
-        void draw_circle(const pixel_pos, const pixels ) {draw_arc_counter_++;}
-        void draw_arc(const pixel_pos, const pixels, const radians, const radians) {draw_arc_counter_++;}
+        void draw_circle(const pixel_pos, const pixels) { draw_arc_counter_++; }
+        void draw_arc(const pixel_pos, const pixels, const radians, const radians) { draw_arc_counter_++; }
         void stroke() { stroke_counter_++; }
         void fill() { fill_counter_++; }
         void set_line_properties(const elem::line_properties&) {}
@@ -34,7 +34,8 @@ namespace cdv::test
             gradient_fill_counter_++;
         }
 
-        pixel_pos draw_text(const std::string&, const pixel_pos, const vec2<double>, const radians)
+        pixel_pos draw_text(const std::string&, const pixel_pos, const elem::horizontal_anchor,
+                            const elem::vertical_anchor, const radians)
         {
             draw_text_counter_++;
             return {};

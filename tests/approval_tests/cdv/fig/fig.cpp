@@ -89,7 +89,7 @@ namespace cdv
                 return std::tuple{
                     elem::symbol{.position = {tick_x, y0}, .properties = {.color = tab::red}},
                     elem::line(std::array{tick_x, tick_x}, std::array{y0, y0 + y_offset}, {.color = tab::red}),
-                    elem::text(label, {tick_x, y0 + (y_offset * 1.15)})};
+                    elem::text{.string = label, .pos = {tick_x, y0 + (y_offset * 1.15)}}};
             });
 
         const auto svg = fig::render_to_svg_string({}, x_axis, line, ticks);
@@ -109,23 +109,25 @@ namespace cdv
         const auto right_line = elem::vline(frame.x1(), frame.y0(), frame.y1());
 
         const auto center_marker = elem::symbol{.position = frame.center(), .properties = {.style = 'x'}};
-        const auto center_text = elem::text("center", {frame.x_center(), frame.height() * 0.525});
+        const auto center_text = elem::text{.string = "center", .pos = {frame.x_center(), frame.height() * 0.525}};
 
         const auto inner_hline = elem::hline(frame.x0(), frame.x1(), frame.height() * 0.75, {.color = tab::blue});
-        const auto inner_hline_text =
-            elem::text("inner_width", {frame.x_center(), frame.height() * 0.77}, {.color = tab::blue});
+        const auto inner_hline_text = elem::text{.string = "inner_width",
+                                                 .pos = {frame.x_center(), frame.height() * 0.77},
+                                                 .properties = {.color = tab::blue}};
 
         const auto inner_vline = elem::vline(frame.width() * 0.75, frame.y0(), frame.y1(), {.color = tab::blue});
-        const auto inner_vline_text =
-            elem::text("inner_height", {frame.width() * 0.81, frame.y_center()}, {.color = tab::blue});
+        const auto inner_vline_text = elem::text{.string = "inner_height",
+                                                 .pos = {frame.width() * 0.81, frame.y_center()},
+                                                 .properties = {.color = tab::blue}};
 
         const auto width_hline = elem::hline(0_px, frame.width(), frame.height() * 0.25, {.color = tab::red});
-        const auto width_hline_text =
-            elem::text("width", {frame.x_center(), frame.height() * 0.27}, {.color = tab::red});
+        const auto width_hline_text = elem::text{
+            .string = "width", .pos = {frame.x_center(), frame.height() * 0.27}, .properties = {.color = tab::red}};
 
         const auto height_vline = elem::vline(frame.width() * 0.25, 0_px, frame.height(), {.color = tab::red});
-        const auto height_vline_text =
-            elem::text("height", {frame.width() * 0.28, frame.y_center()}, {.color = tab::red});
+        const auto height_vline_text = elem::text{
+            .string = "height", .pos = {frame.width() * 0.28, frame.y_center()}, .properties = {.color = tab::red}};
 
         test::approve_svg(fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, top_line, right_line,
                                                     center_marker, center_text, inner_hline, inner_hline_text,
@@ -165,7 +167,7 @@ namespace cdv
                 const auto y = frame.y_center() + 50_px;
                 return std::tuple{elem::symbol{.position = {x, y}},
                                   elem::line(std::array{x, x}, std::array{y, y + 100_px}),
-                                  elem::text(std::string(txt) + " padding x step", {x, y + 110_px})};
+                                  elem::text{.string = std::string(txt) + " padding x step", .pos = {x, y + 110_px}}};
             };
         };
 
@@ -173,13 +175,13 @@ namespace cdv
         const auto outer_padding_labels = outer_xs | rv::transform(create_label("outer"));
 
         const auto label_y = frame.y_center() - 50_px;
-        const auto step_label =
-            std::pair{elem::line(std::array{s(keys[1]), s(keys[2])}, std::array{label_y, label_y}),
-                      elem::text("step", {s(keys[1]) + ((s(keys[2]) - s(keys[1])) * 0.5), label_y - 15_px})};
+        const auto step_label = std::pair{
+            elem::line(std::array{s(keys[1]), s(keys[2])}, std::array{label_y, label_y}),
+            elem::text{.string = "step", .pos = {s(keys[1]) + ((s(keys[2]) - s(keys[1])) * 0.5), label_y - 15_px}}};
 
-        const auto band_width_label = std::pair{
-            elem::line(std::array{s.min(keys.front()), s.max(keys.front())}, std::array{label_y, label_y}),
-            elem::text("band_width", {s(keys.front()), label_y - 15_px})};
+        const auto band_width_label =
+            std::pair{elem::line(std::array{s.min(keys.front()), s.max(keys.front())}, std::array{label_y, label_y}),
+                      elem::text{.string = "band_width", .pos = {s(keys.front()), label_y - 15_px}}};
 
         test::approve_svg(fig::render_to_svg_string(frame.dimensions(), axis, rects, inner_padding_labels,
                                                     outer_padding_labels, step_label, band_width_label));

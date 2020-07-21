@@ -109,8 +109,8 @@ namespace cdv
                                                .end_angle = slice.end_angle,
                                                .pad_angle = slice.pad_angle,
                                                .fill = {.color = color(slice.data.second)}},
-                                     elem::text(fmt::format("{}g {}", slice.data.first, slice.data.second),
-                                                centroid(slice, frame.center(), 160_px))};
+                                     elem::text{.string = fmt::format("{}g {}", slice.data.first, slice.data.second),
+                                                .pos = centroid(slice, frame.center(), 160_px)}};
                 }) | ranges::to_vector;
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), arcs | rv::keys, arcs | rv::values));

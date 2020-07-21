@@ -10,19 +10,18 @@ namespace cdv::elem
 {
     struct text
     {
-        text(const std::string& string, const pixel_pos pos, const text_properties& properties = {})
-            : string(string), pos(pos), properties(properties)
-        {}
-
         std::string string;
         pixel_pos pos;
         text_properties properties;
+        horizontal_anchor x_anchor = horizontal_anchor::center;
+        vertical_anchor y_anchor = vertical_anchor::middle;
+        radians rotation;
     };
 
     template <typename Surface>
     void draw(const text& t, Surface& surface, const pixel_pos&)
     {
         surface.set_text_properties(t.properties);
-        surface.draw_text(t.string, t.pos, {0.5, 0.5}, {});
+        surface.draw_text(t.string, t.pos, t.x_anchor, t.y_anchor, t.rotation);
     }
 }

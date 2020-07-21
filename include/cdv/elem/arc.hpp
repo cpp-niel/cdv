@@ -3,16 +3,17 @@
 #include <cdv/core/units.hpp>
 #include <cdv/core/vec2.hpp>
 #include <cdv/elem/fill_properties.hpp>
+#include <cdv/stdx/numbers.hpp>
 
 namespace cdv::elem
 {
     struct arc
     {
         pixel_pos center;
-        pixels inner_radius;
         pixels outer_radius;
+        pixels inner_radius;
         radians start_angle;
-        radians end_angle;
+        radians end_angle = radians(stdx::numbers::tau);
         radians pad_angle;
         fill_properties fill;
     };

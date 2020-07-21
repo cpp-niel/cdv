@@ -2,6 +2,8 @@
 
 #include <cdv/core/rgba_color.hpp>
 #include <cdv/core/vec2.hpp>
+#include <cdv/elem/arc.hpp>
+#include <cdv/elem/area.hpp>
 #include <cdv/elem/axis.hpp>
 #include <cdv/elem/line.hpp>
 #include <cdv/elem/rectangle.hpp>
@@ -222,5 +224,22 @@ namespace cdv
         test::approve_svg(fig::render_to_svg_string(frame.dimensions(), right_anchored, left_anchored,
                                                     right_anchored_rotated, left_anchored_rotated, top_anchored,
                                                     bottom_anchored, bottom_to_top, top_to_bottom));
+    }
+
+    TEST_CASE("cdv logo")
+    {
+        const auto frame = fig::frame();
+        const auto radius = frame.inner_height() * 0.5;
+        const auto inner_radius = radius * 0.8;
+        const auto white_disc = elem::arc{.center = frame.center(), .outer_radius = radius, .fill = {.color = css4::white}};
+        const auto blue_disc =  elem::arc{.center = frame.center(), .outer_radius = radius * 0.45};
+        const auto blue_ring =  elem::arc{.center = frame.center(), .outer_radius = radius, .inner_radius = inner_radius};
+
+        const auto v_width = radius * 0.5;
+        const auto top_y = frame.y_center() + (inner_radius * 1.05);
+        const auto v = elem::fill_between(std::array{frame.x_center() - v_width, frame.x_center(), frame.x_center() + v_width},
+            std::array{top_y, top_y, top_y}, std::array{top_y, frame.y_center() - inner_radius, top_y});
+
+        test::approve_svg(fig::render_to_svg_string(frame.dimensions(), white_disc, blue_disc, blue_ring, v));
     }
 }

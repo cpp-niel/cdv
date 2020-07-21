@@ -59,10 +59,11 @@ With these headers included we can write the *cdv* code to generate our string:
 
 ```c++
 constexpr auto frame = cdv::fig::frame();
-const auto message = cdv::elem::text("Hello, world", frame.center(), {.font_size = cdv::points{36}});
+const auto message = cdv::elem::text{.string = "Hello, world", .pos = frame.center(),
+                                     .properties = {.font_size = cdv::points{36}}};
 const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), message);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L27-L29' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L27-L30' title='Go to snippet source file'>source</a></sup>
 
 The first thing we need to do is create a [frame](/doc/frames.md). For now, we will use a
 default constructed frame which defines a 640x480 drawing area. *cdv* makes extensive use
@@ -118,10 +119,11 @@ Putting it all together we end up with the following code:
 ```c++
 using namespace cdv::units_literals;
 constexpr auto frame = cdv::fig::frame();
-const auto message = cdv::elem::text("Hello, units", {200_px, 300_px}, {.font_size = 36_pt});
+const auto message = cdv::elem::text{.string = "Hello, units", .pos = {200_px, 300_px},
+                                     .properties = {.font_size = 36_pt}};
 const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), message);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L38-L41' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L39-L43' title='Go to snippet source file'>source</a></sup>
 
 And here's the result:
 
@@ -160,7 +162,7 @@ We can use these values to instantiate our scales:
 const auto x = cdv::scl::linear_scale(0.0, 10.0, frame.x0(), frame.x1());
 const auto y = cdv::scl::linear_scale(0.0, 10.0, frame.y0(), frame.y1());
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L53-L54' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L55-L56' title='Go to snippet source file'>source</a></sup>
 
 Essentially, we
 are saying that we would like to create a scale that maps the floating point interval 
@@ -186,16 +188,17 @@ a bottom axis will usually be placed at `y0`. That is what we are doing here:
 const auto x_axis = cdv::elem::bottom_axis(x, frame.y0());
 const auto y_axis = cdv::elem::left_axis(y, frame.x0());
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L58-L59' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L60-L61' title='Go to snippet source file'>source</a></sup>
 
 Now that we have our axes, all that remains to do is to create our text element and
 then pass it - along with the axes - to the render function. 
 
 ```c++
-const auto message = cdv::elem::text("Scales & Axes", {x(4.0), y(7.0)}, {.font_size = 36_pt});
+const auto message = cdv::elem::text{.string = "Scales & Axes", .pos = {x(4.0), y(7.0)},
+                                     .properties = {.font_size = 36_pt}};
 const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), message, x_axis, y_axis);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L63-L64' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L65-L67' title='Go to snippet source file'>source</a></sup>
 
 Note how we no longer specify the position of the text in pixels, but using the 
 values 4.0 and 7.0 from the interval [0.0, 10.0]. We apply the scales to the values
@@ -220,7 +223,7 @@ writing text. Let's define some data:
 ```c++
 const auto data = std::vector{4.0, 7.0, 3.2, 5.9, 9.7, 5.0, 8.2, 9.1, 7.0, 4.3, 6.5};
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L76-L76' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L79-L79' title='Go to snippet source file'>source</a></sup>
 
 Notice how the data has conveniently been chosen to have 11 values where all values lie
 in the range [0, 10]. This allows us to define our scales and axes exactly as we did in
@@ -232,7 +235,7 @@ const auto y = cdv::scl::linear_scale(0.0, 10.0, frame.y0(), frame.y1());
 const auto x_axis = cdv::elem::bottom_axis(x, frame.y0());
 const auto y_axis = cdv::elem::left_axis(y, frame.x0());
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L80-L83' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L83-L86' title='Go to snippet source file'>source</a></sup>
 
 Now we get to the interesting part of this lesson. The goal here is to draw this chart:
 
@@ -265,7 +268,7 @@ namespace rv = ::ranges::views;
 const auto line = cdv::elem::line(rv::iota(0, 11) | rv::transform(x), data | rv::transform(y));
 const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, line);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L87-L89' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L90-L92' title='Go to snippet source file'>source</a></sup>
 
 As you can see, the heavy lifting is a single line of code. We are creating a 
 `cdv::elem::line` from two ranges. The first range is the first
@@ -318,7 +321,7 @@ const auto line = cdv::elem::line(rv::iota(0, 11) | rv::transform(x), data | rv:
                                   {.color = cdv::css4::dodgerblue, .width = 2.5_pt, .style = "--"});
 const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, line);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L98-L111' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L101-L114' title='Go to snippet source file'>source</a></sup>
 
 Our plot now looks like this:
 
@@ -346,7 +349,7 @@ up front, together with our other data:
 const auto keys = rv::iota(0, 11);
 const auto data = std::vector{4.0, 7.0, 3.2, 5.9, 9.7, 5.0, 8.2, 9.1, 7.0, 4.3, 6.5};
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L124-L125' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L127-L128' title='Go to snippet source file'>source</a></sup>
 
 The bars of a bar chart are really nothing more than a set of rectangles, and that's
 exactly how we are going to define them. However, each bar should be centered on its
@@ -365,7 +368,7 @@ just use the defaults:
 ```c++
 const auto x = cdv::scl::band_scale(keys, frame.x0(), frame.x1());
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L129-L129' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L132-L132' title='Go to snippet source file'>source</a></sup>
 
 Here we are saying: take the keys and distribute them in equal sized bands across
 the interval [x0, x1].
@@ -379,7 +382,7 @@ const auto y = cdv::scl::linear_scale(0.0, 10.0, frame.y0(), frame.y1());
 const auto x_axis = cdv::elem::bottom_axis(x, frame.y0());
 const auto y_axis = cdv::elem::left_axis(y, frame.x0());
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L133-L135' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L136-L138' title='Go to snippet source file'>source</a></sup>
 
 Now that we have our scales and axes, we can generate the actual rectangles. To
 do this, we are going to take each key and its corresponding value and then use
@@ -405,7 +408,7 @@ const auto bars = rv::zip(keys, data) | rv::transform([&](const auto& key_value_
                       return cdv::elem::rectangle{.min = {x.min(key), y(0.0)}, .max = {x.max(key), y(value)}};
                   });
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L139-L142' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L142-L145' title='Go to snippet source file'>source</a></sup>
 
 But what can we do with `bars` now? `bars` is not an element, it's a range of
 elements. Can we pass a range of elements to the `render` functions? The answer
@@ -418,7 +421,7 @@ the end, our `render` call should look very familiar too:
 ```c++
 const auto svg = cdv::fig::render_to_svg_string({}, bars, x_axis, y_axis);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L146-L146' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L149-L149' title='Go to snippet source file'>source</a></sup>
 
 The chart that we end up with looks like this:
 
@@ -459,20 +462,20 @@ this:
 ```c++
 const auto color = cdv::scl::ordinal_scale(keys, cdv::scheme::pastel1);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L167-L167' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L170-L170' title='Go to snippet source file'>source</a></sup>
 
 Once we have our color scale, we can apply it to the key to get the color during the
 construction of the rectangles. So by making just the following small changes:
 
 ```c++
 const auto bars = rv::zip(keys, data) | rv::transform([&](const auto& key_value_pair) {
-  const auto [key, value] = key_value_pair;
-  return cdv::elem::rectangle{.min = {x.min(key), y(0.0)},
-      .max = {x.max(key), y(value)},
-      .fill = {.color = color(key)}};
-});
+                      const auto [key, value] = key_value_pair;
+                      return cdv::elem::rectangle{.min = {x.min(key), y(0.0)},
+                                                  .max = {x.max(key), y(value)},
+                                                  .fill = {.color = color(key)}};
+                  });
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L171-L176' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L174-L179' title='Go to snippet source file'>source</a></sup>
 
 we end up with a more colorful result:
 
@@ -515,7 +518,7 @@ const auto bars = rv::zip(keys, data) | rv::transform([&](const auto& key_value_
                                                   .fill = {.color = color(value)}};
                   });
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L203-L208' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L206-L211' title='Go to snippet source file'>source</a></sup>
 
 The resulting chart looks like this:
 

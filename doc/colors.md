@@ -51,7 +51,7 @@ predefined arrays of `rgba_color` instances. These arrays are defined in the
 ```c++
 const auto color = cdv::scl::ordinal_scale(keys, cdv::scheme::pastel1);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L167-L167' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L170-L170' title='Go to snippet source file'>source</a></sup>
 
 can be used to create an ordinal scale that maps a range of keys - say strings, for 
 example - to the array of colors defined by the color scheme `cdv::scheme::pastel1`.
@@ -84,7 +84,7 @@ some transition of colors. For instance, in this example:
 ```c++
 const auto color = cdv::scl::sequential_scale(4.0, 10.0, cdv::interpolator::viridis);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L199-L199' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/tutorial.cpp#L202-L202' title='Go to snippet source file'>source</a></sup>
 
 the value range [4, 10] is mapped to the color transition defined by the `viridis`
 interpolator. So if we applied that scale to the value 7, we would get the color

@@ -57,9 +57,10 @@ const auto legend = elem::swatch_legend<const char*>{.scale = color,
                                                      .label_properties = {.font_size = 12_pt},
                                                      .columns = {200_px}};
 
-const auto svg = fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, linear, quadratic, cubic, legend);
+const auto svg =
+    fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, linear, quadratic, cubic, legend);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L42-L60' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L42-L61' title='Go to snippet source file'>source</a></sup>
 
 
 ## Stacked Area Chart
@@ -101,7 +102,7 @@ const auto legend = elem::color_legend<decltype(color)>{
 
 const auto svg = fig::render_to_svg_string(frame.dimensions(), areas, x_axis, y_axis, legend);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/area_charts.cpp#L83-L111' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/area_charts.cpp#L80-L108' title='Go to snippet source file'>source</a></sup>
 
 
 ## Stem Plot
@@ -127,8 +128,8 @@ const auto ys = xs | rv::transform([](const auto value) { return std::exp(std::s
 const auto stems = rv::zip_with(
     [&](const auto a, const auto b) {
         const auto pos = pixel_pos{x(a), y(b)};
-        return std::pair{elem::symbol{.position = pos, .properties = {.color = tab::blue}},
-                   elem::line(std::array{pos.x, pos.x}, std::array{y(0.0), pos.y}, {.color = tab::blue})};
+        return std::pair{elem::symbol{.position = pos, .properties = {.color = cdv_blue}},
+                   elem::line(std::array{pos.x, pos.x}, std::array{y(0.0), pos.y}, {.color = cdv_blue})};
     },
     xs, ys);
 
@@ -158,12 +159,12 @@ const auto y_axis =
 
 const auto xs = rv::linear_distribute(0.1, 10.0, 100) | rv::transform([](auto x) { return x * x; });
 const auto ys = xs | rv::transform([](const double x) { return std::exp(-x / 5.0); });
-const auto line = elem::line(xs | rv::transform(x), ys | rv::transform(y), {.color = tab::blue});
-const auto text = elem::text(R"($f(x) = e^{\frac{-x}{5}}$)", {450_px, 350_px}, {.font_size = 24_pt});
+const auto line = elem::line(xs | rv::transform(x), ys | rv::transform(y), {.color = cdv_blue});
+const auto text = elem::text{.string = R"($f(x) = e^{\frac{-x}{5}}$)", .pos = {450_px, 350_px}, .properties = {.font_size = 24_pt}};
 
 const auto svg = fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, line, text);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L107-L120' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L108-L121' title='Go to snippet source file'>source</a></sup>
 
 
 
@@ -207,12 +208,12 @@ const auto ticks =
         return std::tuple{
             elem::symbol{.position = {tick_x, y0}, .properties = {.color = tab::red}},
             elem::line(std::array{tick_x, tick_x}, std::array{y0, y0 + y_offset}, {.color = tab::red}),
-            elem::text(label, {tick_x, y0 + (y_offset * 1.15)})};
+            elem::text{.string = label, .pos = {tick_x, y0 + (y_offset * 1.15)}}};
     });
 
 const auto svg = fig::render_to_svg_string({}, x_axis, line, ticks);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/fig.cpp#L63-L95' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/fig.cpp#L65-L97' title='Go to snippet source file'>source</a></sup>
 
 
 ## Scatter Plot
@@ -271,8 +272,7 @@ const auto x_axis = elem::bottom_axis(x, frame.y0());
 
 using function_t = double (*)(double);
 const auto functions = std::array<function_t, 4>{
-    [](const auto t) { return sin(2.0 * stdx::numbers::pi * t); },
-    [](const auto t) { return exp(-t); },
+    [](const auto t) { return sin(2.0 * stdx::numbers::pi * t); }, [](const auto t) { return exp(-t); },
     [](const auto t) { return cos(2.0 * stdx::numbers::pi * t); },
     [](const auto t) { return pow(2.0, t) * 0.25; }};
 
@@ -303,7 +303,7 @@ const auto curves = rv::zip(functions, y_scales) | rv::transform([&](const auto&
 
 const auto svg = fig::render_to_svg_string(frame.dimensions(), x_axis, separators, y_axes, curves);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L207-L243' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L208-L243' title='Go to snippet source file'>source</a></sup>
 
 
 ## Bar Chart Distribution
@@ -334,7 +334,7 @@ const auto x = scl::linear_scale(0.0, 100.0, frame.x0(), frame.x1());
 const auto y = scl::band_scale(keys, frame.y0(), frame.y1(), {.inner_padding = 0.2, .outer_padding = 0.2});
 const auto col = scl::ordinal_scale(category_names, scheme::from_interpolator<7>(interpolator::spectral));
 
-const auto y_axis = elem::left_axis(y, frame.x0(), {.is_spine_visible = false});
+const auto y_axis = elem::left_axis(y, frame.x0(), {.spine = {.width = 0_pt}});
 
 const auto bars = rv::cartesian_product(category_names, rv::enumerate(keys))
                   | rv::transform([&](const auto categories_and_keys) {
@@ -346,15 +346,16 @@ const auto bars = rv::cartesian_product(category_names, rv::enumerate(keys))
                         return std::pair{elem::rectangle{.min = {x(base), y.min(key)},
                                                          .max = {x(top), y.max(key)},
                                                          .fill = {.color = col(category)}},
-                                         elem::text(fmt::format("{}", top - base),
-                                                    {(x(base) + x(top)) * 0.5, y(key)}, {.color = c})};
+                                         elem::text{.string = fmt::format("{}", top - base),
+                                                    .pos = {(x(base) + x(top)) * 0.5, y(key)},
+                                                    .properties = {.color = c}}};
                     });
 
 const auto legend = elem::swatch_legend<const char*>{.scale = col, .pos = {frame.x0(), frame.y1()}};
 
 test::approve_svg(fig::render_to_svg_string({}, bars, y_axis, legend));
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/bar_charts.cpp#L208-L240' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/bar_charts.cpp#L208-L241' title='Go to snippet source file'>source</a></sup>
 
 
 ## Grouped Bar Chart

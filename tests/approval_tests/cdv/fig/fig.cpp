@@ -230,16 +230,20 @@ namespace cdv
     {
         const auto frame = fig::frame();
         const auto radius = frame.inner_height() * 0.5;
-        const auto inner_radius = radius * 0.8;
-        const auto white_disc = elem::arc{.center = frame.center(), .outer_radius = radius, .fill = {.color = css4::white}};
-        const auto blue_disc =  elem::arc{.center = frame.center(), .outer_radius = radius * 0.45};
-        const auto blue_ring =  elem::arc{.center = frame.center(), .outer_radius = radius, .inner_radius = inner_radius};
+        const auto ring_outer_radius = radius * 0.8;
+        const auto ring_inner_radius = radius * 0.45;
+        const auto blue_disc = elem::arc{.center = frame.center(), .outer_radius = radius};
+        const auto white_ring = elem::arc{.center = frame.center(),
+                                          .outer_radius = ring_outer_radius,
+                                          .inner_radius = ring_inner_radius,
+                                          .fill = {.color = css4::white}};
 
         const auto v_width = radius * 0.5;
-        const auto top_y = frame.y_center() + (inner_radius * 1.05);
-        const auto v = elem::fill_between(std::array{frame.x_center() - v_width, frame.x_center(), frame.x_center() + v_width},
-            std::array{top_y, top_y, top_y}, std::array{top_y, frame.y_center() - inner_radius, top_y});
+        const auto top_y = frame.y_center() + (ring_outer_radius * 1.05);
+        const auto v = elem::fill_between(
+            std::array{frame.x_center() - v_width, frame.x_center(), frame.x_center() + v_width},
+            std::array{top_y, top_y, top_y}, std::array{top_y, frame.y_center() - ring_outer_radius, top_y});
 
-        test::approve_svg(fig::render_to_svg_string(frame.dimensions(), white_disc, blue_disc, blue_ring, v));
+        test::approve_svg(fig::render_to_svg_string(frame.dimensions(), blue_disc, white_ring, v));
     }
 }

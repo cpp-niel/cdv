@@ -50,7 +50,7 @@ Currently, neither *mfl* nor *cdv* build on MSVC due to pending C++20 features.
 
 *cdv* is a C++20 data visualization library that draws inspiration from Python's 
 [matplotlib](https://matplotlib.org) and in particular from JavaScript's 
-[d3.js](https://d3js.org). It aims to provide powerful facilities that can be flexibly 
+[D3.js](https://d3js.org). It aims to provide powerful facilities that can be flexibly 
 composed to create beautiful static data visualizations. The approach is fundamentally
 data driven and has been designed to play well with C++20 ranges.
 
@@ -79,10 +79,10 @@ and embraces dependencies on other libraries that have already solved challenges
 Currently, there are no plans for animated or interactive visualizations, but it may well
 be feasible to create more dynamic visualizations on the basis of *cdv*. 
 
-While *cdv* has adapted some of the *d3.js* principles and terminology, it is not the
-goal of this library to replicate d3's feature set or behavior. *cdv* is a very C++
+While *cdv* has adapted some of the *D3.js* principles and terminology, it is not the
+goal of this library to replicate D3's feature set or behavior. *cdv* is a very C++
 oriented solution to the challenge of static data visualization. It is in no way
-affiliated with matplotlib, d3 or any other data visualization package.
+affiliated with matplotlib, D3 or any other data visualization package.
 
 ## Getting Started
 
@@ -240,11 +240,11 @@ Copyright &copy; 2015-2019 [Howard Hinnant et al.](http://howardhinnant.github.i
 
 ## Thanks
 
-[d3.js](https://d3js.org) and [matplotlib](https://matplotlib.org) are huge sources of
+[D3.js](https://d3js.org) and [matplotlib](https://matplotlib.org) are huge sources of
 inspiration and information. The whole data driven concept of using scales to transform
 data into drawable things is already available in far better and far more extensive
-fashion in JavaScript via d3. If using JavaScript is an option, then in my opinion 
-d3.js is the way to go.
+fashion in JavaScript via D3. If using JavaScript is an option, then in my opinion 
+D3.js is the way to go.
 
 ### Third party libraries, fonts, tools and services
 

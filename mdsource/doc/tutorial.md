@@ -285,7 +285,7 @@ we tried to use the x-scale that we have been using so far, that first bar would
 centered on the y-axis! We need the x-values - the keys - to be distributed along 
 the x-axis differently. In *cdv* there is a kind of scale called a *band scale* which
 is very useful for this kind of task (the names and behaviors of these scales are 
-kept reasonably close to those used by [d3.js](https://github.com/d3/d3-scale)).
+kept reasonably close to those used by [D3.js](https://github.com/d3/d3-scale)).
 
 A band scale takes some range of keys and an output interval and then splits that
 output interval into equal sized bands. By default the bands fill up the available
@@ -314,7 +314,7 @@ To compute the top and bottom of a rectangle is simple. The bottom is always
 for the left and right edges of each rectangle we can't just apply `x` to our
 key. In fact, applying `x` to the key gives us the center of that key's band, which
 is neither the left edge nor the right edge (incidentally, this behavior does
-not replicate d3.js where applying a band scale to a key returns the start of
+not replicate D3.js where applying a band scale to a key returns the start of
 the band). A band scale `x` in *cdv* provides `x.min(key)` and `x.max(key)` which 
 return the edges of the band for the given key.
 
@@ -357,7 +357,7 @@ key.
 So our first range is our keys, and the second range is a range of colors. We could
 specify the colors manually if we wanted (e.g. `std::array{css4::red, css4::blue, ...}`),
 but *cdv* provides ready made color schemes out of the box which are ideal for
-this kind of thing. The schemes are the same as those provided by d3 which include, for
+this kind of thing. The schemes are the same as those provided by D3 which include, for
 instance the old and new tableau schemes which are very popular in matplotlib. Technically, 
 they are just arrays of colors that reside in the `cdv::scheme` namespace and look like this:
 
@@ -398,9 +398,9 @@ through the input domain. This kind of scale is called a *sequential scale* and 
 functions that sequential scales can map to are known as *interpolators*.
 
 Again, like with our color schemes in the previous example, *cdv* provides a large set
-of color interpolators out of the box - almost all of those provided by d3 which includes
+of color interpolators out of the box - almost all of those provided by D3 which includes
 the most popular ones used in matplotlib. Here's just a small sampling of some of
-the color interpolators that may be familiar to users of either d3 or matplotlib or
+the color interpolators that may be familiar to users of either D3 or matplotlib or
 other data visualization tools:
  
 ![](./../tests/approval_tests/cdv/elem/approved_files/color_legend.other_scales.approved.svg)

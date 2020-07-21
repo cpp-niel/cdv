@@ -68,7 +68,7 @@ interpolate such a transition of colors according to the temperature.
 
 This is the role of *interpolators*. Interpolators reside in the `cdv::interpolator` namespace
 and are in fact functions that represent arbitrarily complex transitions of
-color. *cdv* provides has many predefined interpolators based on those provided by d3.js.
+color. *cdv* provides has many predefined interpolators based on those provided by D3.js.
 Interpolators are commonly combined with sequential scales to provide the kind of mapping
 discussed above where some range of values (in that case temperatures) is mapped to
 some transition of colors. For instance, in this example:
@@ -79,7 +79,7 @@ the value range [4, 10] is mapped to the color transition defined by the `viridi
 interpolator. So if we applied that scale to the value 7, we would get the color
 from the middle of the `viridis` interpolator. As stated above, *cdv* defines a lot
 of interpolators which are based on those defined in 
-[d3.js](https://github.com/d3/d3-scale-chromatic/)
+[D3.js](https://github.com/d3/d3-scale-chromatic/)
 and are all listed here:
 
 #### Single Hue Interpolators

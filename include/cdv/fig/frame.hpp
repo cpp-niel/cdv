@@ -23,6 +23,17 @@ namespace cdv::fig
         {
         }
 
+        constexpr frame(const pixels width, const pixels height)
+            : width_(width)
+            , height_(height)
+            , margin_left_(width_ / 16.0)
+            , margin_right_(width_ / 32.0)
+            , margin_top_(height_ / 16.0)
+            , margin_bottom_(height_ / 16.0)
+            , dpi_(100.0)
+        {
+        }
+
         // TODO this should be constexpr - why isn't mfl::inches_to_pixels?
         frame(const inches width, const inches height, const dots_per_inch dpi)
             : width_(mfl::inches_to_pixels(width, dpi))
@@ -31,6 +42,7 @@ namespace cdv::fig
             , margin_right_(width_ / 32.0)
             , margin_top_(height_ / 16.0)
             , margin_bottom_(height_ / 16.0)
+            , dpi_(dpi)
         {
         }
 

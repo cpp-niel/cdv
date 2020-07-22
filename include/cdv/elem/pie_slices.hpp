@@ -27,6 +27,15 @@ namespace cdv::elem
         return center + pixel_pos(cos(angle) * radius, sin(angle) * radius);
     }
 
+    template <typename Data>
+    auto label_angle(const pie_slice<Data>& slice)
+    {
+        const auto angle = (slice.start_angle + slice.end_angle) * 0.5;
+        const auto is_in_right_half =
+            (angle < radians(stdx::numbers::pi * 0.5)) or (angle > radians(stdx::numbers::pi * 1.5));
+        return angle + (is_in_right_half ? radians(0.0) : radians(stdx::numbers::pi));
+    }
+
     struct pie_geometry
     {
         radians start_angle;

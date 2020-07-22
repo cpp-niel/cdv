@@ -2,11 +2,11 @@
 
 #include <cdv/core/color/categorical_schemes.hpp>
 #include <cdv/core/color/cividis_interpolator.hpp>
-#include <cdv/core/color/cyclical.hpp>
 #include <cdv/core/color/diverging_interpolators.hpp>
 #include <cdv/core/color/generated_schemes.hpp>
 #include <cdv/core/color/multi_hue_interpolators.hpp>
 #include <cdv/core/color/perceptually_uniform_interpolators.hpp>
+#include <cdv/core/color/sinebow_interpolator.hpp>
 #include <cdv/core/color/single_hue_interpolators.hpp>
 #include <cdv/core/color/turbo_interpolator.hpp>
 #include <cdv/elem/color_legend.hpp>

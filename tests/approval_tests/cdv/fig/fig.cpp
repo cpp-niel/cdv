@@ -228,18 +228,18 @@ namespace cdv
 
     TEST_CASE("cdv logo")
     {
-        const auto frame = fig::frame();
-        const auto radius = frame.inner_height() * 0.5;
-        const auto ring_outer_radius = radius * 0.8;
-        const auto ring_inner_radius = radius * 0.45;
+        constexpr auto frame = fig::frame();
+        constexpr auto radius = frame.inner_height() * 0.5;
+        constexpr auto ring_outer_radius = radius * 0.8;
+        constexpr auto ring_inner_radius = radius * 0.45;
         const auto blue_disc = elem::arc{.center = frame.center(), .outer_radius = radius};
         const auto white_ring = elem::arc{.center = frame.center(),
                                           .outer_radius = ring_outer_radius,
                                           .inner_radius = ring_inner_radius,
                                           .fill = {.color = css4::white}};
 
-        const auto v_width = radius * 0.5;
-        const auto top_y = frame.y_center() + (ring_outer_radius * 1.05);
+        constexpr auto v_width = radius * 0.5;
+        constexpr auto top_y = frame.y_center() + (ring_outer_radius * 1.05);
         const auto v = elem::fill_between(
             std::array{frame.x_center() - v_width, frame.x_center(), frame.x_center() + v_width},
             std::array{top_y, top_y, top_y}, std::array{top_y, frame.y_center() - ring_outer_radius, top_y});

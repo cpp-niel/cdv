@@ -139,12 +139,14 @@ namespace cdv
         SUBCASE("manual arcs")
         {
             constexpr auto frame = fig::frame();
+            // mdinject-begin: example-arc
             const auto arc00 = elem::arc{.center = frame.center(),
                                          .outer_radius = 150_px,
                                          .inner_radius = 110_px,
                                          .start_angle = 0_rad,
                                          .end_angle = 2_rad,
                                          .fill = {.color = tab::blue}};
+            // mdinject-end
             const auto arc01 = elem::arc{.center = frame.center(),
                                          .outer_radius = 150_px,
                                          .inner_radius = 110_px,

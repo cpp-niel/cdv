@@ -20,6 +20,8 @@ Source: [cdv/core/color/generated_schemes.hpp](/include/cdv/core/color/generated
 
 Creates a color scheme from a color interpolator
 
+**Overload 1:**
+
 ```c++
 template <size_t N, typename Interpolator>
 constexpr auto from_interpolator(const Interpolator & interp)

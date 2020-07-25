@@ -50,16 +50,15 @@ class cdv::scl::time_scale;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 time_scale<Clock, Duration, Codomain>(const cdv::scl::time_scale::domain_t & x0, const cdv::scl::time_scale::domain_t & x1, const Codomain & y0, const Codomain & y1)
 ```
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 time_scale<Clock, Duration, Codomain>(const date::year_month_day & x0, const date::year_month_day & x1, const Codomain & y0, const Codomain & y1)
@@ -78,6 +77,8 @@ time_scale<Clock, Duration, Codomain>(const date::year_month_day & x0, const dat
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 std::vector<domain_t> ticks(const size_t num_ticks_hint) const
 ```
@@ -93,6 +94,8 @@ std::vector<domain_t> ticks(const size_t num_ticks_hint) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 Codomain operator()(const cdv::scl::time_scale::domain_t & x) const
 ```
@@ -107,6 +110,8 @@ Codomain operator()(const cdv::scl::time_scale::domain_t & x) const
 #### tick_formatter
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <class num_ticks_hint:auto>
@@ -124,6 +129,8 @@ auto tick_formatter(const auto num_ticks_hint) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 time_scale<Clock, Duration, Codomain> snapped_to_grid(const size_t num_ticks_hint) const
 ```
@@ -139,6 +146,8 @@ time_scale<Clock, Duration, Codomain> snapped_to_grid(const size_t num_ticks_hin
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto domain() const
 ```
@@ -153,6 +162,8 @@ auto domain() const
 #### codomain
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 auto codomain() const
@@ -190,6 +201,8 @@ class cdv::scl::linear_scale;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 std::vector<DomainType> ticks(const size_t num_ticks_hint) const
 ```
@@ -205,6 +218,8 @@ std::vector<DomainType> ticks(const size_t num_ticks_hint) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 CodomainType operator()(const DomainType & x) const
 ```
@@ -219,6 +234,8 @@ CodomainType operator()(const DomainType & x) const
 #### tick_formatter
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <class num_ticks_hint:auto>
@@ -236,6 +253,8 @@ auto tick_formatter(const auto num_ticks_hint) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 linear_scale<DomainType, CodomainType> snapped_to_grid(const size_t num_ticks_hint) const
 ```
@@ -251,16 +270,15 @@ linear_scale<DomainType, CodomainType> snapped_to_grid(const size_t num_ticks_hi
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 linear_scale<DomainType, CodomainType>(const DomainType x0, const DomainType x1, const CodomainType y0, const CodomainType y1, const linear_scale_properties<CodomainType> & properties)
 ```
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 template <class domain:auto, class codomain:auto>
@@ -280,6 +298,8 @@ linear_scale<DomainType, CodomainType>(const stdx::range_of<DomainType> auto & d
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto domain() const
 ```
@@ -294,6 +314,8 @@ auto domain() const
 #### codomain
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 auto codomain() const
@@ -336,6 +358,8 @@ struct cdv::scl::linear_interpolator;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 constexpr cdv::pixels operator()(const cdv::pixels a, const cdv::pixels b, const double t) const
 ```
@@ -360,6 +384,8 @@ struct cdv::scl::linear_interpolator;
 #### operator()
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 constexpr FloatingPointType operator()(const FloatingPointType a, const FloatingPointType b, const FloatingPointType t) const
@@ -412,16 +438,15 @@ class cdv::scl::ordinal_scale;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 cdv::scl::ordinal_scale::codomain_t operator()(const DomainType & x)
 ```
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 cdv::scl::ordinal_scale::codomain_t operator()(const DomainType & x) const
@@ -440,6 +465,8 @@ cdv::scl::ordinal_scale::codomain_t operator()(const DomainType & x) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto domain() const
 ```
@@ -454,6 +481,8 @@ auto domain() const
 #### Constructor: ordinal_scale<DomainType, CodomainType>
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <class domain:auto, class codomain:auto>
@@ -471,6 +500,8 @@ ordinal_scale<DomainType, CodomainType>(const stdx::range_of<DomainType> auto & 
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto codomain() const
 ```
@@ -485,6 +516,8 @@ auto codomain() const
 ### make_ordinal_scale
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename DomainType, typename CodomainRange>
@@ -540,6 +573,8 @@ class cdv::scl::log_scale;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 std::vector<DomainType> ticks(const size_t num_ticks_hint) const
 ```
@@ -555,6 +590,8 @@ std::vector<DomainType> ticks(const size_t num_ticks_hint) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 CodomainType operator()(const DomainType & x) const
 ```
@@ -569,6 +606,8 @@ CodomainType operator()(const DomainType & x) const
 #### tick_formatter
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <class num_ticks_hint:auto>
@@ -586,6 +625,8 @@ auto tick_formatter(const auto num_ticks_hint) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 double base() const
 ```
@@ -600,6 +641,8 @@ double base() const
 #### snapped_to_grid
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 log_scale<DomainType, CodomainType> snapped_to_grid(const size_t num_ticks_hint) const
@@ -616,16 +659,15 @@ log_scale<DomainType, CodomainType> snapped_to_grid(const size_t num_ticks_hint)
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 log_scale<DomainType, CodomainType>(const DomainType x0, const DomainType x1, const CodomainType y0, const CodomainType y1, const log_scale_properties<CodomainType> & properties)
 ```
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 template <class domain:auto, class codomain:auto>
@@ -645,6 +687,8 @@ log_scale<DomainType, CodomainType>(const stdx::range_of<DomainType> auto & doma
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto domain() const
 ```
@@ -660,6 +704,8 @@ auto domain() const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto codomain() const
 ```
@@ -674,6 +720,8 @@ auto codomain() const
 ### symlog
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <class T>
@@ -741,16 +789,15 @@ explicitly set and therefore retains its default value of 0.5.
 
 Compiler generated constructors
 
+**Overload 1:**
+
 ```c++
 band_scale_properties()
 ```
 
 > compiler generated default constructor
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 band_scale_properties(cdv::scl::band_scale_properties &&)
@@ -758,10 +805,7 @@ band_scale_properties(cdv::scl::band_scale_properties &&)
 
 > compiler generated move constructor
 
-
-
-
-<br />
+**Overload 3:**
 
 ```c++
 band_scale_properties(const cdv::scl::band_scale_properties &)
@@ -779,6 +823,8 @@ band_scale_properties(const cdv::scl::band_scale_properties &)
 #### Destructor: ~band_scale_properties
 
 compiler generated destructor
+
+**Overload 1:**
 
 ```c++
 ~band_scale_properties()
@@ -812,6 +858,8 @@ class cdv::scl::band_scale;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 cdv::scl::band_scale::codomain_t min(const DomainType & x) const
 ```
@@ -826,6 +874,8 @@ cdv::scl::band_scale::codomain_t min(const DomainType & x) const
 #### Constructor: band_scale<DomainType, CodomainType>
 
 Band scale constructor
+
+**Overload 1:**
 
 ```c++
 template <class domain:auto>
@@ -853,6 +903,8 @@ band_scale<DomainType, CodomainType>(const stdx::range_of<cdv::scl::band_scale::
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto ticks(const size_t) const
 ```
@@ -867,6 +919,8 @@ auto ticks(const size_t) const
 #### operator()
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 cdv::scl::band_scale::codomain_t operator()(const DomainType & x) const
@@ -883,6 +937,8 @@ cdv::scl::band_scale::codomain_t operator()(const DomainType & x) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto tick_formatter(const size_t) const
 ```
@@ -897,6 +953,8 @@ auto tick_formatter(const size_t) const
 #### band_width
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 cdv::scl::band_scale::codomain_t band_width() const
@@ -913,6 +971,8 @@ cdv::scl::band_scale::codomain_t band_width() const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 cdv::scl::band_scale::codomain_t max(const DomainType & x) const
 ```
@@ -928,6 +988,8 @@ cdv::scl::band_scale::codomain_t max(const DomainType & x) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 auto domain() const
 ```
@@ -942,6 +1004,8 @@ auto domain() const
 #### codomain
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 auto codomain() const
@@ -980,6 +1044,8 @@ class cdv::scl::sequential_scale;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 std::vector<domain_t> ticks(const size_t num_ticks_hint) const
 ```
@@ -995,6 +1061,8 @@ std::vector<domain_t> ticks(const size_t num_ticks_hint) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 constexpr auto operator()(const cdv::scl::sequential_scale::domain_t x) const
 ```
@@ -1009,6 +1077,8 @@ constexpr auto operator()(const cdv::scl::sequential_scale::domain_t x) const
 #### tick_formatter
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <class num_ticks_hint:auto>
@@ -1026,6 +1096,8 @@ auto tick_formatter(const auto num_ticks_hint) const
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 sequential_scale<DomainType, Interpolator>(const cdv::scl::sequential_scale::domain_t start, const cdv::scl::sequential_scale::domain_t stop, const cdv::scl::sequential_scale::interpolator_t & interpolator)
 ```
@@ -1040,6 +1112,8 @@ sequential_scale<DomainType, Interpolator>(const cdv::scl::sequential_scale::dom
 #### domain
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 constexpr auto domain() const

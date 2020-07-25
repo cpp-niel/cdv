@@ -91,6 +91,8 @@ rather than using this class directly. At least wherever possible.
 
 Get a copy of the color with modified alpha
 
+**Overload 1:**
+
 ```c++
 constexpr cdv::rgba_color with_alpha(double a) const
 ```
@@ -119,6 +121,8 @@ assert(color.alpha == 0.5);
 
 Constructs an `rgba_color` instance.
 
+**Overload 1:**
+
 ```c++
 explicit rgba_color(const std::uint32_t value)
 ```
@@ -131,29 +135,7 @@ explicit rgba_color(const std::uint32_t value)
  |
 
 
-
-
-### Notes
-
-In order for a string to be accepted as a valid representation of a color, it must be one of
-the following:
-
-- A string containing a hex representation of the color. The string must begin
-   with the `#` symbol and must be followed by exactly six or eight hexadecimal
-   characters. In the six character case, the string is treated just like an
-   html color specification with each pair of characters representing the red,
-   green and blue bytes respectively. In this case alpha is set to fully opaque.
-   In the eight character case, the final pair of characters represents the alpha
-   value. So a semi-transparent green color might be defined as `"#00ff0080"`.
-- One of the matplotlib style single character colors, `"k"`, `"w"`, `"r"`, 
-    `"g"`, `"b"`, `"c"`, `"y"`, `"m"`, representing black, white, red, green,
-    blue, cyan, yellow and magenta respectively.
-- A CSS4 color name. E.g. `"DodgerBlue"`. The comparison is case insensitive.
-- The name of a tableau color with prepended `tab:`. Eg. `"tab:blue"`. The
-    comparison is case insensitive.
-
-
-<br />
+**Overload 2:**
 
 ```c++
 explicit rgba_color(std::string_view hex_string)
@@ -167,29 +149,7 @@ explicit rgba_color(std::string_view hex_string)
  |
 
 
-
-
-### Notes
-
-In order for a string to be accepted as a valid representation of a color, it must be one of
-the following:
-
-- A string containing a hex representation of the color. The string must begin
-   with the `#` symbol and must be followed by exactly six or eight hexadecimal
-   characters. In the six character case, the string is treated just like an
-   html color specification with each pair of characters representing the red,
-   green and blue bytes respectively. In this case alpha is set to fully opaque.
-   In the eight character case, the final pair of characters represents the alpha
-   value. So a semi-transparent green color might be defined as `"#00ff0080"`.
-- One of the matplotlib style single character colors, `"k"`, `"w"`, `"r"`, 
-    `"g"`, `"b"`, `"c"`, `"y"`, `"m"`, representing black, white, red, green,
-    blue, cyan, yellow and magenta respectively.
-- A CSS4 color name. E.g. `"DodgerBlue"`. The comparison is case insensitive.
-- The name of a tableau color with prepended `tab:`. Eg. `"tab:blue"`. The
-    comparison is case insensitive.
-
-
-<br />
+**Overload 3:**
 
 ```c++
 rgba_color()
@@ -197,29 +157,7 @@ rgba_color()
 
 > Constructs an rgba_color instance representing fully opaque black
 
-
-
-### Notes
-
-In order for a string to be accepted as a valid representation of a color, it must be one of
-the following:
-
-- A string containing a hex representation of the color. The string must begin
-   with the `#` symbol and must be followed by exactly six or eight hexadecimal
-   characters. In the six character case, the string is treated just like an
-   html color specification with each pair of characters representing the red,
-   green and blue bytes respectively. In this case alpha is set to fully opaque.
-   In the eight character case, the final pair of characters represents the alpha
-   value. So a semi-transparent green color might be defined as `"#00ff0080"`.
-- One of the matplotlib style single character colors, `"k"`, `"w"`, `"r"`, 
-    `"g"`, `"b"`, `"c"`, `"y"`, `"m"`, representing black, white, red, green,
-    blue, cyan, yellow and magenta respectively.
-- A CSS4 color name. E.g. `"DodgerBlue"`. The comparison is case insensitive.
-- The name of a tableau color with prepended `tab:`. Eg. `"tab:blue"`. The
-    comparison is case insensitive.
-
-
-<br />
+**Overload 4:**
 
 ```c++
 rgba_color(cdv::rgba_color &&)
@@ -227,29 +165,7 @@ rgba_color(cdv::rgba_color &&)
 
 > Compiler generated move constructor
 
-
-
-### Notes
-
-In order for a string to be accepted as a valid representation of a color, it must be one of
-the following:
-
-- A string containing a hex representation of the color. The string must begin
-   with the `#` symbol and must be followed by exactly six or eight hexadecimal
-   characters. In the six character case, the string is treated just like an
-   html color specification with each pair of characters representing the red,
-   green and blue bytes respectively. In this case alpha is set to fully opaque.
-   In the eight character case, the final pair of characters represents the alpha
-   value. So a semi-transparent green color might be defined as `"#00ff0080"`.
-- One of the matplotlib style single character colors, `"k"`, `"w"`, `"r"`, 
-    `"g"`, `"b"`, `"c"`, `"y"`, `"m"`, representing black, white, red, green,
-    blue, cyan, yellow and magenta respectively.
-- A CSS4 color name. E.g. `"DodgerBlue"`. The comparison is case insensitive.
-- The name of a tableau color with prepended `tab:`. Eg. `"tab:blue"`. The
-    comparison is case insensitive.
-
-
-<br />
+**Overload 5:**
 
 ```c++
 rgba_color(const cdv::rgba_color &)
@@ -257,29 +173,7 @@ rgba_color(const cdv::rgba_color &)
 
 > Compiler generated copy constructor
 
-
-
-### Notes
-
-In order for a string to be accepted as a valid representation of a color, it must be one of
-the following:
-
-- A string containing a hex representation of the color. The string must begin
-   with the `#` symbol and must be followed by exactly six or eight hexadecimal
-   characters. In the six character case, the string is treated just like an
-   html color specification with each pair of characters representing the red,
-   green and blue bytes respectively. In this case alpha is set to fully opaque.
-   In the eight character case, the final pair of characters represents the alpha
-   value. So a semi-transparent green color might be defined as `"#00ff0080"`.
-- One of the matplotlib style single character colors, `"k"`, `"w"`, `"r"`, 
-    `"g"`, `"b"`, `"c"`, `"y"`, `"m"`, representing black, white, red, green,
-    blue, cyan, yellow and magenta respectively.
-- A CSS4 color name. E.g. `"DodgerBlue"`. The comparison is case insensitive.
-- The name of a tableau color with prepended `tab:`. Eg. `"tab:blue"`. The
-    comparison is case insensitive.
-
-
-<br />
+**Overload 6:**
 
 ```c++
 rgba_color(const double r, const double g, const double b)
@@ -295,29 +189,7 @@ rgba_color(const double r, const double g, const double b)
 | b | The blue component as a double value in [0, 1] |
 
 
-
-
-### Notes
-
-In order for a string to be accepted as a valid representation of a color, it must be one of
-the following:
-
-- A string containing a hex representation of the color. The string must begin
-   with the `#` symbol and must be followed by exactly six or eight hexadecimal
-   characters. In the six character case, the string is treated just like an
-   html color specification with each pair of characters representing the red,
-   green and blue bytes respectively. In this case alpha is set to fully opaque.
-   In the eight character case, the final pair of characters represents the alpha
-   value. So a semi-transparent green color might be defined as `"#00ff0080"`.
-- One of the matplotlib style single character colors, `"k"`, `"w"`, `"r"`, 
-    `"g"`, `"b"`, `"c"`, `"y"`, `"m"`, representing black, white, red, green,
-    blue, cyan, yellow and magenta respectively.
-- A CSS4 color name. E.g. `"DodgerBlue"`. The comparison is case insensitive.
-- The name of a tableau color with prepended `tab:`. Eg. `"tab:blue"`. The
-    comparison is case insensitive.
-
-
-<br />
+**Overload 7:**
 
 ```c++
 rgba_color(const double r, const double g, const double b, const double a)
@@ -364,6 +236,8 @@ the following:
 
 Returns a 32 bit unsigned integer representation of the color
 
+**Overload 1:**
+
 ```c++
 constexpr std::uint32_t as_uint32() const
 ```
@@ -382,6 +256,8 @@ constexpr std::uint32_t as_uint32() const
 
 Compiler generated destructor
 
+**Overload 1:**
+
 ```c++
 ~rgba_color()
 ```
@@ -396,6 +272,8 @@ Compiler generated destructor
 #### alpha
 
 Returns the alpha value
+
+**Overload 1:**
 
 ```c++
 constexpr double alpha() const
@@ -414,6 +292,8 @@ constexpr double alpha() const
 #### as_doubles
 
 Converts the components of the color to four double values
+
+**Overload 1:**
 
 ```c++
 constexpr std::array<double, 4> as_doubles() const

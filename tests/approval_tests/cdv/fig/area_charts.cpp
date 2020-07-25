@@ -51,8 +51,10 @@ namespace cdv
             const auto x_axis = elem::bottom_axis(x, frame.y0());
             const auto y_axis = elem::left_axis(y, frame.x0());
 
+            // mdinject-begin: fill-between-constant
             const auto area =
                 elem::fill_between(xs | rv::transform(x), ys | rv::transform(y), y(0.4), {.color = tab::pink});
+            // mdinject-end
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), area, x_axis, y_axis));
         }

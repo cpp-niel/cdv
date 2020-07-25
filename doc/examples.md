@@ -102,7 +102,7 @@ const auto legend = elem::color_legend<decltype(color)>{
 
 const auto svg = fig::render_to_svg_string(frame.dimensions(), areas, x_axis, y_axis, legend);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/area_charts.cpp#L80-L108' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/area_charts.cpp#L82-L110' title='Go to snippet source file'>source</a></sup>
 
 
 ## Stem Plot

@@ -40,21 +40,36 @@ struct cdv::elem::area;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| properties | `cdv::elem::fill_properties` | __MISSING__ |
-| xs | `XRange` | __MISSING__ |
-| ys | `YRange` | __MISSING__ |
+| fill | `cdv::elem::fill_properties` | properties which determine how the area should be filled |
+| xs | `XRange` | the x coordinates of the delimiting polyline |
+| ys | `YRange` | the y coordinates of the delimiting polyline |
 
 
 
+
+An area is a highly flexible element which can represent any shape that can be enclosed in
+a polyline. One common use of an area is in area charts for which there are convenience
+functions which help to create areas, see [fill_between](#fill_between).
 
 
 #### Constructor: area<XRange, YRange>
 
-__MISSING__
+area constructor
+
+**Overload 1:**
 
 ```c++
-area<XRange, YRange>(const XRange & xs, const YRange & ys, cdv::elem::fill_properties properties)
+area<XRange, YRange>(const XRange & xs, const YRange & ys, cdv::elem::fill_properties fill)
 ```
+
+> Constructs an `area` from the given parameters. Note that the sizes of the `xs` and `ys` ranges must be equal otherwise an exception is thrown.
+
+|Argument|Description|
+| :-- | :-- |
+| xs | the x coordinates of the delimiting polyline as a range of pixels |
+| ys | the y coordinates of the delimiting polyline as a range of pixels |
+| fill | properties which determine how the area should be filled |
+
 
 
 
@@ -65,43 +80,58 @@ area<XRange, YRange>(const XRange & xs, const YRange & ys, cdv::elem::fill_prope
 
 ### fill_between
 
-__MISSING__
+creates an area for x values by filling between y values
+
+**Overload 1:**
 
 ```c++
 template <class XRange, class TopYRange, class BaseYRange>
-auto fill_between(const XRange & xs, const TopYRange & top_ys, const BaseYRange & base_ys, const cdv::elem::fill_properties & properties)
+auto fill_between(const XRange & xs, const TopYRange & top_ys, const BaseYRange & base_ys, const cdv::elem::fill_properties & fill)
 ```
 
-> __MISSING__
+> Creates an `area` for the given x coordinates that fills the area between the two ranges of y coordinates that are passed in. The two ranges of y coordinates must both correspond to the given x coordinates. The area is formed by taking the `top_ys` in reverse order and then appending the `base_ys`. The resulting polyline defines the area. This is useful when filling the area defined by two lines in a chart. Both lines share the same x coordinates. The upper y values would be the `top_ys` the lower y coordinates would be the `base_ys`.
+
+|Argument|Description|
+| :-- | :-- |
+| xs | the x coordinates |
+| top_ys | the y coordinates that define the upper line |
+| base_ys | the y coordinates that define the lower line |
+| fill | properties which determine how the area should be filled |
 
 
-
-
-<br />
+**Overload 2:**
 
 ```c++
 template <class XRange, class YRange, typename YType>
-auto fill_between(const XRange & xs, const YRange & ys, const YType & y, const cdv::elem::fill_properties & properties)
+auto fill_between(const XRange & xs, const YRange & ys, const YType & y, const cdv::elem::fill_properties & fill)
 ```
 
-> __MISSING__
+> Creates an `area` for the given x coordinates that fills the area between the range of y coordinates and the constant value that are passed in. The range of y coordinates corresponds to the x coordinates and must have the same size in order to define a line. The area is defined by the points of that line in reverse order followed by the first x coordinate and the constant y value and then the last x coordinate and the constant y value. This essentially creates an area between the line defined by the `xs` and `ys` and the horizontal line defined by the `y` value.
+
+|Argument|Description|
+| :-- | :-- |
+| xs | the x coordinates |
+| ys | the y coordinates that define the line |
+| y | the y value that defines the constant value to fill to |
+| fill | properties which determine how the area should be filled |
 
 
 
 
-<br />
 
-
-
-### draw
-
-__MISSING__
+The following example uses `fill_between` to create an area defined by the line given by 
+`xs` and `ys` (which are transformed into pixel space by appropriate scales) and the
+constant value 0.4:
 
 ```c++
-template <class XRange, class YRange, typename Surface>
-void draw(const area<XRange, YRange> & a, Surface & surface, const cdv::pixel_pos &)
+const auto area =
+    elem::fill_between(xs | rv::transform(x), ys | rv::transform(y), y(0.4), {.color = tab::pink});
 ```
+<sup><a href='/tests/approval_tests/cdv/fig/area_charts.cpp#L55-L56' title='Go to snippet source file'>source</a></sup>
 
+when plotted with axes the area looks like this:
+
+![](./../tests/approval_tests/cdv/fig/approved_files/area_charts.area_charts.fill_between_arbitrary_constant.approved.svg)
 
 
 
@@ -173,6 +203,8 @@ class cdv::elem::line_type;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 cdv::elem::line_type & operator=(cdv::elem::line_type &&)
 ```
@@ -187,6 +219,8 @@ cdv::elem::line_type & operator=(cdv::elem::line_type &&)
 #### Destructor: ~line_type
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 ~line_type()
@@ -203,16 +237,15 @@ __MISSING__
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 line_type()
 ```
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 line_type(cdv::elem::line_type &&)
@@ -220,10 +253,7 @@ line_type(cdv::elem::line_type &&)
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 3:**
 
 ```c++
 line_type(const cdv::elem::line_type &)
@@ -231,10 +261,7 @@ line_type(const cdv::elem::line_type &)
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 4:**
 
 ```c++
 line_type(const char * s)
@@ -242,10 +269,7 @@ line_type(const char * s)
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 5:**
 
 ```c++
 line_type(std::string_view s)
@@ -344,6 +368,8 @@ struct cdv::elem::pie_geometry;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 ~pie_geometry()
 ```
@@ -358,6 +384,8 @@ __MISSING__
 ### label_angle
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename Data>
@@ -375,6 +403,8 @@ auto label_angle(const pie_slice<Data> & slice)
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 template <typename Data, class inputs:auto, class get_value:auto>
 cppcoro::generator<pie_slice<Data>> pie_slices(const stdx::range_of<Data> auto & inputs, const ranges::invocable<Data> auto & get_value, const cdv::elem::pie_geometry & geometry)
@@ -390,6 +420,8 @@ cppcoro::generator<pie_slice<Data>> pie_slices(const stdx::range_of<Data> auto &
 ### centroid
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename Data>
@@ -460,6 +492,8 @@ struct cdv::elem::color_legend;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 template <typename Scale, typename Surface>
 void draw(const color_legend<Scale> & l, Surface & surface, const cdv::pixel_pos)
@@ -498,6 +532,8 @@ struct cdv::elem::rectangle;
 ### draw
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename Surface>
@@ -543,6 +579,8 @@ struct cdv::elem::swatch_legend;
 ### draw
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename Domain, typename Surface>
@@ -644,6 +682,8 @@ struct cdv::elem::line;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 line<XRange, YRange>(XRange xs, YRange ys, cdv::elem::line_properties properties)
 ```
@@ -658,6 +698,8 @@ line<XRange, YRange>(XRange xs, YRange ys, cdv::elem::line_properties properties
 ### vline
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>> vline(const cdv::pixels x, const cdv::pixels y0, const cdv::pixels y1, cdv::elem::line_properties properties)
@@ -674,6 +716,8 @@ cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std:
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>> hline(const cdv::pixels x0, const cdv::pixels x1, const cdv::pixels y, cdv::elem::line_properties properties)
 ```
@@ -688,6 +732,8 @@ cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std:
 ### draw
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <class XRange, class YRange, typename Surface>
@@ -776,16 +822,15 @@ struct cdv::elem::scatter;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 scatter<XRange, YRange, SizeRange>(const XRange & xs, const YRange & ys, const SizeRange & sizes, const cdv::elem::symbol_properties & properties)
 ```
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 scatter<XRange, YRange, SizeRange>(const XRange & xs, const YRange & ys, const cdv::elem::symbol_properties & properties)
@@ -803,6 +848,8 @@ scatter<XRange, YRange, SizeRange>(const XRange & xs, const YRange & ys, const c
 ### draw
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <class XRange, class YRange, typename Surface, class SizeRange>
@@ -841,6 +888,8 @@ struct cdv::elem::symbol;
 ### draw
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename Surface>
@@ -908,6 +957,8 @@ struct cdv::elem::axis_properties;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 template <typename Scale, typename Codomain>
 auto top_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
@@ -923,6 +974,8 @@ auto top_axis(const Scale & scale, const Codomain & position, const axis_propert
 ### right_axis
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename Scale, typename Codomain>
@@ -961,6 +1014,8 @@ __MISSING__
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 template <typename Scale, typename Codomain>
 auto bottom_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
@@ -977,6 +1032,8 @@ auto bottom_axis(const Scale & scale, const Codomain & position, const axis_prop
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 template <typename Scale, typename Codomain>
 auto left_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
@@ -992,6 +1049,8 @@ auto left_axis(const Scale & scale, const Codomain & position, const axis_proper
 ### draw
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename Scale, typename Surface>
@@ -1029,6 +1088,8 @@ class cdv::elem::range_stack;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 template <class RngOfRngs, class keys:auto>
 range_stack<Key, Value>(const RngOfRngs & range_of_ranges, const stdx::range_of<Key> auto & keys)
@@ -1036,10 +1097,7 @@ range_stack<Key, Value>(const RngOfRngs & range_of_ranges, const stdx::range_of<
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 template <class RngOfRngs, typename InnerType, class keys:auto>
@@ -1058,6 +1116,8 @@ range_stack<Key, Value>(const RngOfRngs & range_of_ranges, const stdx::range_of<
 #### layer
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 const cdv::elem::range_stack::layer_t & layer(const Key & key) const
@@ -1099,6 +1159,8 @@ struct cdv::elem::text;
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 cdv::elem::text & operator=(cdv::elem::text &&)
 ```
@@ -1114,16 +1176,15 @@ cdv::elem::text & operator=(cdv::elem::text &&)
 
 __MISSING__
 
+**Overload 1:**
+
 ```c++
 text(cdv::elem::text &&)
 ```
 
 > __MISSING__
 
-
-
-
-<br />
+**Overload 2:**
 
 ```c++
 text(const cdv::elem::text &)
@@ -1141,6 +1202,8 @@ text(const cdv::elem::text &)
 ### draw
 
 __MISSING__
+
+**Overload 1:**
 
 ```c++
 template <typename Surface>

@@ -80,8 +80,8 @@ affiliated with matplotlib, D3 or any other data visualization package.
 
 There are four common steps to creating a data visualization using *cdv*:
 1. Create a [frame](/doc/frames.md)
-2. Create [scales](https://cpp-niel.github.io/library/cdv/scl/) that map data to things like positions or colors
-3. Use the scales to create [elements](https://cpp-niel.github.io/library/cdv/elem/) that can be rendered. These can be very 
+2. Create [scales](/doc/scl.md) that map data to things like positions or colors
+3. Use the scales to create [elements](/doc/elem.md) that can be rendered. These can be very 
    basic like lines and rectangles or more sophisticated like axes and legends.
 4. Render the elements within the frame to some target format like svg or png.
 
@@ -171,7 +171,7 @@ there are [examples](/doc/examples.md) which provide both source code and the re
 visualizations. This is probably not a good place to get started though, as the examples
 have no explanations.
 
-The API documentation can be found [here](https://cpp-niel.github.io/library/cdv)
+The API documentation can be found [here](/doc/cdv.md)
 
 ## License
 

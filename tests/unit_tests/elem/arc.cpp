@@ -19,7 +19,7 @@ namespace cdv::elem
 
         TEST_CASE("draw arc without outline draws inner and outer arc")
         {
-            const auto a = arc{.inner_radius = 10_px, .outer_radius = 20_px, .start_angle = 1_rad, .end_angle = 2_rad};
+            const auto a = arc{.outer_radius = 20_px, .inner_radius = 10_px, .start_angle = 1_rad, .end_angle = 2_rad};
             auto result = test::mock_surface();
             draw(a, result, {});
             CHECK_EQ(result.draw_arc_counter(), 2);
@@ -27,8 +27,8 @@ namespace cdv::elem
 
         TEST_CASE("draw arc with outline draws inner and outer arc twice")
         {
-            const auto a = arc{.inner_radius = 10_px,
-                               .outer_radius = 20_px,
+            const auto a = arc{.outer_radius = 20_px,
+                               .inner_radius = 10_px,
                                .start_angle = 1_rad,
                                .end_angle = 2_rad,
                                .fill = {.outline = {.width = 1_pt}}};

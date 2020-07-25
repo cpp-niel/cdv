@@ -14,15 +14,15 @@ namespace cdv::elem
     template <stdx::range_of<pixels> XRange, stdx::range_of<pixels> YRange>
     struct area
     {
-        area(const XRange& xs, const YRange& ys, fill_properties properties)
-            : xs(xs), ys(ys), properties(std::move(properties))
+        area(const XRange& xs, const YRange& ys, fill_properties fill)
+            : xs(xs), ys(ys), fill(std::move(fill))
         {
             if (ranges::distance(xs) != ranges::distance(ys))
                 throw std::invalid_argument("The number of x and y coordinates that define an area must be equal");
         }
         XRange xs;
         YRange ys;
-        fill_properties properties;
+        fill_properties fill;
     };
 
     template <ranges::range XRange, ranges::range YRange, typename Surface>
@@ -30,13 +30,13 @@ namespace cdv::elem
     {
         using namespace units_literals;
         namespace rv = ::ranges::views;
-        surface.set_color(a.properties.color);
+        surface.set_color(a.fill.color);
         surface.draw_path(rv::zip_with(make_pos, a.xs, a.ys) | rv::reverse);
         surface.fill();
 
-        if (a.properties.outline.width > 0_pt)
+        if (a.fill.outline.width > 0_pt)
         {
-            surface.set_line_properties(a.properties.outline);
+            surface.set_line_properties(a.fill.outline);
             surface.draw_path(rv::zip_with(make_pos, a.xs, a.ys) | rv::reverse);
             surface.stroke();
         }
@@ -45,22 +45,22 @@ namespace cdv::elem
     template <ranges::range XRange, ranges::range TopYRange, ranges::range BaseYRange>
     requires std::is_same_v<ranges::range_value_type_t<TopYRange>, ranges::range_value_type_t<BaseYRange>> auto
     fill_between(const XRange& xs, const TopYRange& top_ys, const BaseYRange& base_ys,
-                 const fill_properties& properties = {})
+                 const fill_properties& fill = {})
     {
         auto all_xs = (xs | ranges::to_vector);
         all_xs.insert(all_xs.end(), all_xs.rbegin(), all_xs.rend());
         auto all_ys = top_ys | ranges::to_vector;
         all_ys.insert(all_ys.end(), ranges::rbegin(base_ys), ranges::rend(base_ys));
-        return area(all_xs, all_ys, properties);
+        return area(all_xs, all_ys, fill);
     }
 
     template <ranges::range XRange, ranges::range YRange, typename YType = ranges::range_value_type_t<YRange>>
-    auto fill_between(const XRange& xs, const YRange& ys, const YType& y, const fill_properties& properties = {})
+    auto fill_between(const XRange& xs, const YRange& ys, const YType& y, const fill_properties& fill = {})
     {
         auto all_xs = (xs | ranges::to_vector);
         all_xs.insert(all_xs.end(), {all_xs.back(), all_xs.front()});
         auto all_ys = ys | ranges::to_vector;
         all_ys.insert(all_ys.end(), {YType(y), YType(y)});
-        return area(all_xs, all_ys, properties);
+        return area(all_xs, all_ys, fill);
     }
 }

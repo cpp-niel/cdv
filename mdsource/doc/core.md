@@ -91,8 +91,6 @@ rather than using this class directly. At least wherever possible.
 
 Get a copy of the color with modified alpha
 
-**Overload 1:**
-
 ```c++
 constexpr cdv::rgba_color with_alpha(double a) const
 ```
@@ -236,8 +234,6 @@ the following:
 
 Returns a 32 bit unsigned integer representation of the color
 
-**Overload 1:**
-
 ```c++
 constexpr std::uint32_t as_uint32() const
 ```
@@ -256,8 +252,6 @@ constexpr std::uint32_t as_uint32() const
 
 Compiler generated destructor
 
-**Overload 1:**
-
 ```c++
 ~rgba_color()
 ```
@@ -272,8 +266,6 @@ Compiler generated destructor
 #### alpha
 
 Returns the alpha value
-
-**Overload 1:**
 
 ```c++
 constexpr double alpha() const
@@ -292,8 +284,6 @@ constexpr double alpha() const
 #### as_doubles
 
 Converts the components of the color to four double values
-
-**Overload 1:**
 
 ```c++
 constexpr std::array<double, 4> as_doubles() const

@@ -56,8 +56,6 @@ functions which help to create areas, see [fill_between](#fill_between).
 
 area constructor
 
-**Overload 1:**
-
 ```c++
 area<XRange, YRange>(const XRange & xs, const YRange & ys, cdv::elem::fill_properties fill)
 ```
@@ -203,8 +201,6 @@ class cdv::elem::line_type;
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 cdv::elem::line_type & operator=(cdv::elem::line_type &&)
 ```
@@ -219,8 +215,6 @@ cdv::elem::line_type & operator=(cdv::elem::line_type &&)
 #### Destructor: ~line_type
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 ~line_type()
@@ -368,8 +362,6 @@ struct cdv::elem::pie_geometry;
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 ~pie_geometry()
 ```
@@ -384,8 +376,6 @@ __MISSING__
 ### label_angle
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <typename Data>
@@ -403,8 +393,6 @@ auto label_angle(const pie_slice<Data> & slice)
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 template <typename Data, class inputs:auto, class get_value:auto>
 cppcoro::generator<pie_slice<Data>> pie_slices(const stdx::range_of<Data> auto & inputs, const ranges::invocable<Data> auto & get_value, const cdv::elem::pie_geometry & geometry)
@@ -420,8 +408,6 @@ cppcoro::generator<pie_slice<Data>> pie_slices(const stdx::range_of<Data> auto &
 ### centroid
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <typename Data>
@@ -492,8 +478,6 @@ struct cdv::elem::color_legend;
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 template <typename Scale, typename Surface>
 void draw(const color_legend<Scale> & l, Surface & surface, const cdv::pixel_pos)
@@ -532,8 +516,6 @@ struct cdv::elem::rectangle;
 ### draw
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <typename Surface>
@@ -579,8 +561,6 @@ struct cdv::elem::swatch_legend;
 ### draw
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <typename Domain, typename Surface>
@@ -682,8 +662,6 @@ struct cdv::elem::line;
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 line<XRange, YRange>(XRange xs, YRange ys, cdv::elem::line_properties properties)
 ```
@@ -698,8 +676,6 @@ line<XRange, YRange>(XRange xs, YRange ys, cdv::elem::line_properties properties
 ### vline
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>> vline(const cdv::pixels x, const cdv::pixels y0, const cdv::pixels y1, cdv::elem::line_properties properties)
@@ -716,8 +692,6 @@ cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std:
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>> hline(const cdv::pixels x0, const cdv::pixels x1, const cdv::pixels y, cdv::elem::line_properties properties)
 ```
@@ -732,8 +706,6 @@ cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std:
 ### draw
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <class XRange, class YRange, typename Surface>
@@ -849,8 +821,6 @@ scatter<XRange, YRange, SizeRange>(const XRange & xs, const YRange & ys, const c
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 template <class XRange, class YRange, typename Surface, class SizeRange>
 void draw(const scatter<XRange, YRange, SizeRange> & s, Surface & surface, const cdv::pixel_pos &)
@@ -888,8 +858,6 @@ struct cdv::elem::symbol;
 ### draw
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <typename Surface>
@@ -957,8 +925,6 @@ struct cdv::elem::axis_properties;
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 template <typename Scale, typename Codomain>
 auto top_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
@@ -974,8 +940,6 @@ auto top_axis(const Scale & scale, const Codomain & position, const axis_propert
 ### right_axis
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <typename Scale, typename Codomain>
@@ -1014,8 +978,6 @@ __MISSING__
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 template <typename Scale, typename Codomain>
 auto bottom_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
@@ -1032,8 +994,6 @@ auto bottom_axis(const Scale & scale, const Codomain & position, const axis_prop
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 template <typename Scale, typename Codomain>
 auto left_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
@@ -1049,8 +1009,6 @@ auto left_axis(const Scale & scale, const Codomain & position, const axis_proper
 ### draw
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <typename Scale, typename Surface>
@@ -1117,8 +1075,6 @@ range_stack<Key, Value>(const RngOfRngs & range_of_ranges, const stdx::range_of<
 
 __MISSING__
 
-**Overload 1:**
-
 ```c++
 const cdv::elem::range_stack::layer_t & layer(const Key & key) const
 ```
@@ -1158,8 +1114,6 @@ struct cdv::elem::text;
 #### operator=
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 cdv::elem::text & operator=(cdv::elem::text &&)
@@ -1202,8 +1156,6 @@ text(const cdv::elem::text &)
 ### draw
 
 __MISSING__
-
-**Overload 1:**
 
 ```c++
 template <typename Surface>

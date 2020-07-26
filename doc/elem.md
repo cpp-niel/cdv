@@ -158,7 +158,9 @@ struct cdv::elem::symbol_properties;
 
 
 The symbol styles provided by *cdv* are based on the marker styles that will
-be familiar to matplotlib users.
+be familiar to matplotlib users. They are specified in the form of `char` values. For 
+instance, the syle value `'*'` represents a five pointed star symbol. Here is a complete
+list of the supported symbols and their corresponding `char` values:
 
 ![](./../tests/approval_tests/cdv/elem/approved_files/symbols.all_symbols.approved.svg)
 
@@ -178,14 +180,19 @@ struct cdv::elem::line_properties;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| cap | `cdv::elem::cap_style` | __MISSING__ |
-| color | `cdv::rgba_color` | __MISSING__ |
-| join | `cdv::elem::join_style` | __MISSING__ |
-| style | `cdv::elem::line_type` | __MISSING__ |
-| width | `cdv::points` | __MISSING__ |
+| cap | `cdv::elem::cap_style` | the style in which the ends of lines are drawn (see [cap_style](#enumeration_cap_style)) |
+| color | `cdv::rgba_color` | the color of the line |
+| join | `cdv::elem::join_style` | the style in which connected line segments are joined together (see [join_style](#enumeration_join_style)) |
+| style | `cdv::elem::line_type` | the line style: solid, dashed etc. (see [line_type](#line_type)) |
+| width | `cdv::points` | the width of the line |
 
 
 
+
+Lines appear in various different contexts in *cdv*. For example as parts of axes
+or legends, or as outlines of filled shapes or simply as `line` objects. Their
+appearance in all of these contexts can be controlled using the `line_properties`
+data structure.
 
 
 ### line_type

@@ -119,11 +119,16 @@ namespace cdv::fig
 
         void set_line_width(const points width) { back_end_.set_line_width(to_pixels(width)); }
 
+        void set_line_properties_no_color(const elem::line_properties& properties)
+        {
+            set_line_width(properties.width);
+            back_end_.set_line_properties(properties);
+        }
+
         void set_line_properties(const elem::line_properties& properties)
         {
             set_color(properties.color);
-            set_line_width(properties.width);
-            back_end_.set_line_properties(properties);
+            set_line_properties_no_color(properties);
         }
 
         void fill_background(const std::uint32_t hex_value)

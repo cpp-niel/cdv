@@ -86,7 +86,7 @@ namespace cdv::back_end
         , font_face_(nullptr, cairo_font_face_destroy)
     {
         // this default transformation accounts for the fact that cairo views y = 0 to be at
-        // the top of the page with y increasing downwards whereas in plt it's the other way round
+        // the top of the page with y increasing downwards whereas in cdv it's the other way round
         cairo_translate(cr_.get(), 0.0, height.value());
         cairo_scale(cr_.get(), 1.0, -1.0);
     }

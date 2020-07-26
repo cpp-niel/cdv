@@ -18,7 +18,7 @@ namespace cdv::elem::detail
     auto line_marker(Surface& surface, const vec2<double> (&line0)[NumPointsLine0],
                      const vec2<double> (&line1)[NumPointsLine1] = {{0.0, 0.0}})
     {
-        surface.set_line_properties({});
+        surface.set_line_properties_no_color({});
         return [&, line0, line1](const pixel_pos pos, const pixels size) {
             using namespace units_literals;
             draw_polyline(surface, line0, size, pos);

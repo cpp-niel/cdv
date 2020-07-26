@@ -147,10 +147,16 @@ struct cdv::elem::symbol_properties;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| color | `cdv::rgba_color` | __MISSING__ |
-| style | `char` | __MISSING__ |
+| color | `cdv::rgba_color` | the color of the symbol |
+| style | `char` | the style of the symbol (see below for more information) |
 
 
+
+
+The symbol styles provided by *cdv* are based on the marker styles that will
+be familiar to matplotlib users.
+
+![](./../tests/approval_tests/cdv/elem/approved_files/symbols.all_symbols.approved.svg)
 
 
 

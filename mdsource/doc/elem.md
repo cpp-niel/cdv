@@ -176,9 +176,9 @@ struct cdv::elem::line_properties;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| cap | `cdv::elem::cap_style` | the style in which the ends of lines are drawn. Default is `cap_style::butt` (see [cap_style](#enumeration_cap_style)) |
+| cap | `cdv::elem::cap_style` | the style in which the ends of lines are drawn. Default is `cap_style::butt` (see [cap_style](#enumeration-cap_style)) |
 | color | `cdv::rgba_color` | the color of the line |
-| join | `cdv::elem::join_style` | the style in which connected line segments are joined together. Default is `join_style::miter` (see [join_style](#enumeration_join_style)) |
+| join | `cdv::elem::join_style` | the style in which connected line segments are joined together. Default is `join_style::miter` (see [join_style](#enumeration-join_style)) |
 | style | `cdv::elem::line_type` | the line style: solid, dashed etc. Default is solid (see [line_type](#line_type)) |
 | width | `cdv::points` | the width of the line |
 
@@ -200,45 +200,34 @@ class cdv::elem::line_type;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| dash_sequence | `std::vector<double>` | __MISSING__ |
+| dash_sequence | `std::vector<double>` | all line types are represented as a sequence of dashes. See below for a more thorough explanation. |
 
 
 
 
+Whether a line is solid, dashed, dotted or some more complex combination is represented as a sequence of
+`double` values. If the sequence is empty, then the line is solid. This is the default. Otherwise the
+sequence represents the lengths of the dashes and gaps where the pattern of dashes and gaps is
+repeated along the line to be drawn. The given values are a factor of the line's width. So for instance
+a sequence of `{2.0, 1.0}` would create a dashed line where the dash is twice as long as the line is
+wide and the gap is the same length as the line is wide.
 
-#### operator=
+Commonly, there is no need to specify the dash sequence explicitly because there are predefined
+sequences for the most common line types which can be specified as strings in a similar way to
+matplotlib:
 
-__MISSING__
-
-```c++
-cdv::elem::line_type & operator=(cdv::elem::line_type &&)
-```
-
-
-
-
-<br />
-
-
-
-#### Destructor: ~line_type
-
-__MISSING__
-
-```c++
-~line_type()
-```
-
-
-
-
-<br />
+| Line Type | Name | Short Name
+| :-- | :-- | :-- |
+| solid | "solid" | "-" |
+| dashes | "dashed" | "--" |
+| dots | "dotted" | ":" |
+| dash / dots | "dashdot" | "-." |
 
 
 
 #### Constructor: line_type
 
-__MISSING__
+constructs a line type
 
 **Overload 1:**
 
@@ -246,7 +235,7 @@ __MISSING__
 line_type()
 ```
 
-> __MISSING__
+> default constructor - represents a solid line
 
 **Overload 2:**
 
@@ -254,7 +243,7 @@ line_type()
 line_type(cdv::elem::line_type &&)
 ```
 
-> __MISSING__
+> compiler generated move constructor
 
 **Overload 3:**
 
@@ -262,7 +251,7 @@ line_type(cdv::elem::line_type &&)
 line_type(const cdv::elem::line_type &)
 ```
 
-> __MISSING__
+> compiler generated copy constructor
 
 **Overload 4:**
 
@@ -270,7 +259,7 @@ line_type(const cdv::elem::line_type &)
 line_type(const char * s)
 ```
 
-> __MISSING__
+> construct a line type from a string. This is an intentionally implicit constructor to allow one to create line properties by, for instance, writing `{.style = ":"}` to represent a dotted line.
 
 **Overload 5:**
 
@@ -278,7 +267,7 @@ line_type(const char * s)
 line_type(std::string_view s)
 ```
 
-> __MISSING__
+> construct a line type from a `std::string_view`. See the description of the [line-type](#line_type) data structure for details on valid strings. If an invalid string is passed in, it will be ignored and the line type will be solid.
 
 
 
@@ -293,15 +282,21 @@ line_type(std::string_view s)
 enum class cdv::elem::join_style
 ```
 
-__MISSING__
+represents the different ways that the ends of lines can be joined
 
 |Name|Description|
 | :-- | :-- |
-| miter | __MISSING__ |
-| round | __MISSING__ |
-| bevel | __MISSING__ |
+| miter | edges of line segments are extended until they meet at a sharp point |
+| round | a round transition is made between edges of line segments |
+| bevel | a flat transition is made between edges of line segments |
 
 
+
+
+The following diagram shows the various different join styles for lines
+segments meeting at a certain angle.
+
+![](./../tests/approval_tests/cdv/elem/approved_files/lines.line_joins.approved.svg)
 
 
 
@@ -328,7 +323,7 @@ The following diagram shows the various different cap styles for lines
 of identical length. Notice how the `square` capped line looks slightly longer
 because the actual end points are at the center of the squares that cap the line.
 
-![](./../tests/approval_tests/cdv/elem/approved_files/lines.line_joins.approved.svg)
+![](./../tests/approval_tests/cdv/elem/approved_files/lines.line_caps.approved.svg)
 
 
 <br />

@@ -22,9 +22,8 @@ namespace cdv::elem
         bevel
     };
 
-    class line_type
+    struct line_type
     {
-    public:
         line_type() = default;
         line_type(std::string_view s)
         {

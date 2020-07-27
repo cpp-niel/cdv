@@ -15,7 +15,7 @@ add_executable (approval_tests
         cdv/fig/scatter_charts.cpp
         cdv/fig/tutorial.cpp
         main.cpp
-        cdv/fig/heatmaps.cpp cdv/fig/pie_charts.cpp cdv/elem/symbols.cpp)
+        cdv/fig/heatmaps.cpp cdv/fig/pie_charts.cpp cdv/elem/symbols.cpp cdv/elem/lines.cpp)
 
 set_property(TARGET approval_tests PROPERTY CXX_STANDARD 20)
 target_compile_definitions(approval_tests PRIVATE TEST_DATA_DIR="${PROJECT_SOURCE_DIR}/../data")

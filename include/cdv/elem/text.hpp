@@ -12,10 +12,10 @@ namespace cdv::elem
     {
         std::string string;
         pixel_pos pos;
-        text_properties properties;
         horizontal_anchor x_anchor = horizontal_anchor::center;
         vertical_anchor y_anchor = vertical_anchor::middle;
         radians rotation;
+        text_properties properties;
     };
 
     template <typename Surface>

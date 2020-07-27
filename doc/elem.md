@@ -180,10 +180,10 @@ struct cdv::elem::line_properties;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| cap | `cdv::elem::cap_style` | the style in which the ends of lines are drawn (see [cap_style](#enumeration_cap_style)) |
+| cap | `cdv::elem::cap_style` | the style in which the ends of lines are drawn. Default is `cap_style::butt` (see [cap_style](#enumeration_cap_style)) |
 | color | `cdv::rgba_color` | the color of the line |
-| join | `cdv::elem::join_style` | the style in which connected line segments are joined together (see [join_style](#enumeration_join_style)) |
-| style | `cdv::elem::line_type` | the line style: solid, dashed etc. (see [line_type](#line_type)) |
+| join | `cdv::elem::join_style` | the style in which connected line segments are joined together. Default is `join_style::miter` (see [join_style](#enumeration_join_style)) |
+| style | `cdv::elem::line_type` | the line style: solid, dashed etc. Default is solid (see [line_type](#line_type)) |
 | width | `cdv::points` | the width of the line |
 
 
@@ -317,16 +317,22 @@ __MISSING__
 enum class cdv::elem::cap_style
 ```
 
-__MISSING__
+represents the different ways that the ends of lines can be capped
 
 |Name|Description|
 | :-- | :-- |
-| butt | __MISSING__ |
-| square | __MISSING__ |
-| round | __MISSING__ |
+| butt | the line ends abruptly at the line end point |
+| square | the line end point is enclosed in a square |
+| round | the line end point is enclosed in a circle |
 
 
 
+
+The following diagram shows the various different cap styles for lines
+of identical length. Notice how the `square` capped line looks slightly longer
+because the actual end points are at the center of the squares that cap the line.
+
+![](./../tests/approval_tests/cdv/elem/approved_files/lines.line_joins.approved.svg)
 
 
 <br />

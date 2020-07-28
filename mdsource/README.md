@@ -14,6 +14,13 @@ Visualize data using composable elements in C++20.
     width=20% src="./tests/approval_tests/cdv/fig/approved_files/line_charts.line_charts.logarithmic_x_axis.approved.svg"><img
     width=20% src="./tests/approval_tests/cdv/fig/approved_files/scatter_charts.scatter_charts.stem_plot.approved.svg"><img
     width=20% src="./tests/approval_tests/cdv/fig/approved_files/scatter_charts.scatter_charts.with_alpha_and_sizes.approved.svg">
+
+<img 
+    width=20% src="./tests/approval_tests/cdv/fig/approved_files/line_charts.line_charts.multiple_plot_with_shared_x_axis.approved.svg"><img
+    width=20% src="./tests/approval_tests/cdv/fig/approved_files/pie_charts.pie_charts.donut_chart_with_padding.approved.svg"><img
+    width=20% src="./tests/approval_tests/cdv/fig/approved_files/heatmaps.heatmaps.inferno_heatmap.approved.svg"><img
+    width=20% src="./tests/approval_tests/cdv/fig/approved_files/bar_charts.bar_charts.grouped_hbars.approved.svg"><img
+    width=20% src="./tests/approval_tests/cdv/fig/approved_files/pie_charts.pie_charts.sunburst.approved.svg">
     
 See [here](/doc/examples.md) for more examples including source code.
     
@@ -240,4 +247,4 @@ tools and services with which *cdv* is developed, built and tested:
 -   [**doctest**](https://github.com/onqtam/doctest) for unit and approval testing
 -   [**Approval Tests for C++**](https://github.com/approvals/ApprovalTests.cpp) for approval testing
 -   [**libFuzzer**](http://llvm.org/docs/LibFuzzer.html) for fuzz testing
--   [**Jekyll**](https://jekyllrb.com) and [**Hyde**](https://github.com/adobe/hyde) for API documentation
+-   [**Hyde**](https://github.com/adobe/hyde) for API documentation

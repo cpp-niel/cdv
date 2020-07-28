@@ -10,6 +10,7 @@
 #include <cdv/core/color/single_hue_interpolators.hpp>
 #include <cdv/core/color/turbo_interpolator.hpp>
 #include <cdv/elem/color_legend.hpp>
+#include <cdv/fig/frame.hpp>
 #include <cdv/fig/render_svg.hpp>
 
 #include <range/v3/range/conversion.hpp>
@@ -77,15 +78,20 @@ namespace cdv::elem
     {
         TEST_CASE("scale types")
         {
+            const auto frame = fig::frame(640_px, 150_px);
+            // mdinject-begin: ordinal-scale-color-legend
             auto ordinal = scl::ordinal_scale(std::array{1, 2, 3, 4, 5, 6, 7, 8}, scheme::original_tableau10);
             const auto ordinal_legend = elem::color_legend<decltype(ordinal)>{
-                .scale = ordinal, .pos = {50_px, 50_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
+                .scale = ordinal, .pos = {50_px, 100_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
+            // mdinject-end
 
+            // mdinject-begin: sequential-scale-color-legend
             const auto sequential = scl::sequential_scale(0.0, 1.0, interpolator::magma);
             const auto sequential_legend = elem::color_legend<decltype(sequential)>{
-                .scale = sequential, .pos = {50_px, 150_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
+                .scale = sequential, .pos = {50_px, 20_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
+            // mdinject-end
 
-            test::approve_svg(fig::render_to_svg_string({}, ordinal_legend, sequential_legend));
+            test::approve_svg(fig::render_to_svg_string(frame.dimensions(), ordinal_legend, sequential_legend));
         }
 
         TEST_CASE("categorical schemes")

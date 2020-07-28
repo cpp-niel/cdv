@@ -378,8 +378,8 @@ struct cdv::elem::pie_geometry;
 
 
 This type is designed to be an argument to the [pie_slices](#pie_slices) function. If all values are default, then
-the pie slices function will slice up an entire circle into pie slices. However, by setting start and end angles
-for the pie geometry it is possible to use `pie_slices` to divide a pie segment into slices.
+the `pie_slices` function will slice up an entire circle into pie slices. However, by setting start and end angles
+for the pie geometry it is possible to use `pie_slices` to divide a pie *segment* into slices.
 
 
 ### label_angle
@@ -444,9 +444,9 @@ const auto arcs = slices | rv::transform([&](const auto& slice) {
 ```
 <sup><a href='/tests/approval_tests/cdv/fig/pie_charts.cpp#L209-L219' title='Go to snippet source file'>source</a></sup>
 
-Notice how the call to `pie_slices` also provides a lambda which lets the `pie_slices` functions know
+Notice how the call to `pie_slices` also provides a lambda which lets the `pie_slices` function know
 how to access the numerical values which determine the actual pie slices. Notice also in the
-generation of the arcs, how the data item is embedded in the slice and is used to get the
+last line, how the data item is embedded in the slice and is used to get the
 name which is passed to the color scale to determine the color of the slice.
 
 Rendering the arcs would generate the following pie chart:
@@ -502,8 +502,8 @@ struct cdv::elem::fill_properties;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| color | `cdv::rgba_color` | __MISSING__ |
-| outline | `cdv::elem::line_properties` | __MISSING__ |
+| color | `cdv::rgba_color` | the color to fill the element with (currently only single color fills are possible) |
+| outline | `cdv::elem::line_properties` | the properties which determine how to render the shape's outline |
 
 
 
@@ -523,21 +523,52 @@ struct cdv::elem::color_legend;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| block_height | `cdv::pixels` | __MISSING__ |
-| height | `cdv::pixels` | __MISSING__ |
-| num_ticks_hint | `size_t` | __MISSING__ |
-| padding | `double` | __MISSING__ |
-| pos | `cdv::pixel_pos` | __MISSING__ |
-| scale | `Scale` | __MISSING__ |
-| tick_label_properties | `cdv::elem::text_properties` | __MISSING__ |
-| tick_length | `cdv::pixels` | __MISSING__ |
-| tick_line_properties | `cdv::elem::line_properties` | __MISSING__ |
-| title | `std::string` | __MISSING__ |
-| title_offset | `cdv::pixel_pos` | __MISSING__ |
-| title_properties | `cdv::elem::text_properties` | __MISSING__ |
-| width | `cdv::pixels` | __MISSING__ |
+| block_height | `cdv::pixels` | the height of the block(s) that display the colors |
+| height | `cdv::pixels` | the height of the legend (without a title) |
+| num_ticks_hint | `size_t` | a hint for the number of ticks to use to divide up the legend |
+| padding | `double` | the amount of padding between each block when using an ordinal scale. This is essentially the inner padding of a band scale that is used to position the blocks. See [scales](./scl.md#band_scale) for details on how this padding value is applied) |
+| pos | `cdv::pixel_pos` | the bottom left corner of the legend |
+| scale | `Scale` | the scale that the legend is to be created for. This can be an ordinal scale or a sequential scale, but must map to colors. |
+| tick_label_properties | `cdv::elem::text_properties` | the properties that determine how to render the labels |
+| tick_length | `cdv::pixels` | the length of the ticks (set this value to 0_px if ticks are not required |
+| tick_line_properties | `cdv::elem::line_properties` | the properties that determine how the tick lines are rendered |
+| title | `std::string` | the legend title |
+| title_offset | `cdv::pixel_pos` | an offset from the title's default position which is left aligned and just above the legend |
+| title_properties | `cdv::elem::text_properties` | the properties which determine how the title should be rendered |
+| width | `cdv::pixels` | the width of the legend |
 
 
+
+
+Color legends are a convenient way of providing a legend for a visualization. There is nothing special about them in the sense
+that they are simply an arrangement of rectangles, lines and texts. It is possible to create legends that look completely
+different. But, as a convenience, the `color_legend` element is available out of the box and may suffice for many typical
+cases.
+
+Often the colors in a visualization will be determined by an ordinal scale which maps some countable number of things to
+specific colors. An example of creating a color legend for this kind of scale might look like this:
+
+```c++
+auto ordinal = scl::ordinal_scale(std::array{1, 2, 3, 4, 5, 6, 7, 8}, scheme::original_tableau10);
+const auto ordinal_legend = elem::color_legend<decltype(ordinal)>{
+    .scale = ordinal, .pos = {50_px, 100_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
+```
+<sup><a href='/tests/approval_tests/cdv/elem/color_legend.cpp#L83-L85' title='Go to snippet source file'>source</a></sup>
+
+Another common way of providing color in a visualization is to use a sequential scale that maps some continuous
+range of values to a color interpolator. `color_legend` is also useful in this scenario. The following code would
+create such a color legend:
+
+```c++
+const auto sequential = scl::sequential_scale(0.0, 1.0, interpolator::magma);
+const auto sequential_legend = elem::color_legend<decltype(sequential)>{
+    .scale = sequential, .pos = {50_px, 20_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
+```
+<sup><a href='/tests/approval_tests/cdv/elem/color_legend.cpp#L89-L91' title='Go to snippet source file'>source</a></sup>
+
+These two types of scale will be rendered quite differently:
+
+![](./../tests/approval_tests/cdv/elem/approved_files/color_legend.scale_types.approved.svg)
 
 
 

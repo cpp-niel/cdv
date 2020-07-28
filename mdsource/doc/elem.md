@@ -567,8 +567,8 @@ struct cdv::elem::rectangle;
 
 
 
-The rectangle element is one of the most commonly used elements. It can be used as bars in bar charts, cells in
-heat maps, swatches in legends and much more.
+The rectangle element is a commonly used element. It can, for example, be used as bars in bar charts or cells in
+heat maps.
 
 
 ## swatch_legend.hpp
@@ -585,18 +585,29 @@ struct cdv::elem::swatch_legend;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| block_height | `cdv::pixels` | __MISSING__ |
-| block_width | `cdv::pixels` | __MISSING__ |
-| columns | `std::vector<pixels>` | __MISSING__ |
-| label_format_specifier | `std::string` | __MISSING__ |
-| label_properties | `cdv::elem::text_properties` | __MISSING__ |
-| pos | `cdv::pixel_pos` | __MISSING__ |
-| scale | `scl::ordinal_scale<Domain, rgba_color>` | __MISSING__ |
-| title | `std::string` | __MISSING__ |
-| title_offset | `cdv::pixel_pos` | __MISSING__ |
-| title_properties | `cdv::elem::text_properties` | __MISSING__ |
+| block_height | `cdv::pixels` | the height of the swatch blocks (default is 16 pixels) |
+| block_width | `cdv::pixels` | the width of the swatch blocks (default is 16 pixels) |
+| columns | `std::vector<pixels>` | the widths of the columns. This determines how many columns there are. Leave this empty to place all the swatches in one row. (default is empty) |
+| label_format_specifier | `std::string` | the specifier to pass to `fmt::format` in order to generate the label from the items in the scale's domain. (default is empty) |
+| label_properties | `cdv::elem::text_properties` | the properties that determine how to render the swatch labels |
+| pos | `cdv::pixel_pos` | the position of the first swatch in the first row of the legend |
+| scale | `scl::ordinal_scale<Domain, rgba_color>` | the scale to generate the swatch legend for |
+| title | `std::string` | the title of the legend (default is empty) |
+| title_offset | `cdv::pixel_pos` | an offset from the title's default position which is left aligned and just above the legend |
+| title_properties | `cdv::elem::text_properties` | the properties which determine how the title should be rendered |
 
 
+
+
+`swatch_legend`s provide an alternative form of legend for ordinal scales to [color_legends](#color_legend). Each item is
+rendered as a rectangular swatch with a label next to it and the swatches can be arranged in user defined columns.
+The following code demonstrates how to create a simple swatch legend with three columns from an ordinal scale:
+
+mdinject: swatch-legend-with-columns
+
+Rendering the swatch legend defined above produces the following output:
+
+![](./../tests/approval_tests/cdv/elem/approved_files/swatch_legend.swatches_in_columns.approved.svg)
 
 
 

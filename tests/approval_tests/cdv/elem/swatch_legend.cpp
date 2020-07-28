@@ -2,6 +2,7 @@
 
 #include <cdv/core/color/categorical_schemes.hpp>
 #include <cdv/elem/swatch_legend.hpp>
+#include <cdv/fig/frame.hpp>
 #include <cdv/fig/render_svg.hpp>
 #include <cdv/stdx/date_io.hpp>
 
@@ -19,6 +20,19 @@ namespace cdv::elem
 
     TEST_SUITE("swatch legend")
     {
+        TEST_CASE("swatches in columns")
+        {
+            const auto frame = fig::frame(480_px, 240_px);
+
+            // mdinject-begin: swatch-legend-with-columns
+            auto scale = scl::ordinal_scale(std::array{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, scheme::accent);
+            const auto legend = elem::swatch_legend<int>{
+                .scale = scale, .pos = {30_px, 210_px}, .columns = {100_px, 100_px, 100_px}};
+            // mdinject-end
+
+            test::approve_svg(fig::render_to_svg_string(frame.dimensions(), legend));
+        }
+
         TEST_CASE("simple swatches")
         {
             auto scale0 = scl::ordinal_scale(std::array{"dogs", "cats", "hamsters"}, scheme::accent);

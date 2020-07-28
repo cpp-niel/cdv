@@ -572,22 +572,6 @@ These two types of scale will be rendered quite differently:
 
 
 
-### draw
-
-__MISSING__
-
-```c++
-template <typename Scale, typename Surface>
-void draw(const color_legend<Scale> & l, Surface & surface, const cdv::pixel_pos)
-```
-
-
-
-
-<br />
-
-
-
 ## rectangle.hpp
 
 Source: [cdv/elem/rectangle.hpp](/include/cdv/elem/rectangle.hpp)
@@ -602,29 +586,16 @@ struct cdv::elem::rectangle;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| corner_radius | `cdv::pixels` | __MISSING__ |
-| fill | `cdv::elem::fill_properties` | __MISSING__ |
-| max | `cdv::pixel_pos` | __MISSING__ |
-| min | `cdv::pixel_pos` | __MISSING__ |
+| corner_radius | `cdv::pixels` | the radius of the corners (default is 0_px i.e. no rounding) |
+| fill | `cdv::elem::fill_properties` | the properties which determine how the rectangle is rendered |
+| max | `cdv::pixel_pos` | the upper right corner of the rectangle |
+| min | `cdv::pixel_pos` | the lower left corner of the rectangle |
 
 
 
 
-
-### draw
-
-__MISSING__
-
-```c++
-template <typename Surface>
-void draw(const cdv::elem::rectangle & r, Surface & surface, cdv::pixel_pos)
-```
-
-
-
-
-<br />
-
+The rectangle element is one of the most commonly used elements. It can be used as bars in bar charts, cells in
+heat maps, swatches in legends and much more.
 
 
 ## swatch_legend.hpp

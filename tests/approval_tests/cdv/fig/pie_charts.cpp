@@ -88,12 +88,12 @@ namespace cdv
                              node{.name = "time", .value = 264},
                          }},
                 node{.name = "stdx",
-                    .subnodes =
-                    std::vector{
-                        node{.name = "concepts", .value = 25},
-                        node{.name = "functional", .value = 27},
-                        node{.name = "numbers", .value = 20},
-                    }},
+                     .subnodes =
+                         std::vector{
+                             node{.name = "concepts", .value = 25},
+                             node{.name = "functional", .value = 27},
+                             node{.name = "numbers", .value = 20},
+                         }},
             };
 
         int get_value(const node& n)
@@ -108,8 +108,8 @@ namespace cdv
                       std::vector<elem::text>& labels)
         {
             constexpr auto ring_radius = 90_px;
-            auto slices = elem::pie_slices<node>(
-                nodes, get_value, {.start_angle = start_angle, .end_angle = end_angle, .pad_angle = 0.01_rad});
+            auto slices = elem::pie_slices(nodes, get_value,
+                                           {.start_angle = start_angle, .end_angle = end_angle, .pad_angle = 0.01_rad});
             auto color_scale = scl::make_ordinal_scale<std::string>(scheme::set2);
             for (auto&& slice : slices)
             {
@@ -202,15 +202,34 @@ namespace cdv
                                                         arc20, arc21, arc22));
         }
 
+        SUBCASE("simple pie chart")
+        {
+            constexpr auto frame = fig::frame();
+            // mdinject-begin: pie-slices
+            const auto data = std::array{std::pair{400, "flour"}, std::pair{15, "yeast"}, std::pair{200, "soy milk"},
+                                         std::pair{60, "margarine"}, std::pair{90, "sugar"}};
+            const auto color = scl::ordinal_scale(data | rv::values, scheme::dark2);
+            auto slices = elem::pie_slices(data, [](const auto p) { return p.first; });
+            const auto arcs = slices | rv::transform([&](const auto& slice) {
+                                  return elem::arc{.center = frame.center(),
+                                                   .outer_radius = frame.inner_height() / 2.0,
+                                                   .start_angle = slice.start_angle,
+                                                   .end_angle = slice.end_angle,
+                                                   .fill = {.color = color(slice.data.second)}};
+                              });
+            // mdinject-end
+
+            test::approve_svg(fig::render_to_svg_string(frame.dimensions(), arcs));
+        }
+
         SUBCASE("donut chart with padding")
         {
             constexpr auto frame = fig::frame();
             const auto data = std::array{std::pair{400, "flour"}, std::pair{15, "yeast"}, std::pair{200, "soy milk"},
                                          std::pair{60, "margarine"}, std::pair{90, "sugar"}};
             const auto color = scl::ordinal_scale(data | rv::values, scheme::set3);
-            auto slices = elem::pie_slices<std::pair<int, const char*>>(
-                data, [](const auto p) { return p.first; },
-                {.start_angle = 2_rad, .end_angle = 10_rad, .pad_angle = 0.01_rad});
+            auto slices = elem::pie_slices(data, [](const auto p) { return p.first; },
+                                           {.start_angle = 2_rad, .end_angle = 10_rad, .pad_angle = 0.01_rad});
             const auto arcs =
                 rv::all(slices) | rv::transform([&](const auto& slice) {
                     return std::pair{elem::arc{.center = frame.center(),

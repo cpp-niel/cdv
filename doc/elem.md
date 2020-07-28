@@ -271,7 +271,7 @@ line_type(const char * s)
 line_type(std::string_view s)
 ```
 
-> construct a line type from a `std::string_view`. See the description of the [line-type](#line_type) data structure for details on valid strings. If an invalid string is passed in, it will be ignored and the line type will be solid.
+> construct a line type from a `std::string_view`. See the description of the [line_type](#line_type) data structure for details on valid strings. If an invalid string is passed in, it will be ignored and the line type will be solid.
 
 
 
@@ -286,7 +286,7 @@ line_type(std::string_view s)
 enum class cdv::elem::join_style
 ```
 
-represents the different ways that the ends of lines can be joined
+represents the different ways that the line segments can be joined
 
 |Name|Description|
 | :-- | :-- |
@@ -346,13 +346,19 @@ struct cdv::elem::pie_slice;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| data | `const Data &` | __MISSING__ |
-| end_angle | `cdv::radians` | __MISSING__ |
-| pad_angle | `cdv::radians` | __MISSING__ |
-| start_angle | `cdv::radians` | __MISSING__ |
+| data | `const Data &` | a reference to the data item that this pie slice represents |
+| end_angle | `cdv::radians` | the end angle of the slice |
+| pad_angle | `cdv::radians` | the padding of the slice (see [arc](#arc) for more information on padding) |
+| start_angle | `cdv::radians` | the start angle of the slice |
 
 
 
+
+The [pie_slices](#pie_slices) function returns a coroutine generator that generates instances
+of this data structure. As such it is a kind of intermediate data structure used to convey
+information from the pie slices generator to whatever needs the information about the pie
+slices. Typically this will be arcs that are to be rendered in some form of radial chart.
+See the documentation of `pie_slices` for more information.
 
 
 ### pie_geometry
@@ -364,37 +370,33 @@ struct cdv::elem::pie_geometry;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| end_angle | `cdv::radians` | __MISSING__ |
-| pad_angle | `cdv::radians` | __MISSING__ |
-| start_angle | `cdv::radians` | __MISSING__ |
+| end_angle | `cdv::radians` | the end angle of the pie (default is 2π radians) |
+| pad_angle | `cdv::radians` | the amount of padding to apply to each slice of the pie. When the pie to be sliced is not a full circle, padding may be applied to the ends of the pie slices. The padding works the same as for an [arc](#arc) element. (default is 0 - i.e. no padding) |
+| start_angle | `cdv::radians` | the start angle of the pie (default is 0 radians) |
 
 
 
 
-
-#### Destructor: ~pie_geometry
-
-__MISSING__
-
-```c++
-~pie_geometry()
-```
-
-
-
-
-<br />
-
+This type is designed to be an argument to the [pie_slices](#pie_slices) function. If all values are default, then
+the pie slices function will slice up an entire circle into pie slices. However, by setting start and end angles
+for the pie geometry it is possible to use `pie_slices` to divide a pie segment into slices.
 
 
 ### label_angle
 
-__MISSING__
+determines a good angle for a label within a pie slice assuming that the label is to be oriented along the line from the pie center through the center of the slice.
 
 ```c++
 template <typename Data>
 auto label_angle(const pie_slice<Data> & slice)
 ```
+
+> returns the label angle in radians such that a text element rendered at this angle will run along the line from the pie center through the center of the given slice and that the text is always the right way up.
+
+|Argument|Description|
+| :-- | :-- |
+| slice | The slice to determine the label angle for |
+
 
 
 
@@ -405,13 +407,51 @@ auto label_angle(const pie_slice<Data> & slice)
 
 ### pie_slices
 
-__MISSING__
+cuts the pie with the given geometry into slices according to the given data.
 
 ```c++
 template <typename Data, class inputs:auto, class get_value:auto>
 cppcoro::generator<pie_slice<Data>> pie_slices(const stdx::range_of<Data> auto & inputs, const ranges::invocable<Data> auto & get_value, const cdv::elem::pie_geometry & geometry)
 ```
 
+> This function returns a coroutine generator that can be used to generate pie slices for the given data. The data itself can be completely arbitrary, but it must be possible to extract a numerical value for each item of data. This numerical value is then used to determine the sizes of the respective pie slices.
+
+|Argument|Description|
+| :-- | :-- |
+| inputs | a range of arbitrary input data. Each generated pie slice will contain a reference to the data item that it represents. |
+| get_value | a function that is applied to each data item to get a number value that is used to compute the slices. |
+| geometry | the geometry of the pie to slice up. If this is not provided, then it defaults to a full circle. |
+
+
+
+
+The `pie_slices` function is particularly useful in conjunction with the [arc](#arc) element. The generated 
+slices contain the information required to create arcs that can represent the pie slices in a pie
+or donut chart. The following code demonstrates how to use pie slices to create arcs:
+
+```c++
+const auto data = std::array{std::pair{400, "flour"}, std::pair{15, "yeast"}, std::pair{200, "soy milk"},
+                             std::pair{60, "margarine"}, std::pair{90, "sugar"}};
+const auto color = scl::ordinal_scale(data | rv::values, scheme::dark2);
+auto slices = elem::pie_slices(data, [](const auto p) { return p.first; });
+const auto arcs = slices | rv::transform([&](const auto& slice) {
+                      return elem::arc{.center = frame.center(),
+                                       .outer_radius = frame.inner_height() / 2.0,
+                                       .start_angle = slice.start_angle,
+                                       .end_angle = slice.end_angle,
+                                       .fill = {.color = color(slice.data.second)}};
+                  });
+```
+<sup><a href='/tests/approval_tests/cdv/fig/pie_charts.cpp#L209-L219' title='Go to snippet source file'>source</a></sup>
+
+Notice how the call to `pie_slices` also provides a lambda which lets the `pie_slices` functions know
+how to access the numerical values which determine the actual pie slices. Notice also in the
+generation of the arcs, how the data item is embedded in the slice and is used to get the
+name which is passed to the color scale to determine the color of the slice.
+
+Rendering the arcs would generate the following pie chart:
+
+![](./../tests/approval_tests/cdv/fig/approved_files/pie_charts.pie_charts.simple_pie_chart.approved.svg)
 
 
 
@@ -421,14 +461,27 @@ cppcoro::generator<pie_slice<Data>> pie_slices(const stdx::range_of<Data> auto &
 
 ### centroid
 
-__MISSING__
+for a given pie slice, returns the position at the angle through the center of the pie slice and the given radius.
 
 ```c++
 template <typename Data>
 auto centroid(const pie_slice<Data> & slice, const cdv::pixel_pos center, const cdv::pixels radius)
 ```
 
+|Argument|Description|
+| :-- | :-- |
+| slice | the slice to determine the centroid for |
+| center | the center position of the pie |
+| radius | the radius at which the centroid is to be positioned |
 
+
+
+
+This function is very useful in determining a good place for labels within pie (or donut) slices. By choosing 
+a radius that lies in the center of the pie slice, this function will deliver a position that
+is in the center of the filled area for that slice. Alternatively, a radius just outside the slice will
+provide a position that is angularly centered on the slice, but just beyond the edge of the slice.
+This can also be a good position for labels in some visualizations.
 
 
 <br />
@@ -752,7 +805,7 @@ struct cdv::elem::arc;
 | fill | `cdv::elem::fill_properties` | properties which determine how the arc should be filled |
 | inner_radius | `cdv::pixels` | the inner radius of the arc. Set this to a value greater than zero in order to represent a ring (segment) rather than a circle (segment) (default is 0 - i.e. no inner radius) |
 | outer_radius | `cdv::pixels` | the outer radius of the arc. This is the radius of the circle (segment) if the inner radius is zero and the outer radius of the ring (segment) if the inner radius is positive. |
-| pad_angle | `cdv::radians` | the amound of padding to apply to each end of the arc. When drawing a segment rather than a complete circle or ring, this value can be used to apply padding. The padding is applied at the outer radius and then projected inwards to the inner radius so that the edges of the gap between two segments are parallel. The results may look strange when applying padding to circle segments rather than ring segments (default is 0 - i.e. no padding) |
+| pad_angle | `cdv::radians` | the amount of padding to apply to each end of the arc. When drawing a segment rather than a complete circle or ring, this value can be used to apply padding. The padding is applied at the outer radius and then projected inwards to the inner radius so that the edges of the gap between two segments are parallel. The results may look strange when applying padding to circle segments rather than ring segments (default is 0 - i.e. no padding) |
 | start_angle | `cdv::radians` | the angle at which the arc starts (default is 0 radians) |
 
 

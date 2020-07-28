@@ -43,8 +43,8 @@ namespace cdv::elem
         radians pad_angle;
     };
 
-    template <typename Data>
-    cppcoro::generator<pie_slice<Data>> pie_slices(const stdx::range_of<Data> auto& inputs,
+    template <::ranges::range DataRange, typename Data = ::ranges::range_value_type_t<DataRange>>
+    cppcoro::generator<pie_slice<Data>> pie_slices(const DataRange& inputs,
                                                    const ranges::invocable<Data> auto& get_value,
                                                    const pie_geometry& geometry = {})
     {

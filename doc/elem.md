@@ -52,30 +52,6 @@ a polyline. One common use of an area is in area charts for which there are conv
 functions which help to create areas, see [fill_between](#fill_between).
 
 
-#### Constructor: area<XRange, YRange>
-
-area constructor
-
-```c++
-area<XRange, YRange>(const XRange & xs, const YRange & ys, cdv::elem::fill_properties fill)
-```
-
-> Constructs an `area` from the given parameters. Note that the sizes of the `xs` and `ys` ranges must be equal otherwise an exception is thrown.
-
-|Argument|Description|
-| :-- | :-- |
-| xs | the x coordinates of the delimiting polyline as a range of pixels |
-| ys | the y coordinates of the delimiting polyline as a range of pixels |
-| fill | properties which determine how the area should be filled |
-
-
-
-
-
-<br />
-
-
-
 ### fill_between
 
 creates an area for x values by filling between y values
@@ -199,7 +175,7 @@ data structure.
 
 ```c++
 
-class cdv::elem::line_type;
+struct cdv::elem::line_type;
 ```
 
 |Field|Type|Description|
@@ -643,22 +619,6 @@ Rendering the swatch legend defined above produces the following output:
 
 
 
-### draw
-
-__MISSING__
-
-```c++
-template <typename Domain, typename Surface>
-void draw(const swatch_legend<Domain> & l, Surface & surface, const cdv::pixel_pos)
-```
-
-
-
-
-<br />
-
-
-
 ## text_properties.hpp
 
 Source: [cdv/elem/text_properties.hpp](/include/cdv/elem/text_properties.hpp)
@@ -673,9 +633,9 @@ struct cdv::elem::text_properties;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| color | `cdv::rgba_color` | __MISSING__ |
-| font | `fnt::font_properties` | __MISSING__ |
-| font_size | `cdv::points` | __MISSING__ |
+| color | `cdv::rgba_color` | the color of the text |
+| font | `fnt::font_properties` | the font in which to render the text |
+| font_size | `cdv::points` | the size of the font |
 
 
 
@@ -687,13 +647,13 @@ struct cdv::elem::text_properties;
 enum class cdv::elem::horizontal_anchor
 ```
 
-__MISSING__
+where text is anchored horizontally relative to its given position
 
 |Name|Description|
 | :-- | :-- |
-| left | __MISSING__ |
-| center | __MISSING__ |
-| right | __MISSING__ |
+| left | the left end of the text is anchored at the text position |
+| center | the center of the text is anchored at the text position |
+| right | the right end of the text is anchored at the text position |
 
 
 
@@ -707,13 +667,13 @@ __MISSING__
 enum class cdv::elem::vertical_anchor
 ```
 
-__MISSING__
+where text is anchored vertically relative to its given position
 
 |Name|Description|
 | :-- | :-- |
-| bottom | __MISSING__ |
-| middle | __MISSING__ |
-| top | __MISSING__ |
+| bottom | the bottom of the text is anchored at the text position |
+| middle | the middle of the text is anchored at the text position |
+| top | the top of the text is anchored at the text position |
 
 
 
@@ -735,26 +695,11 @@ struct cdv::elem::line;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| properties | `cdv::elem::line_properties` | __MISSING__ |
-| xs | `XRange` | __MISSING__ |
-| ys | `YRange` | __MISSING__ |
+| properties | `cdv::elem::line_properties` | the properties with which the line should be rendered |
+| xs | `XRange` | the x coordinates of the points that make up the line |
+| ys | `YRange` | the y coordinates of the points that make up the line |
 
 
-
-
-
-#### Constructor: line<XRange, YRange>
-
-__MISSING__
-
-```c++
-line<XRange, YRange>(XRange xs, YRange ys, cdv::elem::line_properties properties)
-```
-
-
-
-
-<br />
 
 
 
@@ -872,33 +817,6 @@ struct cdv::elem::scatter;
 | ys | `YRange` | __MISSING__ |
 
 
-
-
-
-#### Constructor: scatter<XRange, YRange, SizeRange>
-
-__MISSING__
-
-**Overload 1:**
-
-```c++
-scatter<XRange, YRange, SizeRange>(const XRange & xs, const YRange & ys, const SizeRange & sizes, const cdv::elem::symbol_properties & properties)
-```
-
-> __MISSING__
-
-**Overload 2:**
-
-```c++
-scatter<XRange, YRange, SizeRange>(const XRange & xs, const YRange & ys, const cdv::elem::symbol_properties & properties)
-```
-
-> __MISSING__
-
-
-
-
-<br />
 
 
 

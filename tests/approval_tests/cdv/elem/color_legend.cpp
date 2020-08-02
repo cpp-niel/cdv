@@ -37,13 +37,13 @@ namespace cdv::elem
             const auto legends = interpolators | rv::transform([y = -40_px](const auto& name_and_interp) mutable {
                                      const auto [name, interp] = name_and_interp;
                                      y += 50_px;
-                                     return elem::color_legend<scale_t>{.scale = scale_t(0.0, 1.0, func_t(interp)),
-                                                                        .pos = {10_px, y},
-                                                                        .width = 500_px,
-                                                                        .height = 30_px,
-                                                                        .block_height = 18_px,
-                                                                        .title = "interpolator::"s + name,
-                                                                        .num_ticks_hint = 0};
+                                     return elem::color_legend{.scale = scale_t(0.0, 1.0, func_t(interp)),
+                                                               .pos = {10_px, y},
+                                                               .width = 500_px,
+                                                               .height = 30_px,
+                                                               .block_height = 18_px,
+                                                               .title = "interpolator::"s + name,
+                                                               .num_ticks_hint = 0};
                                  })
                                  | ranges::to_vector;
 
@@ -58,14 +58,14 @@ namespace cdv::elem
                 const auto& [name, color_scheme] = name_and_scheme;
                 y += 65_px;
                 auto ordinal = scl::ordinal_scale(rv::iota(0) | rv::take(color_scheme.size()), color_scheme);
-                return elem::color_legend<decltype(ordinal)>{.scale = ordinal,
-                                                             .pos = {50_px, y},
-                                                             .width = color_scheme.size() * 35_px,
-                                                             .height = 35_px,
-                                                             .block_height = 35_px,
-                                                             .title = name,
-                                                             .padding = 0.0,
-                                                             .tick_label_properties = {.font_size = 0_pt}};
+                return elem::color_legend{.scale = ordinal,
+                                          .pos = {50_px, y},
+                                          .width = static_cast<double>(color_scheme.size()) * 35_px,
+                                          .height = 35_px,
+                                          .block_height = 35_px,
+                                          .title = name,
+                                          .padding = 0.0,
+                                          .tick_label_properties = {.font_size = 0_pt}};
             };
 
             std::ostringstream os;
@@ -81,13 +81,13 @@ namespace cdv::elem
             const auto frame = fig::frame(640_px, 150_px);
             // mdinject-begin: ordinal-scale-color-legend
             auto ordinal = scl::ordinal_scale(std::array{1, 2, 3, 4, 5, 6, 7, 8}, scheme::original_tableau10);
-            const auto ordinal_legend = elem::color_legend<decltype(ordinal)>{
+            const auto ordinal_legend = elem::color_legend{
                 .scale = ordinal, .pos = {50_px, 100_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
             // mdinject-end
 
             // mdinject-begin: sequential-scale-color-legend
             const auto sequential = scl::sequential_scale(0.0, 1.0, interpolator::magma);
-            const auto sequential_legend = elem::color_legend<decltype(sequential)>{
+            const auto sequential_legend = elem::color_legend{
                 .scale = sequential, .pos = {50_px, 20_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
             // mdinject-end
 

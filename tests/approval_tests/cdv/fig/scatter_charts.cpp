@@ -43,8 +43,9 @@ namespace cdv
             auto xs = rv::generate_n(rand, 50) | ranges::to_vector;
             auto ys = rv::generate_n(rand, 50) | ranges::to_vector;
 
-            const auto scatter =
-                elem::scatter(xs | rv::transform(x), ys | rv::transform(y), {.color = tab::blue, .style = 'X'});
+            const auto scatter = elem::scatter{.xs = xs | rv::transform(x),
+                                               .ys = ys | rv::transform(y),
+                                               .properties = {.color = tab::blue, .style = 'X'}};
 
             test::approve_svg(fig::render_to_svg_string({}, x_axis, y_axis, scatter));
         }
@@ -55,8 +56,7 @@ namespace cdv
             const auto x = scl::linear_scale(-0.05, 1.05, frame.x0(), frame.x1());
             const auto y = scl::linear_scale(-0.05, 1.05, frame.y0(), frame.y1());
 
-            const auto x_axis =
-                elem::bottom_axis(x, frame.y0(), {.grid_length = frame.inner_height()});
+            const auto x_axis = elem::bottom_axis(x, frame.y0(), {.grid_length = frame.inner_height()});
             const auto y_axis = elem::left_axis(y, frame.x0(), {.grid_length = frame.inner_width()});
 
             std::uniform_real_distribution<double> dist(0.0, 1.0);
@@ -66,9 +66,10 @@ namespace cdv
             const auto create_scatter = [&](const auto color) {
                 auto xs = rv::generate_n(rand, 150) | rv::transform(x) | ranges::to_vector;
                 auto ys = rv::generate_n(rand, 150) | rv::transform(y) | ranges::to_vector;
-                auto sizes = rv::generate_n(rand, 150) | rv::transform([](const double x) { return x * 24_pt; })
+                auto sizes = rv::generate_n(rand, 150) | rv::transform([](const double s) { return s * 24_pt; })
                              | ranges::to_vector;
-                return elem::scatter(xs, ys, sizes, {.color = rgba_color(color).with_alpha(0.3)});
+                return elem::scatter{
+                    .xs = xs, .ys = ys, .sizes = sizes, .properties = {.color = rgba_color(color).with_alpha(0.3)}};
             };
 
             const auto colors = std::vector{"tab:blue", "tab:orange", "tab:green"};
@@ -129,8 +130,9 @@ namespace cdv
             const auto stems = rv::zip_with(
                 [&](const auto a, const auto b) {
                     const auto pos = pixel_pos{x(a), y(b)};
-                    return std::pair{elem::symbol{.position = pos, .properties = {.color = cdv_blue}},
-                               elem::line(std::array{pos.x, pos.x}, std::array{y(0.0), pos.y}, {.color = cdv_blue})};
+                    return std::pair{
+                        elem::symbol{.position = pos, .properties = {.color = cdv_blue}},
+                        elem::line(std::array{pos.x, pos.x}, std::array{y(0.0), pos.y}, {.color = cdv_blue})};
                 },
                 xs, ys);
 

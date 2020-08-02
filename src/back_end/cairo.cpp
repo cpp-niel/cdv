@@ -20,9 +20,9 @@ namespace cdv::back_end
         cairo_surface_t* create_svg_surface(const pixels width, const pixels height, std::ostream& os)
         {
             const auto callback = [](void* closure, const unsigned char* data, unsigned int size) {
-                std::ostringstream& os = *reinterpret_cast<std::ostringstream*>(closure);
+                std::ostringstream& ostr = *reinterpret_cast<std::ostringstream*>(closure);
                 const auto* chars = reinterpret_cast<const std::ostringstream::char_type*>(data);
-                os.write(chars, size);  // TODO error handling
+                ostr.write(chars, size);  // TODO error handling
                 return CAIRO_STATUS_SUCCESS;
             };
 

@@ -9,21 +9,17 @@ namespace cdv::elem
     template <ranges::range XRange, ranges::range YRange, stdx::range_of<points> SizeRange = std::vector<points>>
     struct scatter
     {
-        scatter(const XRange& xs, const YRange& ys, const symbol_properties& properties = {})
-            : xs(xs), ys(ys), properties(properties)
-        {
-        }
-
-        scatter(const XRange& xs, const YRange& ys, const SizeRange& sizes, const symbol_properties& properties = {})
-            : xs(xs), ys(ys), sizes(sizes), properties(properties)
-        {
-        }
-
         XRange xs;
         YRange ys;
         SizeRange sizes;
         symbol_properties properties;
     };
+
+    template <typename XRange, typename YRange>
+    scatter(const XRange&, const YRange&, symbol_properties = {}) -> scatter<XRange, YRange, std::vector<points>>;
+
+    template <typename XRange, typename YRange, typename SizeRange>
+    scatter(const XRange&, const YRange&, const SizeRange&, symbol_properties = {}) -> scatter<XRange, YRange, SizeRange>;
 
     template <ranges::range XRange, ranges::range YRange, typename Surface, stdx::range_of<points> SizeRange>
     void draw(const scatter<XRange, YRange, SizeRange>& s, Surface& surface, const pixel_pos&)

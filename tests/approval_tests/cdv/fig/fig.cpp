@@ -90,7 +90,7 @@ namespace cdv
                 const auto tick_x = x(date::sys_days(date));
                 return std::tuple{
                     elem::symbol{.position = {tick_x, y0}, .properties = {.color = tab::red}},
-                    elem::line(std::array{tick_x, tick_x}, std::array{y0, y0 + y_offset}, {.color = tab::red}),
+                    elem::line{.xs = std::array{tick_x, tick_x}, .ys = std::array{y0, y0 + y_offset}, .properties = {.color = tab::red}},
                     elem::text{.string = label, .pos = {tick_x, y0 + (y_offset * 1.15)}}};
             });
 
@@ -168,7 +168,7 @@ namespace cdv
             return [=](const auto x) {
                 const auto y = frame.y_center() + 50_px;
                 return std::tuple{elem::symbol{.position = {x, y}},
-                                  elem::line(std::array{x, x}, std::array{y, y + 100_px}),
+                                  elem::line{.xs = std::array{x, x}, .ys = std::array{y, y + 100_px}},
                                   elem::text{.string = std::string(txt) + " padding x step", .pos = {x, y + 110_px}}};
             };
         };
@@ -178,11 +178,11 @@ namespace cdv
 
         const auto label_y = frame.y_center() - 50_px;
         const auto step_label = std::pair{
-            elem::line(std::array{s(keys[1]), s(keys[2])}, std::array{label_y, label_y}),
+            elem::line{.xs = std::array{s(keys[1]), s(keys[2])}, .ys = std::array{label_y, label_y}},
             elem::text{.string = "step", .pos = {s(keys[1]) + ((s(keys[2]) - s(keys[1])) * 0.5), label_y - 15_px}}};
 
         const auto band_width_label =
-            std::pair{elem::line(std::array{s.min(keys.front()), s.max(keys.front())}, std::array{label_y, label_y}),
+            std::pair{elem::line{.xs = std::array{s.min(keys.front()), s.max(keys.front())}, .ys = std::array{label_y, label_y}},
                       elem::text{.string = "band_width", .pos = {s(keys.front()), label_y - 15_px}}};
 
         test::approve_svg(fig::render_to_svg_string(frame.dimensions(), axis, rects, inner_padding_labels,

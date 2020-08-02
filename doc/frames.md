@@ -37,7 +37,7 @@ Typically, a frame is created:
 ```c++
 constexpr auto frame = cdv::fig::frame();
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L276-L276' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L296-L296' title='Go to snippet source file'>source</a></sup>
 
 then it is used to generate scales and elements. And finally its dimensions are passed to
 the render call:
@@ -45,4 +45,4 @@ the render call:
 ```c++
 const auto svg = cdv::fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, curve);
 ```
-<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L297-L297' title='Go to snippet source file'>source</a></sup>
+<sup><a href='/tests/approval_tests/cdv/fig/line_charts.cpp#L317-L317' title='Go to snippet source file'>source</a></sup>

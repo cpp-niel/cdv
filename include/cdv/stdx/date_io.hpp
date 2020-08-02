@@ -10,7 +10,7 @@ namespace fmt
     struct formatter<cdv::date::year_month_day> {
         formatter<std::tm, char> tm_formatter;
 
-        constexpr auto parse(format_parse_context& ctx) {
+        auto parse(format_parse_context& ctx) {
             return tm_formatter.parse(ctx);
         }
 

@@ -74,12 +74,12 @@ namespace cdv
             const auto y_axis = elem::left_axis(y, frame.x0());
 
             const auto bars = rv::cartesian_product(group_domain | rv::enumerate, group_data)
-                              | rv::transform([&](auto keys_and_data) {
-                                    const auto& [index_and_key, group_key_and_data] = keys_and_data;
+                              | rv::transform([&](auto keys_and_values) {
+                                    const auto& [index_and_key, group_key_and_values] = keys_and_values;
                                     const auto& [index, key] = index_and_key;
-                                    const auto& [group_key, data] = group_key_and_data;
+                                    const auto& [group_key, values] = group_key_and_values;
                                     const auto min = pixel_pos{x.min(key) + group_x.min(group_key), y(0.0)};
-                                    const auto max = pixel_pos{min.x + group_x.band_width(), y(data[index])};
+                                    const auto max = pixel_pos{min.x + group_x.band_width(), y(values[index])};
                                     return elem::rectangle{.min = min, .max = max, .fill = {.color = color(group_key)}};
                                 });
 
@@ -141,13 +141,13 @@ namespace cdv
             const auto y_axis = elem::left_axis(y, frame.x0());
 
             const auto hbars = rv::cartesian_product(group_domain | rv::enumerate, group_data)
-                               | rv::transform([&](const auto keys_and_data) {
-                                     const auto [index_and_key, group_key_and_data] = keys_and_data;
+                               | rv::transform([&](const auto keys_and_values) {
+                                     const auto [index_and_key, group_key_and_values] = keys_and_values;
                                      const auto [index, key] = index_and_key;
-                                     const auto [group_key, data] = group_key_and_data;
+                                     const auto [group_key, values] = group_key_and_values;
                                      const auto min_y = y.min(key) + group_y.min(group_key);
                                      return elem::rectangle{.min = {x(0.0), min_y},
-                                                            .max = {x(data[index]), min_y + group_y.band_width()},
+                                                            .max = {x(values[index]), min_y + group_y.band_width()},
                                                             .fill = {.color = color(group_key)}};
                                  });
 

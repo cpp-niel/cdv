@@ -108,7 +108,7 @@ namespace cdv::scl
         [[nodiscard]] CodomainType operator()(const DomainType& x) const noexcept
         {
             return detail::apply_continuous_scaling(
-                domain_, codomain_, properties_.interpolate, [](auto x) { return x; }, properties_.clamp, x);
+                domain_, codomain_, properties_.interpolate, [](auto v) { return v; }, properties_.clamp, x);
         }
 
         [[nodiscard]] linear_scale snapped_to_grid(const size_t num_ticks_hint = 8) const

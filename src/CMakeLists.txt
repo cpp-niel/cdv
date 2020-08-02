@@ -29,6 +29,7 @@ target_include_directories(cdv PRIVATE ./ ${CAIRO_INCLUDE_DIR})
 target_link_libraries(cdv PUBLIC
         range-v3
         fmt::fmt
+        mfl::mfl
         ${CMAKE_THREAD_LIBS_INIT}
         )
 
@@ -39,6 +40,4 @@ target_link_libraries(cdv PRIVATE
         unofficial::fontconfig::fontconfig
         Freetype::Freetype
         harfbuzz::harfbuzz
-        fmt::fmt
-        mfl::mfl
         )

@@ -550,7 +550,7 @@ specific colors. An example of creating a color legend for this kind of scale mi
 
 ```c++
 auto ordinal = scl::ordinal_scale(std::array{1, 2, 3, 4, 5, 6, 7, 8}, scheme::original_tableau10);
-const auto ordinal_legend = elem::color_legend<decltype(ordinal)>{
+const auto ordinal_legend = elem::color_legend{
     .scale = ordinal, .pos = {50_px, 100_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
 ```
 <sup><a href='/tests/approval_tests/cdv/elem/color_legend.cpp#L83-L85' title='Go to snippet source file'>source</a></sup>
@@ -561,7 +561,7 @@ create such a color legend:
 
 ```c++
 const auto sequential = scl::sequential_scale(0.0, 1.0, interpolator::magma);
-const auto sequential_legend = elem::color_legend<decltype(sequential)>{
+const auto sequential_legend = elem::color_legend{
     .scale = sequential, .pos = {50_px, 20_px}, .width = 500_px, .height = 30_px, .block_height = 15_px};
 ```
 <sup><a href='/tests/approval_tests/cdv/elem/color_legend.cpp#L89-L91' title='Go to snippet source file'>source</a></sup>
@@ -632,8 +632,8 @@ The following code demonstrates how to create a simple swatch legend with three 
 
 ```c++
 auto scale = scl::ordinal_scale(std::array{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, scheme::accent);
-const auto legend = elem::swatch_legend<int>{
-    .scale = scale, .pos = {30_px, 210_px}, .columns = {100_px, 100_px, 100_px}};
+const auto legend =
+    elem::swatch_legend{.scale = scale, .pos = {30_px, 210_px}, .columns = {100_px, 100_px, 100_px}};
 ```
 <sup><a href='/tests/approval_tests/cdv/elem/swatch_legend.cpp#L28-L30' title='Go to snippet source file'>source</a></sup>
 

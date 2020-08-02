@@ -48,9 +48,12 @@ namespace cdv
 
             const auto keys = std::array{"$x$", "$x^2$", "$x^3$"};
             const auto color = scl::ordinal_scale(keys, scheme::original_tableau10);
-            const auto linear = elem::line(x1 | rv::transform(x), x1 | rv::transform(y), {.color = color(keys[0])});
-            const auto quadratic = elem::line(x1 | rv::transform(x), x2 | rv::transform(y), {.color = color(keys[1])});
-            const auto cubic = elem::line(x1 | rv::transform(x), x3 | rv::transform(y), {.color = color(keys[2])});
+            const auto linear = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x1 | rv::transform(y), .properties = {.color = color(keys[0])}};
+            const auto quadratic = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x2 | rv::transform(y), .properties = {.color = color(keys[1])}};
+            const auto cubic = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x3 | rv::transform(y), .properties = {.color = color(keys[2])}};
 
             const auto legend = elem::swatch_legend<const char*>{.scale = color,
                                                                  .pos = {frame.x0() + 20_px, frame.y1() - 20_px},
@@ -73,9 +76,12 @@ namespace cdv
             const auto x_axis = elem::bottom_axis(x, frame.y0(), {.grid_length = frame.inner_height()});
             const auto y_axis = elem::left_axis(y, frame.x0(), {.grid_length = frame.inner_width()});
 
-            const auto linear = elem::line(x1 | rv::transform(x), x1 | rv::transform(y), {.color = tab::blue});
-            const auto quadratic = elem::line(x1 | rv::transform(x), x2 | rv::transform(y), {.color = tab::orange});
-            const auto cubic = elem::line(x1 | rv::transform(x), x3 | rv::transform(y), {.color = tab::green});
+            const auto linear = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x1 | rv::transform(y), .properties = {.color = tab::blue}};
+            const auto quadratic = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x2 | rv::transform(y), .properties = {.color = tab::orange}};
+            const auto cubic = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x3 | rv::transform(y), .properties = {.color = tab::green}};
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, linear, quadratic, cubic));
         }
@@ -95,9 +101,12 @@ namespace cdv
                                                  .grid_length = frame.inner_width(),
                                                  .tick_label_offset = {10_px, 10_px}});
 
-            const auto linear = elem::line(x1 | rv::transform(x), x1 | rv::transform(y), {.color = tab::blue});
-            const auto quadratic = elem::line(x1 | rv::transform(x), x2 | rv::transform(y), {.color = tab::orange});
-            const auto cubic = elem::line(x1 | rv::transform(x), x3 | rv::transform(y), {.color = tab::green});
+            const auto linear = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x1 | rv::transform(y), .properties = {.color = tab::blue}};
+            const auto quadratic = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x2 | rv::transform(y), .properties = {.color = tab::orange}};
+            const auto cubic = elem::line{
+                .xs = x1 | rv::transform(x), .ys = x3 | rv::transform(y), .properties = {.color = tab::green}};
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, linear, quadratic, cubic));
         }
@@ -113,10 +122,12 @@ namespace cdv
             const auto y_axis =
                 elem::left_axis(y, frame.x0(), {.num_ticks_hint = 5, .grid_length = frame.inner_width()});
 
-            const auto xs = rv::linear_distribute(0.1, 10.0, 100) | rv::transform([](auto x) { return x * x; });
-            const auto ys = xs | rv::transform([](const double x) { return std::exp(-x / 5.0); });
-            const auto line = elem::line(xs | rv::transform(x), ys | rv::transform(y), {.color = cdv_blue});
-            const auto text = elem::text{.string = R"($f(x) = e^{\frac{-x}{5}}$)", .pos = {450_px, 350_px}, .properties = {.font_size = 24_pt}};
+            const auto xs = rv::linear_distribute(0.1, 10.0, 100) | rv::transform([](auto v) { return v * v; });
+            const auto ys = xs | rv::transform([](const double v) { return std::exp(-v / 5.0); });
+            const auto line =
+                elem::line{.xs = xs | rv::transform(x), .ys = ys | rv::transform(y), .properties = {.color = cdv_blue}};
+            const auto text = elem::text{
+                .string = R"($f(x) = e^{\frac{-x}{5}}$)", .pos = {450_px, 350_px}, .properties = {.font_size = 24_pt}};
 
             const auto svg = fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, line, text);
             // mdinject-end
@@ -133,11 +144,13 @@ namespace cdv
             const auto x_axis = elem::bottom_axis(x, frame.y0(), {.grid_length = frame.inner_height()});
             const auto y_axis = elem::left_axis(y, frame.x0(), {.grid_length = frame.inner_width()});
 
-            const auto xs = rv::linear_distribute(0.1, 10.0, 100) | rv::transform([](auto x) { return x * x; });
-            const auto ys = xs | rv::transform([](const double x) { return 20.0 * std::exp(-x / 10.0); });
-            const auto line = elem::line(xs | rv::transform(x), ys | rv::transform(y), {.color = tab::blue});
-            const auto text =
-                elem::text{.string = R"($f(x) =  20 \times e^{\frac{-x}{10}}$)", .pos = {350_px, 350_px}, .properties = {.font_size = 24_pt}};
+            const auto xs = rv::linear_distribute(0.1, 10.0, 100) | rv::transform([](auto v) { return v * v; });
+            const auto ys = xs | rv::transform([](const double v) { return 20.0 * std::exp(-v / 10.0); });
+            const auto line = elem::line{
+                .xs = xs | rv::transform(x), .ys = ys | rv::transform(y), .properties = {.color = tab::blue}};
+            const auto text = elem::text{.string = R"($f(x) =  20 \times e^{\frac{-x}{10}}$)",
+                                         .pos = {350_px, 350_px},
+                                         .properties = {.font_size = 24_pt}};
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, line, text));
         }
@@ -158,9 +171,10 @@ namespace cdv
             const auto y_axis = elem::left_axis(y, frame.x0());
 
             const auto xs = rv::linear_distribute(x.domain().front(), x.domain().back(), 100);
-            const auto ys = xs | rv::transform([](const double x) { return 1.0 / (1.0 + std::exp(-x)); });
-            const auto curve = elem::line(xs | rv::transform(x), ys | rv::transform(y),
-                                          {.color = scheme::tableau10[0], .width = 3_pt});
+            const auto ys = xs | rv::transform([](const double v) { return 1.0 / (1.0 + std::exp(-v)); });
+            const auto curve = elem::line{.xs = xs | rv::transform(x),
+                                          .ys = ys | rv::transform(y),
+                                          .properties = {.color = scheme::tableau10[0], .width = 3_pt}};
 
             const auto legend = elem::swatch_legend<const char*>{
                 .scale = scl::ordinal_scale(std::array{R"($\sigma(x) = \frac{1}{1+e^{-x}}$)"}, scheme::tableau10),
@@ -194,10 +208,12 @@ namespace cdv
             auto y1s = rv::generate_n(rand, 180) | ranges::to_vector;
             auto color = scl::ordinal_scale(std::array{0, 1}, scheme::set1);
 
-            const auto curve = elem::line(xs | rv::transform(x), y0s | rv::transform(y),
-                                          {.color = color(0), .width = 1.5_pt, .style = "--"});
-            const auto curve1 =
-                elem::line(xs | rv::transform(x), y1s | rv::transform(y), {.color = color(1), .width = 3_pt});
+            const auto curve = elem::line{.xs = xs | rv::transform(x),
+                                          .ys = y0s | rv::transform(y),
+                                          .properties = {.color = color(0), .width = 1.5_pt, .style = "--"}};
+            const auto curve1 = elem::line{.xs = xs | rv::transform(x),
+                                           .ys = y1s | rv::transform(y),
+                                           .properties = {.color = color(1), .width = 3_pt}};
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), curve, curve1, x_axis, y_axis));
         }
@@ -237,7 +253,9 @@ namespace cdv
             const auto curves = rv::zip(functions, y_scales) | rv::transform([&](const auto& func_and_scale) {
                                     const auto& [f, y] = func_and_scale;
                                     const auto ys = xs | rv::transform(f) | rv::transform(y) | ranges::to_vector;
-                                    return elem::line(xs | rv::transform(x), ys, {.color = color(f), .width = 2_pt});
+                                    return elem::line{.xs = xs | rv::transform(x),
+                                                      .ys = ys,
+                                                      .properties = {.color = color(f), .width = 2_pt}};
                                 });
 
             const auto svg = fig::render_to_svg_string(frame.dimensions(), x_axis, separators, y_axes, curves);
@@ -263,9 +281,11 @@ namespace cdv
             const auto xs = rv::linear_distribute(x.domain().front(), x.domain().back(), 400);
             const auto y0s = xs | rv::transform([](const auto t) { return exp(t); });
             const auto y1s = xs | rv::transform([](const auto t) { return sin(2.0 * stdx::numbers::pi * t); });
-            const auto curve0 =
-                elem::line(xs | rv::transform(x), y0s | rv::transform(y0), {.color = color(0), .width = 2.5_pt});
-            const auto curve1 = elem::line(xs | rv::transform(x), y1s | rv::transform(y1), {.color = color(1)});
+            const auto curve0 = elem::line{.xs = xs | rv::transform(x),
+                                           .ys = y0s | rv::transform(y0),
+                                           .properties = {.color = color(0), .width = 2.5_pt}};
+            const auto curve1 = elem::line{
+                .xs = xs | rv::transform(x), .ys = y1s | rv::transform(y1), .properties = {.color = color(1)}};
 
             test::approve_svg(fig::render_to_svg_string(frame.dimensions(), x_axis, y0_axis, y1_axis, curve0, curve1));
         }
@@ -289,8 +309,8 @@ namespace cdv
             // mdinject-begin: getting-started-create-line
             namespace rv = ::ranges::views;
             const auto xs = rv::linear_distribute(0.0, 2.0, 100);
-            const auto ys = xs | rv::transform([](auto x) { return x * x; });
-            const auto curve = cdv::elem::line(xs | rv::transform(x), ys | rv::transform(y));
+            const auto ys = xs | rv::transform([](auto v) { return v * v; });
+            const auto curve = cdv::elem::line{.xs = xs | rv::transform(x), .ys = ys | rv::transform(y)};
             // mdinject-end
 
             // mdinject-begin: getting-started-render-svg

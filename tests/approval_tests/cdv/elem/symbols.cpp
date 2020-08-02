@@ -19,7 +19,7 @@ namespace cdv::elem
             return std::pair{
                 symbol{.position = pos, .size = 10_pt, .properties = {.color = cdv_blue, .style = style}},
                 text{.string = label, .pos = pos + pixel_pos{24_px, 0_px}, .properties = {.font_size = 12_pt}}};
-        };
+        }
     }
 
     TEST_CASE("all symbols")

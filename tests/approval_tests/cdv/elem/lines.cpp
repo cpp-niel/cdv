@@ -21,7 +21,7 @@ namespace cdv::elem
                                                             .pos = label_pos,
                                                             .x_anchor = horizontal_anchor::left,
                                                             .properties = {.font_size = 12_pt}}};
-        };
+        }
     }
 
     TEST_CASE("line caps")

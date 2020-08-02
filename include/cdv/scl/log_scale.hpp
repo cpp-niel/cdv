@@ -55,7 +55,7 @@ namespace cdv::scl
 
         [[nodiscard]] CodomainType operator()(const DomainType& x) const noexcept
         {
-            const auto transform = [&](const auto x) { return (x > 0) ? s_log(x) : -s_log(-x); };
+            const auto transform = [&](const auto v) { return (v > 0) ? s_log(v) : -s_log(-v); };
             return detail::apply_continuous_scaling(domain_, codomain_, properties_.interpolate, transform,
                                                     properties_.clamp, x);
         }

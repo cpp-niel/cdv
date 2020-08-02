@@ -98,8 +98,8 @@ namespace cdv
 
         int get_value(const node& n)
         {
-            return n.value ? n.value : ranges::accumulate(n.subnodes, 0, [](const int acc, const node& n) {
-                return acc + get_value(n);
+            return n.value ? n.value : ranges::accumulate(n.subnodes, 0, [](const int acc, const node& subnode) {
+                return acc + get_value(subnode);
             });
         }
 

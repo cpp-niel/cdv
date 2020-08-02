@@ -12,7 +12,7 @@ namespace cdv
         using value_type = T;
 
         constexpr vec2() = default;
-        constexpr vec2(const value_type x, const value_type y) : x(x), y(y) {}
+        constexpr vec2(const value_type x_value, const value_type y_value) : x(x_value), y(y_value) {}
         explicit constexpr vec2(const std::pair<value_type, value_type> p) : x(p.first), y(p.second) {}
 
         value_type x = value_type(0);

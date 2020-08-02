@@ -60,6 +60,8 @@ function(set_project_warnings project_name)
       -Wdouble-promotion # warn if float is implicit promoted to double
       -Wformat=2 # warn on security issues around functions that format output
                  # (ie printf)
+      -Wno-missing-field-initializers # do NOT warn on missing field initializers - the usability of the
+                 # entire library depends on this
   )
 
   if (WARNINGS_AS_ERRORS)

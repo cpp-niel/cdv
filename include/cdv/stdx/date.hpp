@@ -86,6 +86,8 @@
 #   pragma warning(disable : 4127)
 #endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wuseless-cast"
 
 // The namespace name has been modified for consistency within the cdv project. This does not
 // imply in any way that any of the contents of this file have been developed within the
@@ -7938,6 +7940,7 @@ scan_keyword(std::basic_istream<CharT, Traits>& is, FwdIter kb, FwdIter ke)
                      detail::get_units<CharT>(typename Period::type{});
     }
 
+#pragma GCC diagnostic pop
 }  // namespace cdv::date  [[modified from original (see above)]]
 
 #ifdef _MSC_VER

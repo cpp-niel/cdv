@@ -14,12 +14,6 @@ namespace cdv::elem
     template <stdx::range_of<pixels> XRange, stdx::range_of<pixels> YRange>
     struct area
     {
-        area(const XRange& xs, const YRange& ys, fill_properties fill)
-            : xs(xs), ys(ys), fill(std::move(fill))
-        {
-            if (ranges::distance(xs) != ranges::distance(ys))
-                throw std::invalid_argument("The number of x and y coordinates that define an area must be equal");
-        }
         XRange xs;
         YRange ys;
         fill_properties fill;

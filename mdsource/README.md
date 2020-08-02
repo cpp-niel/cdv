@@ -36,12 +36,14 @@ pending standard library features - notably [fmt](https://github.com/fmtlib/fmt)
 The interfaces will undergo major changes. The library will be cut into
 modules as module support becomes available. *cdv* also depends on another C++20 library
 [mfl](https://github.com/cpp-niel/mfl) which faces some similar issues. If you are
-using a very recent Clang or gcc version and have decent experience with CMake and 
+using a recent gcc version (> 10.1) and have decent experience with CMake and 
 vcpkg, then you may be able to build and run *mfl* and *cdv*. Build instructions are 
 still woefully missing. And above all, despite all the unit and approval testing,
 there will be many bugs waiting to be discovered.  
 
-Currently, neither *mfl* nor *cdv* build on MSVC due to pending C++20 features. 
+Currently, neither *mfl* nor *cdv* build on MSVC due to multiple pending C++20 features. *cdv*
+does not build on Clang due to the lack of 
+[CTAD for aggregates](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1816r0.pdf).
 
 toc
 

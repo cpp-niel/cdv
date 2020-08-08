@@ -8,6 +8,7 @@ Root directory of the cdv library
 | [elem](./elem.md) | Definition of renderable elements and associated functionality |
 | [core](./core.md) | Core components of the *cdv* library |
 | [fig](./fig.md) |  |
+| [fnt](./fnt.md) | Properties and enumerations related to the rendering of fonts |
 | [scl](./scl.md) | Definition of *cdv* scales |
 
 

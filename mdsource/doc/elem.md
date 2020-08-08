@@ -670,14 +670,37 @@ struct cdv::elem::line;
 
 
 
+An `elem::line` in *cdv* is a line in the sense of a line plot and is
+generally made up of several segments defined by ranges of x and y
+coordinates. For instance - assuming the existence of x and y scales,
+axes and some data - the line defined here:
+
+mdinject: tutorial-line-plot
+
+will take that data and plot it against x values from 0 to 10. The result would
+look like this:
+
+![](./../tests/approval_tests/cdv/fig/approved_files/tutorial.line_plot.approved.svg)
+
+
 
 ### vline
 
-__MISSING__
+A convenience function for creating a vertical line
 
 ```c++
 cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>> vline(const cdv::pixels x, const cdv::pixels y0, const cdv::pixels y1, cdv::elem::line_properties properties)
 ```
+
+> This function is essentially just a convenient way of constructing an `elem::line` for the commonly arising case that you want a single vertical line.
+
+|Argument|Description|
+| :-- | :-- |
+| x | The x value of the line |
+| y0 | The starting y value of the line |
+| y1 | The ending y value of the line |
+| properties | The properties of the line |
+
 
 
 
@@ -688,27 +711,21 @@ cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std:
 
 ### hline
 
-__MISSING__
+A convenience function for creating a horizontal line
 
 ```c++
 cdv::elem::line<std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>, std::__1::array<mfl::detail::quantity<mfl::pixels_tag>, 2>> hline(const cdv::pixels x0, const cdv::pixels x1, const cdv::pixels y, cdv::elem::line_properties properties)
 ```
 
+> This function is essentially just a convenient way of constructing an `elem::line` for the commonly arising case that you want a single horizontal line.
 
+|Argument|Description|
+| :-- | :-- |
+| x0 | The starting x value of the line |
+| x1 | The ending x value of the line |
+| y | The y value of the line |
+| properties | The properties of the line |
 
-
-<br />
-
-
-
-### draw
-
-__MISSING__
-
-```c++
-template <class XRange, class YRange, typename Surface>
-void draw(const line<XRange, YRange> & ln, Surface & surface, const cdv::pixel_pos &)
-```
 
 
 
@@ -771,29 +788,25 @@ struct cdv::elem::scatter;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| properties | `cdv::elem::symbol_properties` | __MISSING__ |
-| sizes | `SizeRange` | __MISSING__ |
-| xs | `XRange` | __MISSING__ |
-| ys | `YRange` | __MISSING__ |
+| properties | `cdv::elem::symbol_properties` | The properties of the symbols used in the scatter |
+| sizes | `SizeRange` | The sizes of the symbols. |
+| xs | `XRange` | The x coordinates of the symbols |
+| ys | `YRange` | The y coordinates of the symbols |
 
 
 
 
+*cdv* supports the notion of a [symbol](#symbol). There is a common kind of 
+visualization - a scatter plot - where a (sometimes large) number of symbols all 
+share the same properties. Like in the following visualization:
 
-### draw
+![](./../tests/approval_tests/cdv/fig/approved_files/scatter_charts.scatter_charts.simple_random_scatter.approved.svg)
 
-__MISSING__
+This could be done in *cdv* using the `elem::symbol` 
+type, but it is much more efficient to group all the symbols together in a
+single *scatter* element.
 
-```c++
-template <class XRange, class YRange, typename Surface, class SizeRange>
-void draw(const scatter<XRange, YRange, SizeRange> & s, Surface & surface, const cdv::pixel_pos &)
-```
-
-
-
-
-<br />
-
+See [symbol properties](#symbol_properties) for an overview of the supported symbol styles.
 
 
 ## symbol.hpp
@@ -815,6 +828,20 @@ struct cdv::elem::symbol;
 | size | `cdv::points` | __MISSING__ |
 
 
+
+
+Symbols are shapes that can be used to represent different categories and are commonly
+used in scatter plots. They correspond to what *matplotlib* refers to as a *marker*.
+`elem::symbol` in *cdv* represents an individual symbol. If you would like to represent
+many symbols which all share the same properties, then consider using the
+[scatter](#scatter) type instead.
+
+Symbols can be used in many different ways. For instance the round dots where the
+branches meet the timeline in the following plot are symbols:
+
+![](./../tests/approval_tests/cdv/fig/approved_files/fig.time_line.approved.svg)
+
+See [symbol properties](#symbol_properties) for an overview of the supported symbol styles.
 
 
 

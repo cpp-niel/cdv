@@ -109,13 +109,3 @@ struct cdv::fnt::font_properties;
 The `font_properties` data structure contains the information that is used when selecting a font. The actual font selection uses *fontconfig* internally, so it is important that the system that *cdv* is running on supports *fontconfig*. On many platforms this should be a given. On some you may have to set an environment variable to let *fontconfig* know where to find the configuration information (e.g. on MacOS something along the lines of `FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig`).
 
 
-### formatter<cdv::fnt::font_properties>
-
-```c++
-
-struct fmt::v6::formatter;
-```
-
-
-
-

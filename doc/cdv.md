@@ -14,7 +14,9 @@ Root directory of the cdv library
 
 
 
-*cdv* is split into the four main modules listed here. Generally, all
+*cdv* is split into the four main modules listed here (`fnt` just 
+contains some font related properties and cannot be considered 
+one of the main modules). Generally, all
 four modules will be required to create a data visualization using
 *cdv*. Things like units and colors which reside in the `core` module
 can be found directly in the `cdv` namespace, whereas elements, scales

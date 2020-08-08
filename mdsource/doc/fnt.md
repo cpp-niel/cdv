@@ -119,19 +119,3 @@ struct fmt::v6::formatter;
 
 
 
-#### format
-
-__MISSING__
-
-```c++
-template <typename FormatContext>
-auto format(cdv::fnt::font_properties c, FormatContext & ctx)
-```
-
-
-
-
-<br />
-
-
-

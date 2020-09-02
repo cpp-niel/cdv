@@ -30,7 +30,7 @@ jobs:
       working-directory: ${{runner.workspace}}
       run: |
         export CXX="g++-10" CC="gcc-10"
-        git clone https://github.com/Microsoft/vcpkg.git
+        git clone https://github.com/cpp-niel/vcpkg.git
         cd vcpkg
         ./bootstrap-vcpkg.sh -disableMetrics
         ./vcpkg integrate install

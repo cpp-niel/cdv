@@ -31,8 +31,8 @@ jobs:
       run: |
         export CXX="g++-10" CC="gcc-10"
         git clone https://github.com/cpp-niel/vcpkg.git
-        git checkout add_mfl_port
         cd vcpkg
+        git checkout add_mfl_port
         ./bootstrap-vcpkg.sh -disableMetrics
         ./vcpkg integrate install
         ./vcpkg install range-v3 fmt cairo harfbuzz[glib] freetype doctest mfl

@@ -31,6 +31,7 @@ jobs:
       run: |
         export CXX="g++-10" CC="gcc-10"
         git clone https://github.com/cpp-niel/vcpkg.git
+        git checkout add_mfl_port
         cd vcpkg
         ./bootstrap-vcpkg.sh -disableMetrics
         ./vcpkg integrate install

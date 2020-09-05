@@ -40,3 +40,5 @@ set_property(TARGET unit_tests PROPERTY CXX_STANDARD 20)
 target_include_directories(unit_tests PUBLIC ./../../include ./../../src ./)
 
 target_link_libraries(unit_tests PRIVATE cdv project_warnings project_options doctest::doctest)
+
+add_test(NAME unit_test COMMAND unit_tests)

@@ -124,7 +124,7 @@ namespace cdv
 
         TEST_CASE("with alpha creates copies with modified alpha")
         {
-            CHECK_THROWS([[maybe_unused]] auto x = css4::black.with_alpha(1.5));
+            CHECK_THROWS([] { [[maybe_unused]] auto x = css4::black.with_alpha(1.5); }());
         }
     }
 }

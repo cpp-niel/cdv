@@ -151,14 +151,14 @@
   <use xlink:href="#glyph1-1" x="79.2" y="71.6"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph2-1" x="88.683507" y="65.610417"/>
+  <use xlink:href="#glyph2-1" x="88.661806" y="65.610417"/>
 </g>
 <path style=" stroke:none;fill-rule:nonzero;fill:rgb(17.254902%,62.745098%,17.254902%);fill-opacity:1;" d="M 60 98 L 76 98 L 76 82 L 60 82 L 60 98 "/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
   <use xlink:href="#glyph1-1" x="79.2" y="95.6"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph2-2" x="88.683507" y="89.610417"/>
+  <use xlink:href="#glyph2-2" x="88.661806" y="89.610417"/>
 </g>
 </g>
 </svg>

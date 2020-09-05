@@ -72,19 +72,19 @@
 </defs>
 <g id="surface0">
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-1" x="96.796875" y="174.5"/>
-  <use xlink:href="#glyph0-2" x="128.53125" y="174.5"/>
-  <use xlink:href="#glyph0-3" x="156.015625" y="174.5"/>
-  <use xlink:href="#glyph0-4" x="186.65625" y="174.5"/>
-  <use xlink:href="#glyph0-5" x="200.546875" y="174.5"/>
-  <use xlink:href="#glyph0-6" x="231.3125" y="174.5"/>
-  <use xlink:href="#glyph0-7" x="257.359375" y="174.5"/>
-  <use xlink:href="#glyph0-8" x="273.25" y="174.5"/>
-  <use xlink:href="#glyph0-7" x="312.234375" y="174.5"/>
-  <use xlink:href="#glyph0-9" x="328.125" y="174.5"/>
-  <use xlink:href="#glyph0-10" x="362.328125" y="174.5"/>
-  <use xlink:href="#glyph0-5" x="390.390625" y="174.5"/>
-  <use xlink:href="#glyph0-6" x="421.15625" y="174.5"/>
+  <use xlink:href="#glyph0-1" x="96.804688" y="174.5"/>
+  <use xlink:href="#glyph0-2" x="128.539062" y="174.5"/>
+  <use xlink:href="#glyph0-3" x="156.023438" y="174.5"/>
+  <use xlink:href="#glyph0-4" x="186.664062" y="174.5"/>
+  <use xlink:href="#glyph0-5" x="200.554688" y="174.5"/>
+  <use xlink:href="#glyph0-6" x="231.320312" y="174.5"/>
+  <use xlink:href="#glyph0-7" x="257.367188" y="174.5"/>
+  <use xlink:href="#glyph0-8" x="273.257812" y="174.5"/>
+  <use xlink:href="#glyph0-7" x="312.242188" y="174.5"/>
+  <use xlink:href="#glyph0-9" x="328.132812" y="174.5"/>
+  <use xlink:href="#glyph0-10" x="362.335938" y="174.5"/>
+  <use xlink:href="#glyph0-5" x="390.382812" y="174.5"/>
+  <use xlink:href="#glyph0-6" x="421.148438" y="174.5"/>
 </g>
 <path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 40 30 L 620 30 " transform="matrix(1,0,0,-1,0,480)"/>
 <path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 40 30 L 40 24 M 98 30 L 98 24 M 156 30 L 156 24 M 214 30 L 214 24 M 272 30 L 272 24 M 330 30 L 330 24 M 388 30 L 388 24 M 446 30 L 446 24 M 504 30 L 504 24 M 562 30 L 562 24 M 620 30 L 620 24 " transform="matrix(1,0,0,-1,0,480)"/>

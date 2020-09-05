@@ -44,7 +44,7 @@ namespace cdv::elem
     };
 
     template <::ranges::range DataRange, typename Data = ::ranges::range_value_type_t<DataRange>>
-    cppcoro::generator<pie_slice<Data>> pie_slices(const DataRange& inputs,
+    cppcoro::generator<pie_slice<Data>> pie_slices(const DataRange copy_of_inputs,
                                                    const ranges::invocable<Data> auto& get_value,
                                                    const pie_geometry& geometry = {})
     {
@@ -52,12 +52,12 @@ namespace cdv::elem
         static_assert(std::is_convertible_v<value_type, double>,
                       "The values used to generate pie slices must be convertible to double");
 
-        const auto num_inputs = static_cast<double>(ranges::distance(inputs));
+        const auto num_inputs = static_cast<double>(ranges::distance(copy_of_inputs));
 
         if (num_inputs > 0.0)
         {
             const auto sum = ranges::accumulate(
-                inputs, 0.0, [&](const double acc, const Data& x) { return acc + static_cast<double>(get_value(x)); });
+                copy_of_inputs, 0.0, [&](const double acc, const Data& x) { return acc + static_cast<double>(get_value(x)); });
 
             constexpr auto full_circle = radians(stdx::numbers::tau);
             const auto total_range = std::clamp(geometry.end_angle - geometry.start_angle, -full_circle, full_circle);
@@ -66,7 +66,7 @@ namespace cdv::elem
 
 
             auto start_angle = geometry.start_angle;
-            for (const auto& input : inputs)
+            for (const auto& input : copy_of_inputs)
             {
                 const auto end_angle = start_angle + static_cast<double>(get_value(input)) * unit_range;
                 co_yield pie_slice<Data>{input, start_angle, end_angle, padding};

@@ -83,7 +83,7 @@ namespace cdv::scl
         {
             const auto s = band_scale(std::vector{'a', 'b', 'c'}, 10.0, 40.0);
             CHECK(s('a'));
-            CHECK_THROWS([[maybe_unused]] auto x = s('d'));
+            CHECK_THROWS([&] { [[maybe_unused]] auto x = s('d'); }());
         }
 
         TEST_CASE("band scale domain can be of non-numeric type")
@@ -92,7 +92,7 @@ namespace cdv::scl
             CHECK_EQ(s(tab::green), 20.0);
             CHECK_EQ(s(tab::orange), 60.0);
             CHECK_EQ(s(tab::blue), 100.0);
-            CHECK_THROWS([[maybe_unused]] auto x = s(tab::brown));
+            CHECK_THROWS([&] { [[maybe_unused]] auto x = s(tab::brown); }());
         }
 
         TEST_CASE("band scale codomain can be unit type")

@@ -41,12 +41,6 @@ namespace cdv::elem
             CHECK_EQ(a.ys[5], 7_px);
         }
 
-        TEST_CASE("fill between with second line throws if the number of points in the second and first lines differ")
-        {
-            CHECK_THROWS([[maybe_unused]] auto a = fill_between(std::array{1_px, 2_px}, std::array{3_px, 4_px},
-                                                                std::array{4_px, 5_px, 6_px}));
-        }
-
         TEST_CASE("default area fills but does not draw outline")
         {
             const auto a = fill_between(std::array{1_px, 2_px, 3_px}, std::array{4_px, 5_px, 6_px}, 0_px);

@@ -15,12 +15,6 @@ namespace cdv::elem
         symbol_properties properties;
     };
 
-    template <typename XRange, typename YRange>
-    scatter(const XRange&, const YRange&, symbol_properties = {}) -> scatter<XRange, YRange, std::vector<points>>;
-
-    template <typename XRange, typename YRange, typename SizeRange>
-    scatter(const XRange&, const YRange&, const SizeRange&, symbol_properties = {}) -> scatter<XRange, YRange, SizeRange>;
-
     template <ranges::range XRange, ranges::range YRange, typename Surface, stdx::range_of<points> SizeRange>
     void draw(const scatter<XRange, YRange, SizeRange>& s, Surface& surface, const pixel_pos&)
     {

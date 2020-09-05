@@ -156,8 +156,8 @@ namespace cdv::scl
 
         auto snap_months() const
         {
-            auto ym0 = date::year_month_day(time_point_cast<date::days>(domain_[0]));
-            auto ym1 = date::year_month_day(time_point_cast<date::days>(domain_[1]));
+            auto ym0 = date::year_month_day(std::chrono::time_point_cast<date::days>(domain_[0]));
+            auto ym1 = date::year_month_day(std::chrono::time_point_cast<date::days>(domain_[1]));
             if (domain_[0] < domain_[1])
                 ym1 += date::months{1};
             else
@@ -170,8 +170,8 @@ namespace cdv::scl
 
         auto snap_quarters() const
         {
-            auto ym0 = date::year_month_day(time_point_cast<date::days>(domain_[0]));
-            auto ym1 = date::year_month_day(time_point_cast<date::days>(domain_[1]));
+            auto ym0 = date::year_month_day(std::chrono::time_point_cast<date::days>(domain_[0]));
+            auto ym1 = date::year_month_day(std::chrono::time_point_cast<date::days>(domain_[1]));
             if (domain_[0] < domain_[1])
             {
                 ym0 -= date::months{((static_cast<unsigned>(ym0.month()) - 1) % 3)};
@@ -190,8 +190,8 @@ namespace cdv::scl
 
         auto snap_years() const
         {
-            auto ym0 = date::year_month_day(time_point_cast<date::days>(domain_[0]));
-            auto ym1 = date::year_month_day(time_point_cast<date::days>(domain_[1]));
+            auto ym0 = date::year_month_day(std::chrono::time_point_cast<date::days>(domain_[0]));
+            auto ym1 = date::year_month_day(std::chrono::time_point_cast<date::days>(domain_[1]));
             if (domain_[0] < domain_[1])
                 ym1 += date::years{1};
             else

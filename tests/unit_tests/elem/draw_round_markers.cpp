@@ -16,15 +16,15 @@ namespace cdv::elem::detail
 
         struct circle_t
         {
-            circle_t(const pixel_pos pos, const pixels radius) : pos(pos), radius(radius) {}
+            circle_t(const pixel_pos pos, const pixels rad) : position(pos), radius(rad) {}
 
-            pixel_pos pos;
+            pixel_pos position;
             pixels radius;
         };
 
         bool operator==(const circle_t& lhs, const circle_t& rhs)
         {
-            return lhs.pos == rhs.pos && lhs.radius == rhs.radius;
+            return lhs.position == rhs.position && lhs.radius == rhs.radius;
         }
 
         struct circle_gatherer

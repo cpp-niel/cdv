@@ -12,7 +12,7 @@ namespace cdv::elem
     {
         TEST_CASE("draw with default properties")
         {
-            const auto s = scatter(std::array{1_px, 2_px, 3_px}, std::array{4_px, 5_px, 6_px});
+            const auto s = scatter{.xs = std::array{1_px, 2_px, 3_px}, .ys = std::array{4_px, 5_px, 6_px}};
             auto result = test::mock_surface();
             draw(s, result, {});
             CHECK_EQ(result.draw_arc_counter(), 3);
@@ -21,7 +21,9 @@ namespace cdv::elem
 
         TEST_CASE("draw with line symbol")
         {
-            const auto s = scatter(std::array{1_px, 2_px, 3_px}, std::array{4_px, 5_px, 6_px}, {.style = 'x'});
+            const auto s = scatter{.xs = std::array{1_px, 2_px, 3_px},
+                                   .ys = std::array{4_px, 5_px, 6_px},
+                                   .properties = symbol_properties{.style = 'x'}};
             auto result = test::mock_surface();
             draw(s, result, {});
             CHECK_EQ(result.draw_arc_counter(), 0);
@@ -30,8 +32,10 @@ namespace cdv::elem
 
         TEST_CASE("draw with varying sizes")
         {
-            const auto s = scatter(std::array{1_px, 2_px, 3_px}, std::array{4_px, 5_px, 6_px},
-                                   std::array{7_pt, 8_pt, 9_pt}, {.style = '*'});
+            const auto s = scatter{.xs = std::array{1_px, 2_px, 3_px},
+                                   .ys = std::array{4_px, 5_px, 6_px},
+                                   .sizes = std::array{7_pt, 8_pt, 9_pt},
+                                   .properties = symbol_properties{.style = '*'}};
             auto result = test::mock_surface();
             draw(s, result, {});
             CHECK_EQ(result.draw_arc_counter(), 0);

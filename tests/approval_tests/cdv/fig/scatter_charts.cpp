@@ -45,7 +45,7 @@ namespace cdv
 
             const auto scatter = elem::scatter{.xs = xs | rv::transform(x),
                                                .ys = ys | rv::transform(y),
-                                               .properties = {.color = tab::blue, .style = 'X'}};
+                                               .properties = elem::symbol_properties{.color = tab::blue, .style = 'X'}};
 
             test::approve_svg(fig::render_to_svg_string({}, x_axis, y_axis, scatter));
         }

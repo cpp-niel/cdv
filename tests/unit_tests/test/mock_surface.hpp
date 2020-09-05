@@ -26,6 +26,7 @@ namespace cdv::test
         void stroke() { stroke_counter_++; }
         void fill() { fill_counter_++; }
         void set_line_properties(const elem::line_properties&) {}
+        void set_line_properties_no_color(const elem::line_properties&) {}
         void set_text_properties(const elem::text_properties&) {}
 
         void gradient_fill_rectangle(const pixel_pos, const pixel_pos,

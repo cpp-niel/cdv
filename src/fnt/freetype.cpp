@@ -26,7 +26,7 @@ namespace cdv::fnt
         {
             FT_Face result = nullptr;
             if (const auto err = FT_New_Face(&ft_lib, font_path.string().c_str(), FT_Long(index), &result); err != 0)
-                throw std::runtime_error(ft_error_string(err));
+                throw std::runtime_error("Failed to load font '" + font_path.string() + "': " + ft_error_string(err));
 
             return result;
         }

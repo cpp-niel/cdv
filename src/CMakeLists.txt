@@ -33,7 +33,7 @@ target_link_libraries(cdv PUBLIC
         ${CMAKE_THREAD_LIBS_INIT}
         )
 
-target_link_libraries(cdv PRIVATE
+target_link_libraries(cdv PUBLIC
         project_warnings
         project_options
         unofficial::cairo::cairo

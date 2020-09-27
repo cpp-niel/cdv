@@ -266,7 +266,7 @@ namespace cdv
 
         SUBCASE("plot with different y axes")
         {
-            constexpr auto frame = fig::frame(640_px, 480_px, 80_px, 50_px, 30_px, 30_px, 100_dpi);
+            constexpr auto frame = fig::frame{.left_margin = 80_px, .right_margin = 50_px};
             const auto x = scl::linear_scale(0.0, 10.0, frame.x0(), frame.x1());
             const auto x_axis = elem::bottom_axis(x, frame.y0());
 

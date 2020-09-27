@@ -102,7 +102,7 @@ namespace cdv
 
     TEST_CASE("frame terminology")
     {
-        const auto frame = fig::frame(640_px, 480_px, 70_px, 30_px, 30_px, 30_px, 100_dpi);
+        const auto frame = fig::frame{.left_margin = 70_px, .right_margin = 30_px};
         const auto x = scl::point_scale(std::array{"x0", "x_center", "x1"}, frame.x0(), frame.x1());
         const auto y = scl::point_scale(std::array{"y0", "y_center", "y1"}, frame.y0(), frame.y1());
         const auto x_axis = elem::bottom_axis(x, frame.y0(), {.grid_length = frame.inner_height() * 0.5});
@@ -111,25 +111,25 @@ namespace cdv
         const auto right_line = elem::vline(frame.x1(), frame.y0(), frame.y1());
 
         const auto center_marker = elem::symbol{.position = frame.center(), .properties = {.style = 'x'}};
-        const auto center_text = elem::text{.string = "center", .pos = {frame.x_center(), frame.height() * 0.525}};
+        const auto center_text = elem::text{.string = "center", .pos = {frame.x_center(), frame.height * 0.525}};
 
-        const auto inner_hline = elem::hline(frame.x0(), frame.x1(), frame.height() * 0.75, {.color = tab::blue});
+        const auto inner_hline = elem::hline(frame.x0(), frame.x1(), frame.height * 0.75, {.color = tab::blue});
         const auto inner_hline_text = elem::text{.string = "inner_width",
-                                                 .pos = {frame.x_center(), frame.height() * 0.77},
+                                                 .pos = {frame.x_center(), frame.height * 0.77},
                                                  .properties = {.color = tab::blue}};
 
-        const auto inner_vline = elem::vline(frame.width() * 0.75, frame.y0(), frame.y1(), {.color = tab::blue});
+        const auto inner_vline = elem::vline(frame.width * 0.75, frame.y0(), frame.y1(), {.color = tab::blue});
         const auto inner_vline_text = elem::text{.string = "inner_height",
-                                                 .pos = {frame.width() * 0.81, frame.y_center()},
+                                                 .pos = {frame.width * 0.81, frame.y_center()},
                                                  .properties = {.color = tab::blue}};
 
-        const auto width_hline = elem::hline(0_px, frame.width(), frame.height() * 0.25, {.color = tab::red});
+        const auto width_hline = elem::hline(0_px, frame.width, frame.height * 0.25, {.color = tab::red});
         const auto width_hline_text = elem::text{
-            .string = "width", .pos = {frame.x_center(), frame.height() * 0.27}, .properties = {.color = tab::red}};
+            .string = "width", .pos = {frame.x_center(), frame.height * 0.27}, .properties = {.color = tab::red}};
 
-        const auto height_vline = elem::vline(frame.width() * 0.25, 0_px, frame.height(), {.color = tab::red});
+        const auto height_vline = elem::vline(frame.width * 0.25, 0_px, frame.height, {.color = tab::red});
         const auto height_vline_text = elem::text{
-            .string = "height", .pos = {frame.width() * 0.28, frame.y_center()}, .properties = {.color = tab::red}};
+            .string = "height", .pos = {frame.width * 0.28, frame.y_center()}, .properties = {.color = tab::red}};
 
         test::approve_svg(fig::render_to_svg_string(frame.dimensions(), x_axis, y_axis, top_line, right_line,
                                                     center_marker, center_text, inner_hline, inner_hline_text,

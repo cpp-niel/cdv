@@ -210,7 +210,7 @@ namespace cdv
                                          std::pair{60, "margarine"}, std::pair{90, "sugar"}};
             const auto color = scl::ordinal_scale(data | rv::values, scheme::dark2);
             auto slices = elem::pie_slices(data, [](const auto p) { return p.first; });
-            const auto arcs = slices | rv::transform([&](const auto& slice) {
+            const auto arcs = rv::all(slices) | rv::transform([&](const auto& slice) {
                                   return elem::arc{.center = frame.center(),
                                                    .outer_radius = frame.inner_height() / 2.0,
                                                    .start_angle = slice.start_angle,

@@ -38,15 +38,15 @@ namespace cdv::elem
 
     struct pie_geometry
     {
-        radians start_angle;
+        radians start_angle{0.0};
         radians end_angle{stdx::numbers::tau};
-        radians pad_angle;
+        radians pad_angle{0.0};
     };
 
     template <::ranges::range DataRange, typename Data = ::ranges::range_value_type_t<DataRange>>
     cppcoro::generator<pie_slice<Data>> pie_slices(const DataRange inputs,
-                                                   const ranges::invocable<Data> auto& get_value,
-                                                   const pie_geometry& geometry = {})
+                                                   const ranges::invocable<Data> auto get_value,
+                                                   const pie_geometry geometry = {})
     {
         using value_type = decltype(get_value(std::declval<Data>()));
         static_assert(std::is_convertible_v<value_type, double>,

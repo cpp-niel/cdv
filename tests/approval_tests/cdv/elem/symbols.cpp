@@ -24,7 +24,7 @@ namespace cdv::elem
 
     TEST_CASE("all symbols")
     {
-        const auto frame = fig::frame(480_px, 360_px);
+        const auto frame = fig::frame{.width = 480_px, .height = 360_px};
         const auto symbols = std::array<char, 37>{'.', ',', 'o', 'x', '+', '1', '2', '3', '4', 'v', '^', '<',
                                                   '>', '8', 's', 'p', 'P', '*', 'h', 'H', 'X', 'D', 'd', '|',
                                                   '_', 0,   1,   2,   3,   4,   5,   6,   7,   8,   9,   10, 11};

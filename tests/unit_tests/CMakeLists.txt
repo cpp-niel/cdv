@@ -20,6 +20,7 @@ add_executable (unit_tests
         elem/swatch_legend.cpp
         elem/symbol.cpp
         elem/text.cpp
+        fig/frame.cpp
         fnt/font_properties.cpp
         fnt/font_weights.cpp
         fnt/freetype.cpp

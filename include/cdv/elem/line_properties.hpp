@@ -50,7 +50,7 @@ namespace cdv::elem
     struct line_properties
     {
         rgba_color color = css4::black;
-        points width{1.5};
+        points width{1.0};
         cap_style cap = cap_style::butt;
         join_style join = join_style::miter;
         line_type style{"-"};

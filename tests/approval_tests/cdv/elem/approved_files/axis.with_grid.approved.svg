@@ -32,8 +32,8 @@
 </g>
 </defs>
 <g id="surface0">
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 500 150 " transform="matrix(1,0,0,-1,0,480)"/>
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 100 144 M 140 150 L 140 144 M 180 150 L 180 144 M 220 150 L 220 144 M 260 150 L 260 144 M 300 150 L 300 144 M 340 150 L 340 144 M 380 150 L 380 144 M 420 150 L 420 144 M 460 150 L 460 144 M 500 150 L 500 144 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 500 150 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 100 144 M 140 150 L 140 144 M 180 150 L 180 144 M 220 150 L 220 144 M 260 150 L 260 144 M 300 150 L 300 144 M 340 150 L 340 144 M 380 150 L 380 144 M 420 150 L 420 144 M 460 150 L 460 144 M 500 150 L 500 144 " transform="matrix(1,0,0,-1,0,480)"/>
 <path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(50.196078%,50.196078%,50.196078%);stroke-opacity:1;stroke-dasharray:1,1.65;stroke-miterlimit:10;" d="M 100 150 L 100 450 M 140 150 L 140 450 M 180 150 L 180 450 M 220 150 L 220 450 M 260 150 L 260 450 M 300 150 L 300 450 M 340 150 L 340 450 M 380 150 L 380 450 M 420 150 L 420 450 M 460 150 L 460 450 M 500 150 L 500 450 " transform="matrix(1,0,0,-1,0,480)"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
   <use xlink:href="#glyph0-1" x="91.171875" y="350"/>
@@ -90,8 +90,8 @@
   <use xlink:href="#glyph0-2" x="498.234375" y="350"/>
   <use xlink:href="#glyph0-1" x="501.765625" y="350"/>
 </g>
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 100 450 " transform="matrix(1,0,0,-1,0,480)"/>
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 94 150 M 100 225 L 94 225 M 100 300 L 94 300 M 100 375 L 94 375 M 100 450 L 94 450 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 100 450 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 94 150 M 100 225 L 94 225 M 100 300 L 94 300 M 100 375 L 94 375 M 100 450 L 94 450 " transform="matrix(1,0,0,-1,0,480)"/>
 <path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(50.196078%,50.196078%,50.196078%);stroke-opacity:1;stroke-dasharray:1,1.65;stroke-miterlimit:10;" d="M 100 150 L 500 150 M 100 225 L 500 225 M 100 300 L 500 300 M 100 375 L 500 375 M 100 450 L 500 450 " transform="matrix(1,0,0,-1,0,480)"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
   <use xlink:href="#glyph0-1" x="70.34375" y="334"/>

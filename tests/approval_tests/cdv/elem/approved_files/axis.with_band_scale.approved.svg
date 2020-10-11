@@ -17,8 +17,8 @@
 </g>
 </defs>
 <g id="surface0">
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 500 150 " transform="matrix(1,0,0,-1,0,480)"/>
-<path style="fill:none;stroke-width:2.083333;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 166.667969 150 L 166.667969 144 M 300 150 L 300 144 M 433.332031 150 L 433.332031 144 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 100 150 L 500 150 " transform="matrix(1,0,0,-1,0,480)"/>
+<path style="fill:none;stroke-width:1.388889;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 166.667969 150 L 166.667969 144 M 300 150 L 300 144 M 433.332031 150 L 433.332031 144 " transform="matrix(1,0,0,-1,0,480)"/>
 <g style="fill:rgb(69.803922%,13.333333%,13.333333%);fill-opacity:1;">
   <use xlink:href="#glyph0-1" x="154.635417" y="364"/>
 </g>

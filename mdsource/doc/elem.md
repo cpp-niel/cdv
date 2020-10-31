@@ -131,7 +131,7 @@ struct cdv::elem::symbol_properties;
 
 The symbol styles provided by *cdv* are based on the marker styles that will
 be familiar to matplotlib users. They are specified in the form of `char` values. For 
-instance, the syle value `'*'` represents a five pointed star symbol. Here is a complete
+instance, the style value `'*'` represents a five pointed star symbol. Here is a complete
 list of the supported symbols and their corresponding `char` values:
 
 ![](./../tests/approval_tests/cdv/elem/approved_files/symbols.all_symbols.approved.svg)
@@ -834,7 +834,7 @@ Symbols are shapes that can be used to represent different categories and are co
 used in scatter plots. They correspond to what *matplotlib* refers to as a *marker*.
 `elem::symbol` in *cdv* represents an individual symbol. If you would like to represent
 many symbols which all share the same properties, then consider using the
-[scatter](#scatter) type instead.
+[scatter](#scatterhpp) type instead.
 
 Symbols can be used in many different ways. For instance the round dots where the
 branches meet the timeline in the following plot are symbols:
@@ -842,22 +842,6 @@ branches meet the timeline in the following plot are symbols:
 ![](./../tests/approval_tests/cdv/fig/approved_files/fig.time_line.approved.svg)
 
 See [symbol properties](#symbol_properties) for an overview of the supported symbol styles.
-
-
-
-### draw
-
-__MISSING__
-
-```c++
-template <typename Surface>
-void draw(const cdv::elem::symbol & s, Surface & surface, const cdv::pixel_pos)
-```
-
-
-
-
-<br />
 
 
 
@@ -875,18 +859,28 @@ struct cdv::elem::axis;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| orientation | `cdv::elem::axis_orientation` | __MISSING__ |
-| position | `cdv::elem::axis::codomain_t` | __MISSING__ |
-| properties | `axis_properties<cdv::elem::axis::codomain_t>` | __MISSING__ |
-| scale | `Scale` | __MISSING__ |
+| orientation | `cdv::elem::axis_orientation` | The [axis orientation](#axis_orientation) governs both whether the axis is vertical or horizontal and where the ticks are placed relative to the spine of the axis. |
+| position | `cdv::elem::axis::codomain_t` | For a horizontal axis, this is the vertical position of the axis. For a vertical axis, this is the horizontal position of the axis. |
+| properties | `axis_properties<cdv::elem::axis::codomain_t>` | Properties governing the appearance of the scale. |
+| scale | `Scale` | The scale which the axis represents. |
 
 
 |Nested Typedef|Type|Description|
 | :-- | :-- | :-- |
-| codomain_t | `typename Scale::codomain_t` | __MISSING__ |
+| codomain_t | `typename Scale::codomain_t` | The type that the axis scale maps to. |
 
 
 
+
+`axis` is the basic template type that describes either a vertical or horizontal 
+line with optional tick marks and labels. Normally, it is convenient to
+create an instance of `axis` using one of the functions [top axis](#top_axis),
+[right axis](#right_axis), [bottom axis](#bottom_axis) or [left axis](#left_axis).
+
+An `axis` is templated on the type of scale that it relates to and will produce
+different results based on the type of scale that it uses. For instance, a
+[linear scale](#./scl.md#linear_sale) will attempt to spread ticks evenly over the space available along
+the axis and a [band scale](./scl.md#band_scale) will place a tick in the center of each band.
 
 
 ### axis_properties<Codomain>
@@ -898,17 +892,20 @@ struct cdv::elem::axis_properties;
 
 |Field|Type|Description|
 | :-- | :-- | :-- |
-| grid | `cdv::elem::line_properties` | __MISSING__ |
-| grid_length | `Codomain` | __MISSING__ |
-| num_ticks_hint | `size_t` | __MISSING__ |
-| spine | `cdv::elem::line_properties` | __MISSING__ |
-| tick_label_offset | `cdv::pixel_pos` | __MISSING__ |
-| tick_labels | `cdv::elem::text_properties` | __MISSING__ |
-| tick_length | `Codomain` | __MISSING__ |
-| ticks | `cdv::elem::line_properties` | __MISSING__ |
+| grid | `cdv::elem::line_properties` | The line properties of the lines which make up the grid of an axis. The grid of an axis is made up of lines extending in the opposite direction to the ticks. |
+| grid_length | `Codomain` | How far the grid lines extend. |
+| num_ticks_hint | `size_t` | A hint as to the number of ticks that the axis should be marked with. Depending on the type of axis, this number will be interpreted differently. It is only to be seen as a hint and the actual number of ticks may differ. |
+| spine | `cdv::elem::line_properties` | The line properties of the line which makes up the spine of the axis. |
+| tick_label_offset | `cdv::pixel_pos` | The offset between the tick labels and the ticks. |
+| tick_labels | `cdv::elem::text_properties` | The properties of the text used to draw the tick labels themselves. |
+| tick_length | `Codomain` | The length of the tick marks. |
+| ticks | `cdv::elem::line_properties` | The line properties of the tick marks. |
 
 
 
+
+The `axis_properties` determine the appearance of the various components which make up an 
+axis.
 
 
 ### top_axis

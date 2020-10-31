@@ -918,7 +918,12 @@ struct cdv::elem::axis;
 
 
 `axis` is the basic template type that describes either a vertical or horizontal 
-line with optional tick marks and labels. Normally, it is convenient to
+line with optional grid, tick marks and labels. These are referred to in *cdv* as
+*spine*, *grid*, *ticks* and *labels* as shown here:
+
+![](./../tests/approval_tests/cdv/elem/approved_files/axis.components.approved.svg)
+
+Normally, it is convenient to
 create an instance of `axis` using one of the functions [top axis](#top_axis),
 [right axis](#right_axis), [bottom axis](#bottom_axis) or [left axis](#left_axis).
 
@@ -955,12 +960,21 @@ axis.
 
 ### top_axis
 
-__MISSING__
+Creates a horizontal axis with ticks and labels above the spine
 
 ```c++
 template <typename Scale, typename Codomain>
 auto top_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
 ```
+
+> This is a convenience function for the common case of a horizontal axis rendered at a specific vertical position where the ticks and labels of the axis are positioned above the spine of the axis.
+
+|Argument|Description|
+| :-- | :-- |
+| scale | The scale that the axis relates to. |
+| position | The vertical position of the axis. |
+| properties | The properties of the axis. |
+
 
 
 
@@ -971,12 +985,21 @@ auto top_axis(const Scale & scale, const Codomain & position, const axis_propert
 
 ### right_axis
 
-__MISSING__
+Creates a vertical axis with ticks and labels left of the spine
 
 ```c++
 template <typename Scale, typename Codomain>
 auto right_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
 ```
+
+> This is a convenience function for the common case of a vertical axis rendered at a specific horizontal position where the ticks and labels of the axis are positioned right of the spine of the axis.
+
+|Argument|Description|
+| :-- | :-- |
+| scale | The scale that the axis relates to. |
+| position | The horizontal position of the axis. |
+| properties | The properties of the axis. |
+
 
 
 
@@ -991,14 +1014,14 @@ auto right_axis(const Scale & scale, const Codomain & position, const axis_prope
 enum class cdv::elem::axis_orientation
 ```
 
-__MISSING__
+The four different possible orientations of a standard axis.
 
 |Name|Description|
 | :-- | :-- |
-| left | __MISSING__ |
-| right | __MISSING__ |
-| top | __MISSING__ |
-| bottom | __MISSING__ |
+| left | Vertical axis with ticks and labels left of the spine. |
+| right | Vertical axis with ticks and labels right of the spine. |
+| top | Horizontal axis with ticks and labels above the spine. |
+| bottom | Horizontal axis with ticks and labels below the spine. |
 
 
 
@@ -1008,12 +1031,21 @@ __MISSING__
 
 ### bottom_axis
 
-__MISSING__
+Creates a horizontal axis with ticks and labels below the spine
 
 ```c++
 template <typename Scale, typename Codomain>
 auto bottom_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
 ```
+
+> This is a convenience function for the common case of a horizontal axis rendered at a specific vertical position where the ticks and labels of the axis are positioned below the spine of the axis.
+
+|Argument|Description|
+| :-- | :-- |
+| scale | The scale that the axis relates to. |
+| position | The vertical position of the axis. |
+| properties | The properties of the axis. |
+
 
 
 
@@ -1024,28 +1056,21 @@ auto bottom_axis(const Scale & scale, const Codomain & position, const axis_prop
 
 ### left_axis
 
-__MISSING__
+Creates a vertical axis with ticks and labels left of the spine
 
 ```c++
 template <typename Scale, typename Codomain>
 auto left_axis(const Scale & scale, const Codomain & position, const axis_properties<Codomain> & properties)
 ```
 
+> This is a convenience function for the common case of a vertical axis rendered at a specific horizontal position where the ticks and labels of the axis are positioned left of the spine of the axis.
 
+|Argument|Description|
+| :-- | :-- |
+| scale | The scale that the axis relates to. |
+| position | The horizontal position of the axis. |
+| properties | The properties of the axis. |
 
-
-<br />
-
-
-
-### draw
-
-__MISSING__
-
-```c++
-template <typename Scale, typename Surface>
-void draw(const axis<Scale> & ax, Surface & surface, const cdv::pixel_pos &)
-```
 
 
 

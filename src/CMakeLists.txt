@@ -1,12 +1,13 @@
 cmake_minimum_required (VERSION 3.15)
 
-find_package(mfl REQUIRED)
-find_package(fmt REQUIRED)
-find_package(range-v3 REQUIRED)
-find_package(unofficial-cairo REQUIRED)
-find_package(unofficial-fontconfig REQUIRED)
-find_package(Freetype REQUIRED)
-find_package(harfbuzz REQUIRED)
+find_package(mfl CONFIG REQUIRED)
+find_package(fmt CONFIG REQUIRED)
+find_package(range-v3 CONFIG REQUIRED)
+find_package(unofficial-cairo CONFIG REQUIRED)
+find_package(Freetype CONFIG REQUIRED)
+find_package(expat CONFIG REQUIRED)
+find_package(harfbuzz CONFIG REQUIRED)
+find_package(Fontconfig)
 find_package(Threads)
 
 add_library(cdv
@@ -37,7 +38,8 @@ target_link_libraries(cdv PUBLIC
         project_warnings
         project_options
         unofficial::cairo::cairo
-        unofficial::fontconfig::fontconfig
+        expat::expat
+        Fontconfig::Fontconfig
         Freetype::Freetype
         harfbuzz::harfbuzz
         )

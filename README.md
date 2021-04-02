@@ -166,38 +166,22 @@ See [here](/doc/tutorial.md) for a more in depth tutorial
 
 ## Build Instructions
 
-** This is all very temporary - please don't report build issues. The build process
-is not functional yet. It is being worked on. **
+Using vcpkg:
 
-At the time of writing, getting *cdv* to build is more complex than it should be. 
-You will need a decent command of CMake and vcpkg and will more than likely have
-to troubleshoot problems. Also note that without significant source code changes
-neither *mfl* nor *cdv* build on MSVC. 
-
-What the build instructions should be:
+Install dependencies:
 
 ```commandline
-vcpkg install range-v3 fmt cairo harfbuzz freetype mfl
+vcpkg install mfl
+```
+
+Then from *cdv* root directory:
+
+```commandline
 mkdir build
 cd build
-cmake ..
+cmake .. -DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg.cmake>
 make
 ``` 
-
-However, *mfl* is not packaged in vcpkg (yet, hopefully). So to get this to build in
-its current state, the basic pathway is:
-- clone and build [mfl](https://github.com/cpp-niel/mfl) using vcpkg and cmake
-- Modify *cdv*'s CMake scripts to use the *mfl* version just built
-- Use vcpkg and CMake to build *cdv*
-
-As if that wasn't problematic enough, there is an additional problem on some platforms.
-The version of *fontconfig* that is currently packaged in vcpkg contains issues that
-affect *cdv*. The issues are resolved in more recent versions of fontconfig and there
-is a pull request pending for vcpkg. But it has not been merged yet. I have worked
-around this locally by manually patching the vcpkg fontconfig port to use version 2.13.1.
-
-Hopefully, all this will be resolved in the near future and the build instructions
-for all platforms will be as given above.
 
 ## Documentation
 
